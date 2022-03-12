@@ -1,0 +1,274 @@
+﻿@import '_variables.scss';
+
+#loginBannerContainer {
+    background-color: $white;
+    /*box-shadow: 0px 0px 10px 10px #fff;*/
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    @media (max-width: 767px) {
+        .banner {
+            background-image: url('/Media/Branding/tagit_logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-bottom: 30px;
+            min-height: 100px;
+        }
+    }
+}
+
+// **** LARGE SECTION **** \\
+// **** LARGE SECTION **** \\
+// **** LARGE SECTION **** \\
+// **** LARGE SECTION **** \\
+.section-large {
+    padding: .5rem .5rem;
+    background-color: none;
+
+    > .section-header {
+        display: flex;
+        background-color: $primary;
+        padding: .5rem 10px .4rem 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        align-items: center;
+        color: $white;
+
+        h1, h2, h3, h4, h5 {
+            flex: 1 0 auto;
+            display: block;
+            margin-bottom: 0;
+            font-size: 1.3rem;
+
+            i {
+                margin-right: .5rem;
+            }
+        }
+
+        button, a {
+            flex: 0 1 auto;
+            display: block;
+            padding: .2rem .3rem;
+            margin-top: -.25rem;
+
+            > i {
+                text-align: center;
+                width: 1.125em;
+            }
+        }
+
+        a, button.btn-link {
+            color: white;
+        }
+    }
+
+    &.large-header-font > .section-header {
+        h1, h2, h3, h4, h5 {
+            font-size: 1.9rem;
+        }
+    }
+
+    > .section-content {
+        padding: .7rem;
+        border-left: 2px solid $gray-400;
+        border-right: 2px solid $gray-400;
+        border-bottom: 2px solid $gray-400;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-color: $gray-500;
+        position: relative;
+        min-height: 1em;
+        background-color: $white;
+
+        > .section-footer {
+            margin-top: .5rem;
+            padding-top: .5rem;
+            border-top: 1px solid $light;
+            display: flex;
+            justify-content: flex-end;
+
+            > button, a {
+                &:not(:first-child) {
+                    margin-left: .5rem;
+                }
+            }
+        }
+    }
+}
+// **** SMALL SECTION **** \\
+// **** SMALL SECTION **** \\
+// **** SMALL SECTION **** \\
+// **** SMALL SECTION **** \\
+.section-small {
+    margin-bottom: 1em;
+    background-color: none;
+
+    > .section-header {
+        display: flex;
+        background-color: $white;
+        padding: .4rem 10px .17rem 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        align-items: center;
+        color: $gray-600;
+        border-left: 2px solid $gray-400;
+        border-right: 2px solid $gray-400;
+        border-top: 2px solid $gray-400;
+
+        h1, h2, h3, h4, h5 {
+            flex: 1 0 auto;
+            display: block;
+            margin-bottom: 0;
+            font-size: 1.13rem;
+            color: $gray-600;
+
+            i {
+                margin-right: .5rem;
+            }
+        }
+
+        button, a {
+            flex: 0 1 auto;
+            display: block;
+            padding: .2rem .3rem;
+            margin-top: -.25rem;
+            font-size: 1.5rem;
+
+            > i {
+                text-align: center;
+                width: 1.125em;
+            }
+        }       
+    }
+
+    > .section-content {
+        padding: 1rem .7rem .7rem .7rem;
+        border-left: 2px solid $gray-400;
+        border-right: 2px solid $gray-400;
+        border-bottom: 2px solid $gray-400;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: $white;
+        position: relative;
+        min-height: 1em;
+
+        > .section-footer {
+            margin-top: .5rem;
+            padding-top: .5rem;
+            border-top: 1px solid $light;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    &.large-header-font > .section-header {
+        h1, h2, h3, h4, h5 {
+            margin-top: -1.4rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.section-large, .section-small {
+    &.section-collapsed {
+        > .section-header:hover {
+            > h1, h2, h3, h4, h5 {
+                transform: scale(1.05);
+                color: lighten($gray-600, 15%);
+            }
+        }
+
+        &.section-small > .section-header {
+            border-right: none !important;
+            margin-right: 2px;
+            border-left: none !important;
+            margin-left: 2px;
+            border-radius: 0 !important
+        }
+
+        .section-content {
+            display: none;
+            max-height: 0;
+        }
+    }
+}
+
+.section-fieldset > .section-header {
+    background-color: $white;
+    color: $gray-600;
+
+    h1, h2, h3, h4, h5 {
+        flex: 0 1 auto;
+        margin-top: -1rem;
+        padding: 0 .5rem 0 .5rem;
+        background-color: $white;
+        margin-bottom: 0;
+        display: block;
+        font-size: 1.13rem;
+    }
+}
+
+//context MENU
+.context-menu-container {
+    position: absolute;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid $gray-400;
+    border-radius: 3px;
+    box-shadow: $gray-500 0px 0px 10px;
+    background-color: $gray-100;
+    width: auto;
+    padding: 0 .5rem;
+    z-index: 999;
+
+
+    .context-menu-content {
+        padding: 1rem 0;
+
+        h1, h2, h3, h4, h5 {
+            color: $secondary;
+            padding: 0 1rem;
+        }
+
+        &:last-child .context-menu-actions {
+            border-right: 0;
+        }
+
+        .context-menu-actions {
+            border-right: 1px solid $gray-400;
+            padding: 0rem .5rem;
+
+            .context-menu-action {
+                display: block;
+                width: 100%;
+                clear: both;
+                color: $gray-700;
+                text-align: inherit;
+                text-decoration: none;
+                white-space: nowrap;
+                background-color: transparent;
+                border: 0;
+                border-radius: 3px;
+
+                &:hover {
+                    background-color: $gray-300;
+                }
+
+                &:disabled {
+                    color: $gray-400;
+
+                    i {
+                        color: $gray-400;
+                    }
+
+                    &:hover {
+                        background-color: unset;
+                    }
+                }
+            }
+        }
+    }
+}

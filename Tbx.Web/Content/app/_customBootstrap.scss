@@ -1,0 +1,98 @@
+﻿$custom1: #666A86;
+$custom2: #e3e3e8;
+$custom3: #454545;
+$custom4: #a3b3bd;
+$custom5: #d7d7d7;
+
+$black: #2f2f2f;
+$white: #fafafa;
+$green: #719e73;
+$yellow: #eed202;
+$red: #c7747c;
+
+$gray-100: #f0f2f4;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #98a5b0;
+$gray-600: #6c757d;
+$gray-700: #5e666e;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+$primary: $custom1;
+$secondary: $custom2;
+$dark: $custom3;
+$info: $custom4;
+$light: $custom5;
+
+$success: $green;
+$danger: $red;
+$warning: $yellow;
+
+$theme-colors: ( "primary": $primary, "secondary": $secondary, "success": $success, "info": $info, "warning": $warning, "danger": $danger, "light": $light, "dark": $dark);
+
+$body-bg: $white;
+$body-color: $primary;
+
+$link-hover-decoration: none;
+
+$grid-gutter-width: 6px;
+
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1300px );
+
+$input-color: $gray-700;
+$input-bg: lighten($white, 10%);
+$input-disabled-bg: $gray-100;
+$input-placeholder-color: $gray-500;
+
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * .985 !default;
+
+$input-btn-padding-y-sm: .25rem !default;
+$input-btn-padding-x-sm: .5rem !default;
+    
+$paragraph-margin-bottom: .5rem;
+
+
+$nav-link-disabled-color: $gray-400;
+
+$card-spacer-y: .5rem;
+$card-spacer-x: .75rem;
+
+$nav-pills-link-active-color: $white;
+$nav-pills-link-active-bg: $primary;
+
+$dropdown-link-color: $gray-700;
+$dropdown-link-hover-color: $primary;
+$dropdown-link-hover-bg: $light;
+$dropdown-item-padding-x: .8rem;
+$dropdown-link-disabled-color: $gray-400;
+$modal-xl: 1440px !default;
+$modal-lg: 980px !default;
+$modal-md: 600px !default;
+$modal-sm: 300px !default;
+
+// Required
+@import "../bootstrap/_functions";
+@import "../bootstrap/_variables";
+@import "../bootstrap/_mixins";
+
+// Optional
+@import "../bootstrap/_reboot";
+@import "../bootstrap/_utilities";
+@import "../bootstrap/_type";
+@import "../bootstrap/_input-group";
+@import "../bootstrap/_forms";
+@import "../bootstrap/_buttons";
+@import "../bootstrap/_button-group";
+@import "../bootstrap/_grid";
+@import "../bootstrap/_dropdown";
+@import "../bootstrap/_tables";
+@import "../bootstrap/_modal";
+@import "../bootstrap/_close";
+@import "../bootstrap/_custom-forms";
+@import "../bootstrap/_transitions";
+@import "../bootstrap/_nav.scss";
+@import "../bootstrap/_badge.scss";
+@import "../bootstrap/_card.scss";

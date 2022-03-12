@@ -1,0 +1,400 @@
+﻿@import '_variables.scss';
+
+
+html, body {
+    font-family: "newsonlight", Arial,sans-serif;
+    font-size: 12px;
+}
+
+@media (max-width: $mobileViewLimit) {
+    html, body {
+        font-family: "newsonlight", Arial,sans-serif;
+        font-size: 12px;
+    }
+}
+
+// **** NAVIGATION TOP **** \\
+// **** NAVIGATION TOP **** \\
+// **** NAVIGATION TOP **** \\
+// **** NAVIGATION TOP **** \\
+#topNavigation {
+    background-color: $white;
+    box-shadow: 0px 0px 10px -3px $primary;
+    z-index: 2;
+    height: $topNavigationHeight;
+
+    .brand{
+        display: block;
+        height: $topNavigationHeight;
+
+        img{
+            height: 100%;
+            width: auto;
+        }
+    }
+}
+
+// **** NAVIGATION LEFT **** \\
+// **** NAVIGATION LEFT **** \\
+// **** NAVIGATION LEFT **** \\
+// **** NAVIGATION LEFT **** \\
+#mainNavigation {
+    font-weight: normal;
+    background-color: $gray-100;
+    z-index: 201;
+    box-shadow: inset -5px 0 5px -5px $secondary, inset 0px 6px 8px -7px $primary;
+
+    #NavWidthButton {
+        width: 2.5rem;
+        height: 2rem;
+        background-color: $primary;
+        color: $white;
+        float: right;
+        border-bottom-left-radius: 5px;
+        text-align: center;
+        box-shadow: inset -6px 0 5px -5px $secondary, inset 0px 7px 8px -7px $secondary;
+        cursor: pointer;
+
+        &::after {
+            @extend %fa-icon;
+            @extend .fas;
+            content: fa-content($fa-var-arrow-alt-circle-left);
+            font-size: 1.5rem;
+            margin-top: .16rem;
+        }
+    }
+
+    #leftNavFooter {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    i {
+        font-size: 1.1rem;
+        vertical-align: middle;
+    }
+
+    ul {
+        padding-left: 0;
+        -webkit-padding-start: 0;
+        list-style: none;
+    }
+
+    a {
+        font-size: 1.05rem;
+        display: block;
+        width: 100%;
+        color: $primary;
+        white-space: nowrap;
+        padding: .4rem .5rem;
+
+        &::after {
+            @extend %fa-icon;
+            @extend .fas;
+        }
+
+        &[href="#"]::after {
+            content: fa-content($fa-var-caret-left);
+            float: right;
+            margin-right: 1px;
+            margin-top: .4rem;
+        }
+
+        &:hover {
+            background-color: $light;
+            box-shadow: inset -5px 0 5px -5px $secondary;
+        }
+
+        span {
+            padding-left: 0;
+            vertical-align: text-top;
+        }
+    }
+
+    > ul {
+        padding-top: 3rem;
+        margin-bottom: 6rem;
+    }
+
+    li {
+        overflow: hidden;
+
+        &.active a {
+            background-color: $primary;
+            color: $white;
+            box-shadow: inset -5px 0 5px -5px $secondary;
+        }
+
+        &.subMenuActive > a {
+            background-color: $light;
+            box-shadow: inset -5px 0 5px -5px $secondary;
+        }
+
+        &.disabled a {
+            opacity: .5;
+        }
+
+        &.opened {
+            a[href="#"]::after {
+                margin-right: 0px;
+                -webkit-transform: rotate(270deg);
+                -moz-transform: rotate(270deg);
+                -ms-transform: rotate(270deg);
+                -o-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+
+            ul {
+                visibility: visible;
+                opacity: 1;
+                display: block;
+                background-color: $gray-200;
+                box-shadow: inset -5px 0 5px -5px $secondary;
+            }
+        }
+
+        ul {
+            visibility: hidden;
+            opacity: 0;
+            display: none;
+
+            a {
+                padding: .2rem 0 .2rem 1.5rem;
+            }
+        }
+    }
+}
+
+.minified > #mainNavigation {
+    @media (min-width: $mobileViewLimit) {
+        #NavWidthButton {
+            width: 100%;
+            border-bottom-left-radius: 0;
+
+            &::after {
+                content: fa-content($fa-var-arrow-alt-circle-right);
+            }
+        }
+
+        #leftNavFooter {
+            display: none;
+        }
+
+        > ul > li {
+            > a {
+                text-align: center;
+
+                &::after {
+                    display: none;
+                }
+
+                span {
+                    opacity: 0;
+                    visibility: hidden;
+                }
+            }
+
+            ul {
+                position: absolute;
+                background-color: $nav-ul-minified-ul-bg;
+                margin-left: $mainNavigationMinifiedWidth;
+                margin-top: -2.4rem;
+                width: $mainNavigationExtendedWidth;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                box-shadow: 2px 2px 4px -2px $nav-ul-minified-ul-bg;
+
+                li:first-child a {
+                    padding-top: .8rem;
+                }
+
+                li a, li.active a {
+                    padding: .3rem 1.2rem;
+                    color: $nav-ul-minified-li-text;
+                    box-shadow: none;
+
+                    &:hover {
+                        background-color: $nav-ul-minified-li-hover-bg;
+                        color: $nav-ul-minified-li-hover-text;
+                    }
+                }
+
+                li.active a {
+                    background-color: $nav-ul-minified-li-active-bg;
+                    color: $nav-ul-minified-li-active-text;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $mobileViewLimit) {
+    #mainNavigation {
+        font-size: 1.1rem;
+        width: 100%;
+        min-height: initial !important;
+        box-shadow: 0px 4px 10px -7px $secondary;
+
+        &:not(.toggled) {
+            max-height: 0px !important;
+            overflow: hidden;
+        }
+
+        #NavWidthButton {
+            display: none;
+        }
+
+        #leftNavFooter {
+            display: none;
+        }
+
+        > ul {
+            padding-top: 1rem;
+
+            > li {
+                box-shadow: 0px -10px 3px -10px $light;
+            }
+        }
+
+        ul li {
+            a {
+                padding-top: .8rem;
+                padding-bottom: .8rem;
+
+                &:hover {
+                    background-color: transparent;
+                    box-shadow: none;
+                }
+            }
+
+            ul li a {
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+            }
+
+            &.subMenuActive > a {
+                background-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+
+// **** MAIN CONTENT CONTAINER **** \\
+// **** MAIN CONTENT CONTAINER **** \\
+// **** MAIN CONTENT CONTAINER **** \\
+// **** MAIN CONTENT CONTAINER **** \\
+#mainContentContainer {
+    padding-bottom: 3.5rem;
+}
+
+// **** FOOTER NAVIGATION **** \\
+// **** FOOTER NAVIGATION **** \\
+// **** FOOTER NAVIGATION **** \\
+// **** FOOTER NAVIGATION **** \\
+#footer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: $light;
+    box-shadow: .1rem .1rem 5px .25rem $light;
+    z-index: 99;
+
+    ul {
+        list-style: none;
+        display: flex;
+        align-items: stretch; /* Default */
+        justify-content: space-between;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        -webkit-padding-start: 0;
+
+        li {
+            display: block;
+            flex: 0 1 auto; /* Default */
+            list-style-type: none;
+
+            button {
+                white-space: nowrap;
+
+                i {
+                    margin-right: .4rem;
+                }
+            }
+        }
+    }
+}
+
+
+// **** NAVIGATION LEFT WIDTH **** \\
+// **** NAVIGATION LEFT WIDTH **** \\
+// **** NAVIGATION LEFT WIDTH **** \\
+// **** NAVIGATION LEFT WIDTH **** \\
+#NavAndContentContainer {
+    @media (min-width: $mobileViewLimit) {
+        #mainNavigation {
+            width: $mainNavigationExtendedWidth;
+        }
+
+        #main, #footer {
+            margin-left: $mainNavigationExtendedWidth;
+        }
+
+        &.minified {
+            #mainNavigation {
+                width: $mainNavigationMinifiedWidth;
+            }
+
+            #main, #footer {
+                margin-left: $mainNavigationMinifiedWidth;
+            }
+        }
+    }
+}
+
+// **** BREAD CRUMB **** \\
+// **** BREAD CRUMB **** \\
+// **** BREAD CRUMB **** \\
+// **** BREAD CRUMB **** \\
+#breadCrumbContainer {
+    > ul {
+        -webkit-padding-start: 0;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+
+        > li {
+            display: inline-block;
+            margin-right: .3rem;
+            letter-spacing: .6pt;
+            font-variant: small-caps;
+            font-variant-caps: all-petite-caps;
+            color: $gray-500;
+
+            > a {
+                letter-spacing: .6pt;
+                font-variant: small-caps;
+                font-variant-caps: all-petite-caps;
+                font-weight: 700;
+                color: $gray-600;
+            }
+
+            &::before {
+                content: "/";
+                position: relative;
+                margin-right: .5rem;
+            }
+
+            &:nth-child(1)::before {
+                content: "";
+                display: none;
+            }
+        }
+    }
+}

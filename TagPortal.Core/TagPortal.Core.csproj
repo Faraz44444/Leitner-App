@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0D598FB-A9AC-4068-9D06-C7FEFDEC29EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TagPortal.Core</RootNamespace>
+    <AssemblyName>TagPortal.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupAuthenticationResponseDto.cs" />
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupAuthenticationRequestDto.cs" />
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupAuthenticationDto.cs" />
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupOrderDto.cs" />
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupResponseDto.cs" />
+    <Compile Include="ExternalApi\BaseApi.cs" />
+    <Compile Include="ExternalApi\Bring\BringApi.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingAddressDto.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingErrorDto.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingEventSetDto.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingPackageSetDto.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingConsignmentSetDto.cs" />
+    <Compile Include="ExternalApi\Bring\Dto\Tracking\BringTrackingDto.cs" />
+    <Compile Include="ExternalApi\Brreg\BrregApi.cs" />
+    <Compile Include="ExternalApi\Brreg\Dto\BrregPagedResponseDto.cs" />
+    <Compile Include="ExternalApi\Brreg\Dto\BrregEnhetDto.cs" />
+    <Compile Include="ExternalApi\DnbCurrency\DnbCurrencyApi.cs" />
+    <Compile Include="ExternalApi\DnbCurrency\Dto\DnbCurrencyRateResponseDto.cs" />
+    <Compile Include="ExternalApi\Astrup\Dto\AstrupProductDto.cs" />
+    <Compile Include="ExternalApi\Tools\Dto\ToolsProductDto.cs" />
+    <Compile Include="ExternalApi\Tools\ToolsApi.cs" />
+    <Compile Include="ExternalApi\WiseSms\Dto\AuthenticateResponseDto.cs" />
+    <Compile Include="ExternalApi\WiseSms\Dto\AuthenticateRequestDto.cs" />
+    <Compile Include="ExternalApi\WiseSms\Dto\CategoryEnum.cs" />
+    <Compile Include="ExternalApi\WiseSms\Dto\CurrencyEnum.cs" />
+    <Compile Include="ExternalApi\WiseSms\WiseSmsApi.cs" />
+    <Compile Include="Infrastructure\Exception\ApiException.cs" />
+    <Compile Include="Infrastructure\Filters\HandleException.cs" />
+    <Compile Include="Infrastructure\Filters\ValidateRequestRoute.cs" />
+    <Compile Include="Infrastructure\Helpers\FileHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\FilepathHelper.cs" />
+    <Compile Include="Infrastructure\Helpers\TagIndexHelper.cs" />
+    <Compile Include="Infrastructure\PasswordSecurity\PasswordSecurity.cs" />
+    <Compile Include="Infrastructure\Exception\FeedbackException.cs" />
+    <Compile Include="Infrastructure\Mail\MailSender.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\IUnitOfWorkProvider.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\UnitOfWorkProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Business\BusinessRepo.cs" />
+    <Compile Include="Repository\Category\CategoryRepo.cs" />
+    <Compile Include="Repository\Log\EventLogRepo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\Log\ErrorLogRepo.cs" />
+    <Compile Include="Repository\Payment\PaymentPriority\PaymentPriorityRepo.cs" />
+    <Compile Include="Repository\Payment\PaymentRepo.cs" />
+    <Compile Include="Repository\Payment\PaymentTotal\PaymentTotalRepo.cs" />
+    <Compile Include="Repository\RepositoryFactory.cs" />
+    <Compile Include="Repository\Role\RolePermissionRepo.cs" />
+    <Compile Include="Repository\Role\RoleRepo.cs" />
+    <Compile Include="Repository\Security\SecurityRepo.cs" />
+    <Compile Include="Repository\User\UserRepo.cs" />
+    <Compile Include="Repository\User\UserSiteAccessRepo.cs" />
+    <Compile Include="Repository\User\UserSiteRepo.cs" />
+    <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Request\BaseRequestPaged.cs" />
+    <Compile Include="Request\Business\BusinessRequest.cs" />
+    <Compile Include="Request\Category\CategoryRequest.cs" />
+    <Compile Include="Request\Payment\PaymentPriority\PaymentPriorityRequest.cs" />
+    <Compile Include="Request\Payment\PaymentRequest.cs" />
+    <Compile Include="Request\Payment\PaymentTotal\PaymentTotalRequest.cs" />
+    <Compile Include="Request\User\UserSupplierAccessRequest.cs" />
+    <Compile Include="Request\User\UserSupplierRequest.cs" />
+    <Compile Include="Service\Business\BusinessService.cs" />
+    <Compile Include="Service\Category\CategoryService.cs" />
+    <Compile Include="Service\Log\EventLogService.cs" />
+    <Compile Include="Request\Role\RolePermissionsRequest.cs" />
+    <Compile Include="Request\Role\RoleRequest.cs" />
+    <Compile Include="Request\User\UserRequest.cs" />
+    <Compile Include="Request\User\UserSiteAccessRequest.cs" />
+    <Compile Include="Request\User\UserSiteRequest.cs" />
+    <Compile Include="Security\TagIdentity.cs" />
+    <Compile Include="Security\TagPrincipal.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\Log\ErrorLogService.cs" />
+    <Compile Include="Service\Mail\MailService.cs" />
+    <Compile Include="Service\Payment\PaymentPriority\PaymentPriorityService.cs" />
+    <Compile Include="Service\Payment\PaymentService.cs" />
+    <Compile Include="Service\Payment\PaymentTotal\PaymentTotalService.cs" />
+    <Compile Include="Service\Role\RolePermissionService.cs" />
+    <Compile Include="Service\Role\RoleService.cs" />
+    <Compile Include="Service\Security\SecurityService.cs" />
+    <Compile Include="Service\ServiceContext.cs" />
+    <Compile Include="Service\User\UserSiteAccessService.cs" />
+    <Compile Include="Service\User\UserService.cs" />
+    <Compile Include="Service\User\UserSiteService.cs" />
+    <Compile Include="TagAppContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TagPortal.Domain\TagPortal.Domain.csproj">
+      <Project>{b15f8a76-86d9-431d-a4fa-a874cfc09053}</Project>
+      <Name>TagPortal.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TagPortal.Extensions\TagPortal.Extensions.csproj">
+      <Project>{C6C4D7A5-0ED3-4DCD-A3B2-3762F22B58C5}</Project>
+      <Name>TagPortal.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TagPortal.Report\TagPortal.Report.csproj">
+      <Project>{3f70fb2c-5c1a-4484-8f88-16b43f6960bc}</Project>
+      <Name>TagPortal.Report</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

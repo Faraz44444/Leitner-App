@@ -1,0 +1,135 @@
+﻿@import '_variables.scss';
+
+div.table-responsive {
+    &, &-xs, &-sm, &-md, &-md, &-lg, &-xl {
+        margin-top: .6rem;
+    }
+}
+
+table {
+    td, th {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    td {
+        vertical-align: middle !important;
+    }
+
+    th {
+        color: $gray-600;
+        text-transform: capitalize;
+
+        i {
+            margin-left: .5rem;
+        }
+
+        &.sortable-th:hover {
+            cursor: pointer;
+            color: $gray-500;
+        }
+
+        &.fixed-ddmmyyyy-width, &.fixed-ddmmyyyy-width input {
+            width: 6.59em;
+        }
+    }
+
+    thead {
+        tr:nth-child(2) > th {
+            padding-left: .1rem;
+        }
+    }
+    /*STICKY TH*/
+    th {
+        position: sticky;
+        top: 0;
+        background: $white;
+        border: 0;
+        padding: 0;
+        box-shadow: 0 -0.1rem 0 0.01rem $border-color;
+        z-index: 10;
+    }
+
+    &.table-no-hover, .table-no-hover {
+        &:hover td, &:hover, tr:hover td, td:hover {
+            background-color: unset !important;
+        }
+    }
+
+    &.table-pointer, .table-pointer td {
+        cursor: pointer;
+    }
+
+    &.table-no-pointer td, .table-no-pointer td, td.table-no-pointer {
+        cursor: default !important;
+    }
+
+
+
+    thead tr:nth-child(2) th {
+        top: 2.1rem;
+        box-shadow: 0;
+    }
+
+    &.table-hover tbody {
+        tr:hover td {
+            color: $table-hover-color;
+            background-color: $table-hover-bg;
+        }
+    }
+}
+
+.bootstrap-datetimepicker-widget {
+    th, td {
+        border-top: none;
+        border-bottom: none;
+        white-space: unset;
+        box-shadow: none;
+    }
+
+    tr:hover {
+        background-color: unset;
+    }
+}
+
+/*SNIPPET FOR PAGINATION PAGER*/
+/*ul.pagination {
+    padding-left: 0;
+    -webkit-padding-start: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3em;
+
+    > li {
+        padding: .5rem .8rem;
+        background-color: $primary;
+        cursor: pointer;
+        margin: 0px .5px;
+
+        &:first-child {
+            border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        &:last-child {
+            border-top-right-radius: 10%;
+            border-bottom-right-radius: 10%;
+        }
+
+        &.active, &:hover {
+            padding-top: .8rem;
+            margin-top: -.3rem;
+            border-top-left-radius: 10%;
+            border-top-right-radius: 10%;
+            transition: all 100ms ease-in-out;
+        }
+
+        > a {
+            color: $white;
+            font-size: 1.05rem;
+        }
+    }
+}*/

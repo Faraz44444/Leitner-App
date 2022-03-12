@@ -1,0 +1,2 @@
+D:\Programs\Work template\New folder\My app\TagPortal.DataMigrator\obj\Debug\TagPortal.DataMigrator.csproj.AssemblyReference.cache
+D:\Programs\Work template\New folder\My app\TagPortal.DataMigrator\obj\Debug\TagPortal.DataMigrator.csproj.CoreCompileInputs.cache

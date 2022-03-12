@@ -1,0 +1,22 @@
+﻿@import '_variables.scss';
+
+ul.custom-ul {
+    list-style: none;
+    padding: 0 0 0 1.5em;
+
+    > li label {
+        font-size: 1rem;
+        color: $gray-600;
+    }
+
+    &.two-column-li {
+        @media(max-width: map-get($grid-breakpoints, md)) {
+            padding-left: 0;
+
+            > li {
+                width: 50%;
+                display: inline-block;
+            }
+        }
+    }
+}

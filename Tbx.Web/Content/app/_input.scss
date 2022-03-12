@@ -1,0 +1,187 @@
+﻿@import '_variables.scss';
+
+input, select, textarea, .custom-control, .custom-control > label {
+    cursor: pointer !important;
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    &.collapsed {
+        background-color: lighten($gray-500, 0%);
+        border-color: lighten($gray-500, 0%);
+    }
+}
+
+a {
+    i {
+        margin-right: .4rem;
+    }
+}
+
+input {
+    &[type="number"] {
+        text-align: right;
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+}
+
+.input-error {
+    border-color: $red;
+    box-shadow: 0 0 3px 1px darken($red, 16%);
+    background-color: lighten($red, 36%);
+}
+
+
+.custom-input-group {
+    position: relative;
+    box-shadow: 0px 0px 1px 1px $light;
+    border-radius: 5px;
+    height: 3.5rem;
+    padding: 1px;
+
+    > label {
+        padding: 0 .5rem;
+        position: absolute;
+        background-color: inherit;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        font-size: .95rem;
+        letter-spacing: .2pt;
+        font-variant: small-caps;
+        font-variant-caps: all-petite-caps;
+        font-weight: 600;
+        z-index: 2;
+        color: $gray-600;
+    }
+
+    input, textarea, select, > div.custom-control {
+        height: 100%;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .multiselect .multiselect__tags {
+        font-weight: 600;
+        color: $gray-600;
+    }
+
+    input, textarea, select {
+        border: none;
+        padding: 1.5rem .3rem 0rem .8rem;
+    }
+
+    textarea {
+        padding: 1.81rem .3rem 0rem .8rem;
+    }
+
+    &.auto-height {
+        height: auto;
+    }
+
+    > select {
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    > .caret::after {
+        @extend %fa-icon;
+        @extend .fas;
+        content: fa-content($fa-var-caret-down);
+        font-size: 1.2em;
+        position: absolute;
+        bottom: .4em;
+        right: .5em;
+    }
+
+    > .copy-btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 .3rem;
+    }
+
+    > div.custom-control {
+        padding: 1.7rem 0rem 0rem 3.1rem;
+        background: $input-bg;
+
+        &.disabled,  &[disabled] {
+            background-color: $input-disabled-bg;
+        }
+
+        > label > span {
+            vertical-align: text-top;
+        }
+    }
+
+    > div.custom-control-range {
+        height: 100%;
+        padding: .5rem 1rem 0rem .9rem;
+
+        label {
+            float: right;
+            margin-top: -.1rem;
+            margin-bottom: .5rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: auto;
+            padding: 0;
+            margin-top: .5rem;
+            background-color: $secondary;
+            -webkit-appearance: none;
+            border-radius: 25px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            input[type='range']::-webkit-slider-runnable-track {
+                -webkit-appearance: none;
+            }
+
+            input[type='range']::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                background: $primary;
+                border-radius: 25px;
+                height: .6rem;
+                width: .6rem;
+                box-shadow: 0 0 0 5px $primary;
+            }
+        }
+
+        input[type="range"]::-moz-range-progress {
+            background-color: $secondary;
+        }
+
+        input[type="range"]::-moz-range-track {
+            background-color: $secondary;
+        }
+
+        input[type="range"]::-ms-fill-lower {
+            background-color: $secondary;
+        }
+
+        input[type="range"]::-ms-fill-upper {
+            background-color: $secondary;
+        }
+    }
+}
