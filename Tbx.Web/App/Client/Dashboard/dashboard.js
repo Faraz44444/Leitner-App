@@ -1,6 +1,13 @@
 ﻿window.addEventListener("load", function (event) {
     var filterTimeout = null;
     var today = new Date();
+
+    var firstDayOfWeek = today.getDate() - today.getDay(); // First day is the day of the month - the day of the week
+    var lastDayOfWeek = firstDayOfWeek + 6; // last day is the first day + 6
+    var ThisWeekPeriod = {
+        DateFrom: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + firstDayOfWeek,
+        DateTo: today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + lastDayOfWeek,
+    }
     var ThisMonthPeriod = {
         DateFrom: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + 1,
         DateTo: today.getFullYear() + '-' + (today.getMonth() + 2) + '-' + 1,
@@ -20,29 +27,19 @@
             payment: {
                 expenditures: {
                     total: {
-                        thisMonthFilter: {
+                        thisYearFilter: {
                             IsDeposit: false,
-                            DateFrom: ThisMonthPeriod.DateFrom,
-                            DateTo: ThisMonthPeriod.DateTo
+                            DateFrom: ThisYearPeriod.DateFrom,
+                            DateTo: ThisYearPeriod.DateTo
                         },
-                        lastMonthFilter: {
-                            IsDeposit: false,
-                            DateFrom: LastMonthPeriod.DateFrom,
-                            DateTo: LastMonthPeriod.DateTo
-                        }
                     }
                 },
                 incomes: {
                     total: {
-                        thisMonthFilter: {
+                        thisYearFilter: {
                             IsDeposit: true,
-                            DateFrom: ThisMonthPeriod.DateFrom,
-                            DateTo: ThisMonthPeriod.DateTo
-                        },
-                        lastMonthFilter: {
-                            IsDeposit: true,
-                            DateFrom: LastMonthPeriod.DateFrom,
-                            DateTo: LastMonthPeriod.DateTo
+                            DateFrom: ThisYearPeriod.DateFrom,
+                            DateTo: ThisYearPeriod.DateTo
                         }
                     }
                 },
@@ -56,7 +53,30 @@
                         DateTo: LastMonthPeriod.DateTo
                     }
                 },
-
+                groceries: {
+                    categoryFilter: {
+                        CategoryName: "Groceries"
+                    },
+                    categoryDetails: {},
+                    paymentFilter: {
+                        CategoryId: 0,
+                        DateFrom: ThisWeekPeriod.DateFrom,
+                        DateTo: ThisWeekPeriod.DateTo
+                    },
+                    thisWeekSum: 0,
+                },
+                eatingOut: {
+                    categoryFilter: {
+                        CategoryName: "Eating Out"
+                    },
+                    categoryDetails: {},
+                    paymentFilter: {
+                        CategoryId: 0,
+                        DateFrom: ThisWeekPeriod.DateFrom,
+                        DateTo: ThisWeekPeriod.DateTo
+                    },
+                    thisWeekSum: 0,
+                },
                 details: {},
                 loadingItems: false,
 
@@ -72,10 +92,12 @@
                 lastMonthIncome: 0,
                 thisYearIncomes: 0,
 
-                expendituresChartData: [],
-                incomesChartData: [],
-                overviewChart: null
+                overviewChart: null,
+                groceriesPie: null,
+                eatingOutPie: null
             },
+            thisMonth: today.getMonth(),
+            lastMonth: today.getMonth() - 1,
         },
         computed: {
             DatePeriods: function () {
@@ -108,33 +130,7 @@
         methods: {
             getMonthlyExpenditures: function () {
                 this.payment.isLoading = true;
-
-                apiService.GetList("payment/sum", this.payment.expenditures.total.thisMonthFilter)
-                    .then(data => {
-                        this.payment.thisMonthExpenditures = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    });
-
-                apiService.GetList("payment/sum", this.payment.expenditures.total.lastMonthFilter)
-                    .then(data => {
-                        this.payment.lastMonthExpenditures= data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    });
-
-
-                this.expendituresChartData = [];
-
-                this.payment.expenditures.total.lastMonthFilter.DateFrom = ThisYearPeriod.DateFrom;
-                this.payment.expenditures.total.lastMonthFilter.DateTo = ThisYearPeriod.DateTo;
-                apiService.GetList("payment/sums", this.payment.expenditures.total.lastMonthFilter)
+                apiService.GetList("payment/sums", this.payment.expenditures.total.thisYearFilter)
                     .then(data => {
                         this.payment.thisYearExpenditures = data;
 
@@ -146,33 +142,10 @@
             },
             getMonthlyIncomes: function () {
                 this.payment.isLoading = true;
-
-                apiService.GetList("payment/sum", this.payment.incomes.total.thisMonthFilter)
-                    .then(data => {
-                        this.payment.thisMonthIncome = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    });
-
-                apiService.GetList("payment/sum", this.payment.incomes.total.lastMonthFilter)
-                    .then(data => {
-                        this.payment.lastMonthIncome = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    });
-
-                this.payment.incomes.total.lastMonthFilter.DateFrom = ThisYearPeriod.DateFrom;
-                this.payment.incomes.total.lastMonthFilter.DateTo = ThisYearPeriod.DateTo;
-                apiService.GetList("payment/sums", this.payment.incomes.total.lastMonthFilter)
+                apiService.GetList("payment/sums", this.payment.incomes.total.thisYearFilter)
                     .then(data => {
                         this.payment.thisYearIncomes = data;
-                        this.loadTurnoverChart();
+                        this.loadOverviewChart();
 
                     }, function (error) {
                         feedback.DisplayError(error);
@@ -203,14 +176,55 @@
                         app.payment.isLoading = false;
                     });
             },
-            getRequisitionList: function () {
+            getGroceries: function () {
+                apiService.GetList("category/lookup", this.payment.groceries.categoryFilter)
+                    .then(data => {
+                        this.payment.groceries.categoryDetails = data;
 
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
+                    }).then((data2) => {
+                        this.payment.groceries.paymentFilter.CategoryId = this.payment.groceries.categoryDetails[0].CategoryId
+                        apiService.GetList("payment/sum", this.payment.groceries.paymentFilter)
+                            .then(data => {
+                                this.payment.groceries.thisWeekSum = data;
 
+                            }, function (error) {
+                                feedback.DisplayError(error);
+                            }).always(function () {
+                                app.payment.isLoading = false;
+                            });
+                    }).then((data3) => {
+                        this.loadGroceriesPie();
+                    })
             },
-            drawLoanSatisticsChartData: function () {
+            getEatingOuts: function () {
+                apiService.GetList("category/lookup", this.payment.eatingOut.categoryFilter)
+                    .then(data => {
+                        this.payment.eatingOut.categoryDetails = data;
 
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
+                    }).then((data2) => {
+                        this.payment.eatingOut.paymentFilter.CategoryId = this.payment.eatingOut.categoryDetails[0].CategoryId
+                        apiService.GetList("payment/sum", this.payment.eatingOut.paymentFilter)
+                            .then(data => {
+                                this.payment.eatingOut.thisWeekSum = data;
+
+                            }, function (error) {
+                                feedback.DisplayError(error);
+                            }).always(function () {
+                                app.payment.isLoading = false;
+                            });
+                    }).then((data3) => {
+                        this.loadEatingOutPie();
+                    })
             },
-            loadTurnoverChart: function () {
+            loadOverviewChart: function () {
 
                 let data = {
                     labels: Months,
@@ -254,6 +268,78 @@
                 if (this.overviewChart) overviewChart.destroy();
                 this.overviewChart = new Chart(ctx, config);
             },
+            loadEatingOutPie: function () {
+                let actualData = [this.payment.eatingOut.thisWeekSum, this.payment.eatingOut.categoryDetails[0].WeeklyLimit - this.payment.eatingOut.thisWeekSum]
+                let data = {
+                    labels: ["Spent", "Could be spent"],
+                    datasets: [
+                        {
+                            label: 'spent',
+                            data: actualData,
+                            borderColor: colorsTransparent,
+                            backgroundColor: colorsTransparentHigh,
+                            borderWidth: 2,
+                            borderSkipped: false,
+                        }],
+                };
+
+                let config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Eating Out'
+                            }
+                        }
+                    },
+                };
+
+                var ctx = $("#eatingOutPie");
+                if (this.eatingOutPie) eatingOutPie.destroy();
+                this.eatingOutPie = new Chart(ctx, config);
+            },
+            loadGroceriesPie: function () {
+                let actualData = [this.payment.groceries.thisWeekSum, this.payment.groceries.categoryDetails[0].WeeklyLimit - this.payment.groceries.thisWeekSum]
+                let data = {
+                    labels: ["Spent", "Could be spent"],
+                    datasets: [
+                        {
+                            label: 'spent',
+                            data: actualData,
+                            borderColor: colorsTransparent,
+                            backgroundColor: colorsTransparentHigh,
+                            borderWidth: 2,
+                            borderSkipped: false,
+                        }],
+                };
+
+                let config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Groceries'
+                            }
+                        }
+                    },
+                };
+
+                var ctx = $("#groceriesPie");
+                if (this.groceriesPie) groceriesPie.destroy();
+                this.groceriesPie = new Chart(ctx, config);
+            },
         },
         created: function () {
         },
@@ -263,6 +349,8 @@
             this.getMonthlyExpenditures();
             this.getMonthlyIncomes();
             this.getSavings();
+            this.getGroceries();
+            this.getEatingOuts();
         }
     })
 

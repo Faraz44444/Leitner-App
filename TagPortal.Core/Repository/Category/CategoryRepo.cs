@@ -18,7 +18,9 @@ namespace TagPortal.Core.Repository.Category
         {
             string sql = $@"
                 SELECT 
-                   ct.CategoryId, ct.CategoryName, ct.CategoryPriority, ct.CreatedAt,  ct.CreatedByUserId, u.FirstName AS 'CreatedByFirstName', u.LastName AS 'CreatedByLastName'
+                   ct.CategoryId, ct.CategoryName, ct.CategoryPriority, ct.CreatedAt,  ct.CreatedByUserId,
+                   ct.WeeklyLimit, ct.MonthlyLimit,
+                   u.FirstName AS 'CreatedByFirstName', u.LastName AS 'CreatedByLastName'
                     {UsePagingColumn(usePaging)}
                 FROM dbo.CATEGORY_TAB ct
                     LEFT JOIN [USER_TAB] u on u.UserId = ct.CreatedByUserId
@@ -34,6 +36,8 @@ namespace TagPortal.Core.Repository.Category
 
             if (!String.IsNullOrEmpty(request.CategoryName)) searchParam.Add("ct.CategoryName like '%' + @CategoryName + '%'");
             if (request.CategoryPriority > 0) searchParam.Add("ct.CategoryPriority = @CategoryPriority");
+            if (request.WeeklyLimit > 0) searchParam.Add("ct.WeeklyLimit >= @WeeklyLimit");
+            if (request.MonthlyLimit > 0) searchParam.Add("ct.MonthlyLimit >= @MonthlyLimit");
             if (!String.IsNullOrEmpty(request.CreatedByFullName)) searchParam.Add("u.FirstName like '%' + @CreatedByFirstName + '%'");
             if (!String.IsNullOrEmpty(request.CreatedByFullName)) searchParam.Add("u.LastName like '%' + @CreatedByFirstName + '%'");
             if (request.CreatedAt > DateTime.MinValue) searchParam.Add("ct.Date <= @DateTo");
@@ -47,6 +51,8 @@ namespace TagPortal.Core.Repository.Category
                 ORDER BY    
                     CASE WHEN @OrderBy = {(int)CategoryOrderByEnum.CategoryName} THEN ct.CategoryName END {EnumOrderByDirectionToSql(request.OrderByDirection)},
                     CASE WHEN @OrderBy = {(int)CategoryOrderByEnum.CategoryPriority} THEN ct.CategoryPriority END {EnumOrderByDirectionToSql(request.OrderByDirection)},
+                    CASE WHEN @OrderBy = {(int)CategoryOrderByEnum.WeeklyLimit} THEN ct.WeeklyLimit END {EnumOrderByDirectionToSql(request.OrderByDirection)},
+                    CASE WHEN @OrderBy = {(int)CategoryOrderByEnum.MonthlyLimit} THEN ct.MonthlyLimit END {EnumOrderByDirectionToSql(request.OrderByDirection)},
                     CASE WHEN @OrderBy = {(int)CategoryOrderByEnum.CreatedAt} THEN ct.CreatedAt END {EnumOrderByDirectionToSql(request.OrderByDirection)}
                 {UsePagingOffset(usePaging)}
             ";
@@ -80,7 +86,9 @@ namespace TagPortal.Core.Repository.Category
             string sql = @"
                 UPDATE CATEGORY_TAB SET
                    CategroyName = @CategroyName,
-                   CategoryPriority = @CategoryPriority
+                   CategoryPriority = @CategoryPriority,
+                   WeeklyLimit = @WeeklyLimit,
+                   MonthlyLimit = @MonthlyLimit,
                 WHERE CategoryId = @CategoryId
             ";
 
@@ -91,11 +99,11 @@ namespace TagPortal.Core.Repository.Category
         {
             string sql = @"
                 INSERT INTO dbo.CATEGORY_TAB (
-                     ct.CategoryName, ct.CategoryPriority, ct.CreatedAt, ct.CreatedByUserId
+                     ct.CategoryName, ct.CategoryPriority, ct.WeeklyLimit, ct.MontlyLimit, ct.CreatedAt, ct.CreatedByUserId
                 )
                 OUTPUT INSERTED.CategoryId
                 VALUES (
-                   @CategoryName, @CategoryPriority, @CreatedAt, @CreatedByUserId
+                   @CategoryName, @CategoryPriority, @WeeklyLimit, @MonthlyLimit, @CreatedAt, @CreatedByUserId
                 )
             ";
 

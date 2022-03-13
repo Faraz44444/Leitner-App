@@ -52,7 +52,7 @@ namespace TagPortal.Core
 
             var businessService = new BusinessService(uowProvider, repoFactory, userService);
             var paymentService = new PaymentService(uowProvider, repoFactory, userService, businessService);
-            var paymentTotalService = new PaymentTotalService(uowProvider, repoFactory, userService);
+            var paymentTotalService = new PaymentTotalService(uowProvider, repoFactory, userService, businessService);
             var paymentPriorityService = new PaymentPriorityService(uowProvider, repoFactory, userService);
             var categoryService = new CategoryService(uowProvider, repoFactory, userService);
 

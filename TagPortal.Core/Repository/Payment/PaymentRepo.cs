@@ -158,7 +158,7 @@ namespace TagPortal.Core.Repository.Payment
             if (!String.IsNullOrEmpty(request.CategoryName)) searchParams.Add(" c.CategoryName like '%' + @CategoryName + '%'");
             if (request.IsDeposit.HasValue) searchParams.Add("p.IsDeposit = @IsDeposit");
             if (request.IsPaidToPerson.HasValue) searchParams.Add("p.IsPaidToPerson = @IsPaidToPerson");
-            if (request.CategoryId > 0) searchParams.Add("p.Type = @Type");
+            if (request.CategoryId > 0) searchParams.Add("p.CategoryId = @CategoryId");
             if (request.PaymentPriorityId > 0) searchParams.Add("p.PaymentPriorityId = @PaymentPriorityId");
             if (request.Price > 0) searchParams.Add("p.Price = @Price");
             if (request.DateFrom > DateTime.MinValue) searchParams.Add("p.Date >= @DateFrom");

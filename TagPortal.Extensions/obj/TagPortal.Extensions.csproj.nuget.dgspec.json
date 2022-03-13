@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programs\\Work template\\New folder\\My app\\TagPortal.Extensions\\TagPortal.Extensions.csproj": {}
+    "D:\\Programs\\Budgeting App\\budgeting-app\\TagPortal.Extensions\\TagPortal.Extensions.csproj": {}
   },
   "projects": {
-    "D:\\Programs\\Work template\\New folder\\My app\\TagPortal.Extensions\\TagPortal.Extensions.csproj": {
+    "D:\\Programs\\Budgeting App\\budgeting-app\\TagPortal.Extensions\\TagPortal.Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programs\\Work template\\New folder\\My app\\TagPortal.Extensions\\TagPortal.Extensions.csproj",
+        "projectUniqueName": "D:\\Programs\\Budgeting App\\budgeting-app\\TagPortal.Extensions\\TagPortal.Extensions.csproj",
         "projectName": "TagPortal.Extensions",
-        "projectPath": "D:\\Programs\\Work template\\New folder\\My app\\TagPortal.Extensions\\TagPortal.Extensions.csproj",
+        "projectPath": "D:\\Programs\\Budgeting App\\budgeting-app\\TagPortal.Extensions\\TagPortal.Extensions.csproj",
         "packagesPath": "C:\\Users\\404 Not Found\\.nuget\\packages\\",
-        "outputPath": "D:\\Programs\\Work template\\New folder\\My app\\TagPortal.Extensions\\obj\\",
+        "outputPath": "D:\\Programs\\Budgeting App\\budgeting-app\\TagPortal.Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\404 Not Found\\AppData\\Roaming\\NuGet\\NuGet.Config",

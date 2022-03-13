@@ -17,12 +17,12 @@
                         <div class="row mt-n3">
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="This Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisMonthExpenditures" disabled />
+                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearExpenditures[thisMonth]" disabled />
                                 </div>
                             </div>
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="Last Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.lastMonthExpenditures" disabled />
+                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearExpenditures[lastMonth]" disabled />
                                 </div>
                             </div>
                         </div>
@@ -31,12 +31,12 @@
                         <div class="row mt-n3">
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="This Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisMonthIncome" disabled />
+                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearIncomes[thisMonth]" disabled />
                                 </div>
                             </div>
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="Last Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.lastMonthIncome" disabled />
+                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearIncomes[lastMonth]" disabled />
                                 </div>
                             </div>
                         </div>
@@ -66,6 +66,18 @@
                     <div class="col-12 d-flex justify-content-center">
                         <div style="position: relative; height: 50%; width: 50%;">
                             <canvas id="overviewChart" width="50" height="50"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row overflow-auto" style="min-height: 35em; max-height: 35em; height: 35em;">
+                    <div class="col-6 d-flex justify-content-center">
+                        <div style="position: relative; height: 50%; width: 50%;">
+                            <canvas id="groceriesPie" width="50" height="50"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center">
+                        <div style="position: relative; height: 50%; width: 50%;">
+                            <canvas id="eatingOutPie" width="50" height="50"></canvas>
                         </div>
                     </div>
                 </div>

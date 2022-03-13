@@ -76,6 +76,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
                 Title = dto.Title,
                 Price = dto.Price,
                 Date = dto.Date,
+                BusinessName = dto.BusinessName,
                 IsDeposit = dto.IsDeposit,
                 CreatedByUserId = dto.CreatedByUserId,
                 CreatedAt = dto.CreatedAt

@@ -40,6 +40,8 @@
                         <tr>
                             <th is="sortable-column" v-bind:value="1" v-bind:filter="category.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Name </th>
                             <th is="sortable-column" v-bind:value="2" v-bind:filter="category.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Priority </th>
+                            <th is="sortable-column" v-bind:value="4" v-bind:filter="category.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Weekly Limit </th>
+                            <th is="sortable-column" v-bind:value="5" v-bind:filter="category.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Monthly Limit </th>
                             <th v-show="category.showCreatedAt" is="sortable-column" v-bind:value="3" v-bind:filter="category.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Created At </th>
                         </tr>
                         <tr>
@@ -56,6 +58,12 @@
                                     <option value="5">Extra</option>
                                     <option value="6">Unknown</option>
                                 </select>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="equal or greater than" v-model="category.filter.WeeklyLimit" />
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="equal or greater than" v-model="category.filter.MonthlyLimit" />
                             </th>
                             <th v-show="category.showCreatedAt">
                                 <date-picker v-model="category.filter.createdAt"></date-picker>
@@ -75,6 +83,14 @@
                                 <span v-if="item.CategoryPriority == 4">Not Important</span>
                                 <span v-if="item.CategoryPriority == 5">Extra</span>
                                 <span v-if="item.CategoryPriority == 6">Unknown</span>
+                            </td>
+                            <td>
+                                <span v-if="item.WeeklyLimit == 0">Undefined</span>
+                                <span v-else>{{item.WeeklyLimit}}</span>
+                            </td>
+                            <td>
+                                <span v-if="item.MonthlyLimit == 0">Undefined</span>
+                                <span v-else>{{item.MonthlyLimit}}</span>
                             </td>
                             <td v-show="category.showCreatedAt">{{item.CreatedAt | moment}}</td>
                         </tr>

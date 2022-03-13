@@ -106,6 +106,14 @@
                 this.category.filter.CurrentPage = 1;
                 this.fetchCategorys();
             },
+            'category.filter.WeeklyLimit': function () {
+                this.category.filter.CurrentPage = 1;
+                this.fetchCategorys();
+            },
+            'category.filter.MonthlyLimit': function () {
+                this.category.filter.CurrentPage = 1;
+                this.fetchCategorys();
+            },
             'category.filter.CategoryPriority': function () {
                 this.category.filter.CurrentPage = 1;
                 this.fetchCategorys();

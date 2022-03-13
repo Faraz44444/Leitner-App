@@ -27,3 +27,32 @@ D:\Programs\Work template\New folder\My app\TagPortal.Core\bin\Debug\de\PdfSharp
 D:\Programs\Work template\New folder\My app\TagPortal.Core\obj\Debug\TagPortal.Core.csproj.CopyComplete
 D:\Programs\Work template\New folder\My app\TagPortal.Core\obj\Debug\TagPortal.Core.dll
 D:\Programs\Work template\New folder\My app\TagPortal.Core\obj\Debug\TagPortal.Core.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Core.dll.config
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Core.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Core.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\Dapper.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\Newtonsoft.Json.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\System.Net.Http.Formatting.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\System.Web.Http.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Domain.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Extensions.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Report.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\PdfSharp.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\SpreadsheetLight.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Domain.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Extensions.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Report.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\TagPortal.Report.dll.config
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\Dapper.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\Newtonsoft.Json.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\System.Net.Http.Formatting.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\System.Web.Http.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\PdfSharp.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\SpreadsheetLight.xml
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\bin\Debug\de\PdfSharp.resources.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\obj\Debug\TagPortal.Core.csproj.AssemblyReference.cache
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\obj\Debug\TagPortal.Core.csproj.CoreCompileInputs.cache
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\obj\Debug\TagPortal.Core.csproj.CopyComplete
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\obj\Debug\TagPortal.Core.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Core\obj\Debug\TagPortal.Core.pdb

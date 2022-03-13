@@ -62,7 +62,7 @@
                     <li visible="false" runat="server" id="NavDataManagement"><a href="#"><i class="fas fa-fw fa-table"></i><span runat="server" id="dataManagementNotification">Data Management</span></a>
                         <ul>
                             <li visible="false" runat="server" id="NavPayment"><a href="<%=Page.ResolveUrl("~/payment/list") %>"><i class="fas fa-fw fa-cash-register"></i><span>Payment</span></a></li>
-                            <li visible="false" runat="server" id="NavPaymentTotal"><a href="<%=Page.ResolveUrl("~/PTotal/list") %>"><i class="fas fa-fw fa-cash-register"></i><span>Payment Total</span></a></li>
+                            <li visible="false" runat="server" id="NavPaymentTotal"><a href="<%=Page.ResolveUrl("~/PTotal/list") %>"><i class="fas fa-fw fa-t"></i><span>Total Payment</span></a></li>
                             <li visible="false" runat="server" id="NavCategory"><a href="<%=Page.ResolveUrl("~/category/list") %>"><i class="fas fa-solid fa-tags"></i><span>Category</span></a></li>
                             <li visible="false" runat="server" id="NavBusiness"><a href="<%=Page.ResolveUrl("~/business/list") %>"><i class="fas fa-solid fa-briefcase"></i><span>Business</span></a></li>
                             <li visible="false" runat="server" id="NavPaymentPriority"><a href="<%=Page.ResolveUrl("~/priority/list") %>"><i class="fas fa-solid fa-hashtag"></i><span>Payment Priority</span></a></li>

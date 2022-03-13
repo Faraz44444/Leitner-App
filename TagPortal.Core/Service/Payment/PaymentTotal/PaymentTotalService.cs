@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using TagPortal.Core.Repository;
 using TagPortal.Core.Request.Payment.PaymentTotal;
+using TagPortal.Core.Service.Business;
 using TagPortal.Core.Service.User;
 using TagPortal.Domain;
+using TagPortal.Domain.Model.Business;
 using TagPortal.Domain.Model.Payment.PaymentTotal;
 
 namespace TagPortal.Core.Service.Payment.PaymentTotal
@@ -11,10 +13,12 @@ namespace TagPortal.Core.Service.Payment.PaymentTotal
     public class PaymentTotalService : BaseService
     {
         private UserService UserService { get; }
+        private BusinessService BusinessService { get; }
 
-        public PaymentTotalService(IUnitOfWorkProvider uowProvider, RepositoryFactory repoFactory, UserService userService) : base(uowProvider, repoFactory)
+        public PaymentTotalService(IUnitOfWorkProvider uowProvider, RepositoryFactory repoFactory, UserService userService, BusinessService businessService) : base(uowProvider, repoFactory)
         {
             UserService = userService;
+            BusinessService = businessService;
         }
 
         public PagedModel<PaymentTotalModel> GetPagedList(PaymentTotalRequest request)
@@ -68,7 +72,30 @@ namespace TagPortal.Core.Service.Payment.PaymentTotal
             return repo.Update(model);
 
         }
+        private void BusinessHandler(IUnitOfWork uow, ref PaymentTotalModel model)
+        {
+            if (!String.IsNullOrEmpty(model.BusinessName))
+            {
+                var existingBusiness = BusinessService.GetByName(model.BusinessName);
+                if (existingBusiness < 1)
+                {
 
+                    var businessModel = new BusinessModel()
+                    {
+                        BusinessName = model.BusinessName,
+                        CreatedAt = model.CreatedAt,
+                        CreatedByUserId = model.CreatedByUserId
+                    };
+                    model.BusinessId = BusinessService.Insert(uow, businessModel);
+                }
+                else
+                {
+                    model.BusinessId = existingBusiness;
+                }
+                if (model.BusinessId < 1) throw new ArgumentException("BusinessId is not set", "BusinessId");
+            }
+            else return;
+        }
         public long Insert(PaymentTotalModel model)
         {
 
@@ -91,6 +118,7 @@ namespace TagPortal.Core.Service.Payment.PaymentTotal
                 if (existingSimilarModel.Count > 0)
                     throw new ArgumentException("There is already a record for the same month, year and payment type (deposit or not)");
 
+                BusinessHandler(uow, ref model);
 
                 model.PaymentTotalId = repo.Insert(model);
 
@@ -117,7 +145,6 @@ namespace TagPortal.Core.Service.Payment.PaymentTotal
         {
 
             if (string.IsNullOrWhiteSpace(model.Title)) throw new ArgumentException("Title is not set", "Title");
-            if (model.Price < 1) throw new ArgumentException("Price is not set", "Price");
             if (model.Date < DateTime.MinValue) throw new ArgumentException("Date is not set", "Date");
             if (model.CreatedByUserId < 1) throw new ArgumentException("CreatedByUserId is not set", "CreatedByUserId");
             if (model.CreatedAt < DateTime.MinValue) throw new ArgumentException("CreatedAt is not set", "CreatedAt");

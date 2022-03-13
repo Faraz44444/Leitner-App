@@ -9,6 +9,8 @@ namespace TagPortal.Core.Request.Category
         public long? CategoryId { get; set; }
         public string CategoryName { get; set; }
         public EnumCategoryPriority CategoryPriority { get; set; }
+        public float WeeklyLimit { get; set; }
+        public float MonthlyLimit { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime CreatedFrom { get; set; }
         public DateTime CreatedTo { get; set; }
@@ -28,5 +30,7 @@ namespace TagPortal.Core.Request.Category
         CategoryName = 1,
         CategoryPriority = 2,
         CreatedAt = 3,
+        WeeklyLimit = 4,
+        MonthlyLimit = 5
     }
 }

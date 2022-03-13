@@ -8,6 +8,8 @@ namespace TbxPortal.Web.Dto.Category
         public long CategoryId { get; set; }
         public EnumCategoryPriority CategoryPriority { get; set; }
         public string CategoryName { get; set; }
+        public float WeeklyLimit { get; set; }
+        public float MonthlyLimit { get; set; }
         public DateTime CreatedAt { get; set; }
         public long CreatedByUserId { get; set; }
         public string CreatedByFirstName { get; set; }

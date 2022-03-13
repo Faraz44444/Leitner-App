@@ -7,3 +7,12 @@ D:\Programs\Work template\New folder\My app\TagPortal.Domain\bin\Debug\TagPortal
 D:\Programs\Work template\New folder\My app\TagPortal.Domain\obj\Debug\TagPortal.Domain.csproj.CopyComplete
 D:\Programs\Work template\New folder\My app\TagPortal.Domain\obj\Debug\TagPortal.Domain.dll
 D:\Programs\Work template\New folder\My app\TagPortal.Domain\obj\Debug\TagPortal.Domain.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\bin\Debug\TagPortal.Domain.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\bin\Debug\TagPortal.Domain.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\bin\Debug\TagPortal.Extensions.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\bin\Debug\TagPortal.Extensions.pdb
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\obj\Debug\TagPortal.Domain.csproj.AssemblyReference.cache
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\obj\Debug\TagPortal.Domain.csproj.CoreCompileInputs.cache
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\obj\Debug\TagPortal.Domain.csproj.CopyComplete
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\obj\Debug\TagPortal.Domain.dll
+D:\Programs\Budgeting App\budgeting-app\TagPortal.Domain\obj\Debug\TagPortal.Domain.pdb
