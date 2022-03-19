@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace TbxPortal.Web.Dto.Payment
 {
@@ -24,6 +25,13 @@ namespace TbxPortal.Web.Dto.Payment
             get
             {
                 return CreatedByFirstName + CreatedByLastName;
+            }
+        }
+        public string FormattedPrice
+        {
+            get
+            {
+                return String.Format("{0:N}", Price);
             }
         }
         public DateTime CreatedAt { get; set; }

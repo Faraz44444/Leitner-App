@@ -38,26 +38,41 @@
                     }, function (error) {
                         feedback.DisplayError(error);
                     }).always(function () {
-                        app.category.isLoading= false;
+                        app.category.isLoading = false;
                     });
             },
 
             saveCategory: function () {
-                //if (this.category.details.CategoryId > 0) return;
-
+                if (!formvalidation.Validate("modalNewCategory")) return;
+                if (this.category.isLoading) return;
                 this.category.isLoading = true;
 
-                return apiService.PostRequest("category", this.category.details)
-                    .then(function (response) {
-                        if (response) {
-                            window.location.reload();
-                        }
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        loadHandler.RemoveGlobalLoader();
-                        app.loadingItems = false;
-                    });
+                if (this.category.details.CategoryId > 0) {
+                    return apiService.PostRequest("category/" +this.category.details.CategoryId, this.category.details)
+                        .then(function (response) {
+                            if (response) {
+                                window.location.reload();
+                            }
+                        }, function (error) {
+                            feedback.DisplayError(error);
+                        }).always(function () {
+                            loadHandler.RemoveGlobalLoader();
+                            app.category.isLoading = false;
+                        });
+                }
+                else {
+                    return apiService.PostRequest("category", this.category.details)
+                        .then(function (response) {
+                            if (response) {
+                                window.location.reload();
+                            }
+                        }, function (error) {
+                            feedback.DisplayError(error);
+                        }).always(function () {
+                            loadHandler.RemoveGlobalLoader();
+                            app.category.isLoading = false;
+                        });
+                }
 
             },
 
@@ -65,11 +80,6 @@
                 this.category.details = {};
                 this.category.modal.show();
             },
-            showCategoryDetails: function (category) {
-                this.category.details = category;
-                this.category.modal.show();
-            },
-
             getNextPage: function () {
                 this.category.filter.CurrentPage++;
                 this.fetchCategorys();
@@ -88,6 +98,14 @@
                 this.filterChanged();
             },
             openModal: function (item) {
+                if (item) {
+                    this.category.details = Object.assign(this.category.details, item);
+                    this.$forceUpdate();
+                } else {
+                    this.category.details = {
+                        CategoryId: 0
+                    };
+                }
                 $("#modalNewCategory").modal("show");
 
             }

@@ -11,7 +11,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="mainContent" runat="server">
     <div id="app" class="row justify-content-center">
         <section is="content-section" icon="fas fa-tachometer-alt" title="Dashboard" class="col-12 col-md-12 col-lg-12 col-xl-12" um-anchor="#HowToArticles">
-            <section is="content-section" title="Real Data" class="col-12 mt-4" small>
+            <section is="content-section" title="Real Data" class="col-12 mt-4" >
                 <div class="row">
                     <section is="content-section" title="Expenditure" class="col-6 mt-4" small>
                         <div class="row mt-n3">
@@ -59,7 +59,8 @@
                     </section>
                 </div>
             </section>
-            <section is="content-section" title="Expected Data" class="col-12 mt-4" small>
+            <section is="content-section" title="Expected Data" class="col-12 mt-4" >
+
             </section>
             <section is="content-section" icon="fas fa-chart-bar" title="Statistics" class="col-12">
                 <div class="row overflow-auto" style="min-height: 35em; max-height: 35em; height: 35em;">

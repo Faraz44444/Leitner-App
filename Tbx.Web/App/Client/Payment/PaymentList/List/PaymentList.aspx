@@ -95,7 +95,7 @@
                             <td><span v-if="item.IsDeposit">Yes</span><span v-if="!item.IsDeposit">No</span></td>
                             <td><span v-if="item.IsPaidToPerson">Yes</span><span v-if="!item.IsPaidToPerson">No</span></td>
                             <td>{{item.CategoryName}}</td>
-                            <td>{{item.Price}}</td>
+                            <td>{{item.FormattedPrice}}</td>
                             <td>{{item.Date}}</td>
                             <td v-if="payment.chkShowCreatdByAndCreatedAt">{{item.CreatedByFullName}}</td>
                             <td v-if="payment.chkShowCreatdByAndCreatedAt">{{item.CreatedAt}}</td>

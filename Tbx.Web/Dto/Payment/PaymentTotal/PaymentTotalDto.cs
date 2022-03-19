@@ -21,6 +21,13 @@ namespace TbxPortal.Web.Dto.Payment.PaymentTotal
                 return CreatedByFirstName + CreatedByLastName;
             }
         }
+        public string FormattedPrice
+        {
+            get
+            {
+                return String.Format("{0:N}", Price);
+            }
+        }
         public DateTime CreatedAt { get; set; }
 
     }

@@ -74,7 +74,7 @@
                         <tr v-if="!category.isLoading && category.items.length == 0">
                             <td colspan="100%" class="text-center">Could not find any categories</td>
                         </tr>
-                        <tr v-for="item in category.items" class="cursor-pointer" v-on:click="showCategoryDetails(item)">
+                        <tr v-for="item in category.items" class="cursor-pointer" v-on:click="openModal(item)">
                             <td>{{item.CategoryName}}</td>
                             <td>
                                 <span v-if="item.CategoryPriority == 1">Critical</span>
@@ -97,45 +97,55 @@
                     </tbody>
                 </table>
             </div>
-        </section>
-        <!-- Modal -->
-        <div id="modalNewCategory" class="modal fade" ref="recordModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Create New Category</h5>
-                        <button type="button" class="btn btn-sm btn-link" data-bs-dismiss="modal" aria-label="Close">
-                            <i class="bi bi-x h5"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row row-cols-1 g-2">
-                            <div class="col-3">
-                                <label for="txtOrderNo" class="form-label">Category Name</label>
-                                <input type="text" id="textCategoryName" class="form-control form-control-sm" v-model="category.details.CategoryName" required>
+            <!-- Modal -->
+            <div id="modalNewCategory" class="modal fade" ref="recordModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Create New Category</h5>
+                            <button type="button" class="btn btn-sm btn-link" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="bi bi-x h5"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div is="custom-input-group" input-label="Category Name">
+                                        <input class="form-control form-control-sm text-left" type="text" v-model="category.details.CategoryName" required>
+                                    </div>
+                                </div>
+                                <div class=" col-3">
+                                    <div is="custom-input-group" input-label="Category Priority">
+                                        <select class="form-control form-control-sm" v-model="category.details.CategoryPriority" required>
+                                            <option value="1">Critical</option>
+                                            <option value="2">High Priority</option>
+                                            <option value="3">Normal</option>
+                                            <option value="4">Not Important</option>
+                                            <option value="5">Extra</option>
+                                            <option value="6">Unknown</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div is="custom-input-group" input-label="Weekly Limit">
+                                        <input class="form-control form-control-sm text-left" type="number" v-model="category.details.WeeklyLimit" required>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div is="custom-input-group" input-label="Monthly Limit">
+                                        <input class="form-control form-control-sm text-left" type="number" v-model="category.details.MonthlyLimit" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row row-cols-2 g-2">
-                            <div class=" col-3">
-                                <label class="form-label">Priority</label>
-                                <select class="form-control form-control-sm" v-model="category.details.CategoryPriority">
-                                    <option value="1">Critical</option>
-                                    <option value="2">High Priority</option>
-                                    <option value="3">Normal</option>
-                                    <option value="4">Not Important</option>
-                                    <option value="5">Extra</option>
-                                    <option value="6">Unknown</option>
-                                </select>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" v-if="!category.details.categoryId > 0" v-on:click="saveCategory">Save changes</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" v-if="!category.details.categoryId > 0" v-on:click="saveCategory">Save changes</button>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </section>
     </div>
 </asp:Content>

@@ -54,6 +54,9 @@ namespace TagPortal.Core.Service.Category
             var repo = RepoFactory.CategoryRepo(uow);
             var model = repo.GetById(request);
             model.CategoryName = request.CategoryName;
+            model.CategoryPriority = request.CategoryPriority;
+            model.WeeklyLimit = request.WeeklyLimit;
+            model.MonthlyLimit = request.MonthlyLimit;
             ValidateModel(model);
             if (!repo.Update(model))
                 throw new ArgumentException("Failed to update the Order");
@@ -66,6 +69,8 @@ namespace TagPortal.Core.Service.Category
             {
                 CategoryName = dto.CategoryName,
                 CategoryPriority = dto.CategoryPriority,
+                WeeklyLimit = dto.WeeklyLimit,
+                MonthlyLimit = dto.MonthlyLimit,
                 CreatedByUserId = dto.CreatedByUserId,
                 CreatedAt = dto.CreatedAt
             };

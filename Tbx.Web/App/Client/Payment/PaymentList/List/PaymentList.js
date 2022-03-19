@@ -192,8 +192,8 @@
 
         },
         filters: {
-            price: function (value) {
-
+            price: function (price) {
+                return Intl.NumberFormat('en-US').format(price);
             },
             moment: function (date) {
                 return moment(date).format('DD.MM.YY HH:mm');

@@ -85,10 +85,10 @@ namespace TagPortal.Core.Repository.Category
         {
             string sql = @"
                 UPDATE CATEGORY_TAB SET
-                   CategroyName = @CategroyName,
+                   CategoryName = @CategoryName,
                    CategoryPriority = @CategoryPriority,
                    WeeklyLimit = @WeeklyLimit,
-                   MonthlyLimit = @MonthlyLimit,
+                   MonthlyLimit = @MonthlyLimit
                 WHERE CategoryId = @CategoryId
             ";
 

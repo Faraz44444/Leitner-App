@@ -21,5 +21,19 @@ namespace TbxPortal.Web.Dto.Category
                 return CreatedByFirstName + CreatedByLastName;
             }
         }
+        public string FormattedWeeklyLimit
+        {
+            get
+            {
+                return String.Format("{0:N}", WeeklyLimit);
+            }
+        }
+        public string FormattedMonthlyLimit
+        {
+            get
+            {
+                return String.Format("{0:N}", MonthlyLimit);
+            }
+        }
     }
 }

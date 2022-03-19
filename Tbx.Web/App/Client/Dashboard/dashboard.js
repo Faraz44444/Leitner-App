@@ -137,7 +137,7 @@
         },
         filters: {
             price: function (price) {
-                return date.format('##,###.##');
+                return Intl.NumberFormat('en-US').format(price);
             }
         },
         methods: {
