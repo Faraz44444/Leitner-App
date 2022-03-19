@@ -99,7 +99,7 @@ namespace TagPortal.Core.Repository.Category
         {
             string sql = @"
                 INSERT INTO dbo.CATEGORY_TAB (
-                     ct.CategoryName, ct.CategoryPriority, ct.WeeklyLimit, ct.MontlyLimit, ct.CreatedAt, ct.CreatedByUserId
+                     ct.CategoryName, ct.CategoryPriority, ct.WeeklyLimit, ct.MonthlyLimit, ct.CreatedAt, ct.CreatedByUserId
                 )
                 OUTPUT INSERTED.CategoryId
                 VALUES (

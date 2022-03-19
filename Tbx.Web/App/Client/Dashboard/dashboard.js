@@ -77,6 +77,18 @@
                     },
                     thisWeekSum: 0,
                 },
+                electricity: {
+                    categoryFilter: {
+                        CategoryName: "Electricity"
+                    },
+                    categoryDetails: {},
+                    paymentFilter: {
+                        CategoryId: 0,
+                        DateFrom: ThisWeekPeriod.DateFrom,
+                        DateTo: ThisWeekPeriod.DateTo
+                    },
+                    thisMonthSum: 0,
+                },
                 details: {},
                 loadingItems: false,
 
@@ -94,7 +106,8 @@
 
                 overviewChart: null,
                 groceriesPie: null,
-                eatingOutPie: null
+                eatingOutPie: null,
+                electricityPie: null
             },
             thisMonth: today.getMonth(),
             lastMonth: today.getMonth() - 1,
@@ -190,14 +203,13 @@
                         apiService.GetList("payment/sum", this.payment.groceries.paymentFilter)
                             .then(data => {
                                 this.payment.groceries.thisWeekSum = data;
+                                this.loadGroceriesPie();
 
                             }, function (error) {
                                 feedback.DisplayError(error);
                             }).always(function () {
                                 app.payment.isLoading = false;
                             });
-                    }).then((data3) => {
-                        this.loadGroceriesPie();
                     })
             },
             getEatingOuts: function () {
@@ -214,14 +226,36 @@
                         apiService.GetList("payment/sum", this.payment.eatingOut.paymentFilter)
                             .then(data => {
                                 this.payment.eatingOut.thisWeekSum = data;
+                                this.loadEatingOutPie();
 
                             }, function (error) {
                                 feedback.DisplayError(error);
                             }).always(function () {
                                 app.payment.isLoading = false;
                             });
-                    }).then((data3) => {
-                        this.loadEatingOutPie();
+                    })
+            },
+            getElectricity: function () {
+                apiService.GetList("category/lookup", this.payment.electricity.categoryFilter)
+                    .then(data => {
+                        this.payment.electricity.categoryDetails = data;
+
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
+                    }).then((data2) => {
+                        this.payment.electricity.paymentFilter.CategoryId = this.payment.electricity.categoryDetails[0].CategoryId
+                        apiService.GetList("payment/sum", this.payment.electricity.paymentFilter)
+                            .then(data => {
+                                this.payment.electricity.thisMonthSum = data;
+                                this.loadElectricityPie();
+
+                            }, function (error) {
+                                feedback.DisplayError(error);
+                            }).always(function () {
+                                app.payment.isLoading = false;
+                            });
                     })
             },
             loadOverviewChart: function () {
@@ -267,6 +301,42 @@
                 var ctx = $("#overviewChart");
                 if (this.overviewChart) overviewChart.destroy();
                 this.overviewChart = new Chart(ctx, config);
+            },
+            loadElectricityPie: function () {
+                let actualData = [this.payment.electricity.thisMonthSum, this.payment.electricity.categoryDetails[0].MonthlyLimit - this.payment.electricity.thisMonthSum]
+                let data = {
+                    labels: ["Spent", "Could be spent"],
+                    datasets: [
+                        {
+                            label: 'spent',
+                            data: actualData,
+                            borderColor: colorsTransparent,
+                            backgroundColor: colorsTransparentHigh,
+                            borderWidth: 2,
+                            borderSkipped: false,
+                        }],
+                };
+
+                let config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Electricity'
+                            }
+                        }
+                    },
+                };
+
+                var ctx = $("#electricityPie");
+                if (this.electricityPie) electricityPie.destroy();
+                this.electricityPie = new Chart(ctx, config);
             },
             loadEatingOutPie: function () {
                 let actualData = [this.payment.eatingOut.thisWeekSum, this.payment.eatingOut.categoryDetails[0].WeeklyLimit - this.payment.eatingOut.thisWeekSum]
@@ -351,6 +421,7 @@
             this.getSavings();
             this.getGroceries();
             this.getEatingOuts();
+            this.getElectricity();
         }
     })
 

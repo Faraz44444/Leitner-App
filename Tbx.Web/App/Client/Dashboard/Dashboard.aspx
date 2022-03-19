@@ -70,14 +70,19 @@
                     </div>
                 </div>
                 <div class="row overflow-auto" style="min-height: 35em; max-height: 35em; height: 35em;">
-                    <div class="col-6 d-flex justify-content-center">
+                    <div class="col-4 d-flex justify-content-center">
                         <div style="position: relative; height: 50%; width: 50%;">
                             <canvas id="groceriesPie" width="50" height="50"></canvas>
                         </div>
                     </div>
-                    <div class="col-6 d-flex justify-content-center">
+                    <div class="col-4 d-flex justify-content-center">
                         <div style="position: relative; height: 50%; width: 50%;">
                             <canvas id="eatingOutPie" width="50" height="50"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                        <div style="position: relative; height: 50%; width: 50%;">
+                            <canvas id="electricityPie" width="50" height="50"></canvas>
                         </div>
                     </div>
                 </div>
