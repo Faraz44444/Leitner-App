@@ -38,6 +38,11 @@ namespace TagPortal.Core.Repository.Category
             if (request.CategoryPriority > 0) searchParam.Add("ct.CategoryPriority = @CategoryPriority");
             if (request.WeeklyLimit > 0) searchParam.Add("ct.WeeklyLimit >= @WeeklyLimit");
             if (request.MonthlyLimit > 0) searchParam.Add("ct.MonthlyLimit >= @MonthlyLimit");
+            if (request.HasWeeklyLimit.HasValue && request.HasWeeklyLimit.Value) searchParam.Add("ct.WeeklyLimit IS NOT NULL");
+            if (request.HasWeeklyLimit.HasValue && !request.HasWeeklyLimit.Value) searchParam.Add("ct.WeeklyLimit IS NULL");
+            if (request.HasMonthlyLimit.HasValue && request.HasMonthlyLimit.Value) searchParam.Add("ct.MonthlyLimit IS NOT NULL");
+            if (request.HasMonthlyLimit.HasValue && !request.HasMonthlyLimit.Value) searchParam.Add("ct.MonthlyLimit IS NULL");
+            if (request.MonthlyLimit > 0) searchParam.Add("ct.MonthlyLimit >= @MonthlyLimit");
             if (!String.IsNullOrEmpty(request.CreatedByFullName)) searchParam.Add("u.FirstName like '%' + @CreatedByFirstName + '%'");
             if (!String.IsNullOrEmpty(request.CreatedByFullName)) searchParam.Add("u.LastName like '%' + @CreatedByFirstName + '%'");
             if (request.CreatedAt > DateTime.MinValue) searchParam.Add("ct.Date <= @DateTo");

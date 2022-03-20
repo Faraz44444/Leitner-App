@@ -11,7 +11,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="mainContent" runat="server">
     <div id="app" class="row justify-content-center">
         <section is="content-section" icon="fas fa-tachometer-alt" title="Dashboard" class="col-12 col-md-12 col-lg-12 col-xl-12" um-anchor="#HowToArticles">
-            <section is="content-section" title="Real Data" class="col-12 mt-4" >
+            <section is="content-section" title="Real Data" class="col-12 mt-4">
                 <div class="row">
                     <section is="content-section" title="Expenditure" class="col-6 mt-4" small>
                         <div class="row mt-n3">
@@ -59,8 +59,21 @@
                     </section>
                 </div>
             </section>
-            <section is="content-section" title="Expected Data" class="col-12 mt-4" >
-
+            <section is="content-section" title="Expected Data" class="col-12 mt-4">
+                <div class="col-6 mb-2">
+                    <div is="custom-input-group" input-label="Monthly Expected Expenditures Without Savings">
+                        <input class="form-control form-control-sm text-left text-danger" type="text" v-model="MonthlyExpectedExpenditures" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <template v-for="c in category.categoriesWithMonthlyLimit">
+                        <div class="col-2">
+                            <div is="custom-input-group" v-bind:input-label="c.CategoryName">
+                                <input class="form-control form-control-sm text-left" type="text" v-model="c.FormattedMonthlyLimit" disabled />
+                            </div>
+                        </div>
+                    </template>
+                </div>
             </section>
             <section is="content-section" icon="fas fa-chart-bar" title="Statistics" class="col-12">
                 <div class="row overflow-auto" style="min-height: 35em; max-height: 35em; height: 35em;">

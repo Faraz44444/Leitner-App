@@ -11,6 +11,8 @@ namespace TagPortal.Core.Request.Category
         public EnumCategoryPriority CategoryPriority { get; set; }
         public float WeeklyLimit { get; set; }
         public float MonthlyLimit { get; set; }
+        public bool? HasWeeklyLimit { get; set; }
+        public bool? HasMonthlyLimit { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime CreatedFrom { get; set; }
         public DateTime CreatedTo { get; set; }

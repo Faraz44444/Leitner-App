@@ -110,6 +110,13 @@
                 eatingOutPie: null,
                 electricityPie: null
             },
+            category: {
+                withMonthlyLimitFilter: {
+                    HasMonthlyLimit: true
+                },
+                categoriesWithMonthlyLimit: [],
+                isLoading: false
+            },
             overviewChart: null,
             thisMonth: today.getMonth(),
             lastMonth: today.getMonth() - 1,
@@ -160,14 +167,24 @@
                         app.payment.isLoading = false;
                     });
             },
+            getCategoriesWithMonthlyLimit: function () {
+                this.category.isLoading = true;
+                apiService.GetList("category/lookup", this.category.withMonthlyLimitFilter).then(data => {
+                    this.category.categoriesWithMonthlyLimit = data;
+                }, function (error) {
+                    feedback.DisplayError(error);
+                }).always(function () {
+                    app.category.isLoading = false;
+                });
+            },
             getSavings: function () {
                 this.payment.isLoading = true;
 
                 apiService.GetList("payment/savings", this.payment.savings.thisYearFilter)
                     .then(data => {
                         this.payment.thisYearSavings = data.Sums;
-                        this.payment.thisMonthSavings =  this.payment.thisYearSavings[this.thisMonth].FormattedSum;
-                        this.payment.lastMonthSavings =  this.payment.thisYearSavings[this.lastMonth].FormattedSum;
+                        this.payment.thisMonthSavings = this.payment.thisYearSavings[this.thisMonth].FormattedSum;
+                        this.payment.lastMonthSavings = this.payment.thisYearSavings[this.lastMonth].FormattedSum;
 
                     }, function (error) {
                         feedback.DisplayError(error);
@@ -178,8 +195,8 @@
             getGroceries: function () {
                 apiService.GetList("category/lookup", this.payment.groceries.categoryFilter)
                     .then(data => {
-                        this.payment.groceries.categoryDetails = data;
-                        this.payment.groceries.paymentFilter.CategoryId = this.payment.groceries.categoryDetails[0].CategoryId
+                        this.payment.groceries.categoryDetails = data[0];
+                        this.payment.groceries.paymentFilter.CategoryId = this.payment.groceries.categoryDetails.CategoryId
                         apiService.GetList("payment/sum", this.payment.groceries.paymentFilter)
                             .then(data2 => {
                                 this.payment.groceries.thisWeekSum = data2.Sum;
@@ -199,8 +216,8 @@
             getEatingOuts: function () {
                 apiService.GetList("category/lookup", this.payment.eatingOut.categoryFilter)
                     .then(data => {
-                        this.payment.eatingOut.categoryDetails = data;
-                        this.payment.eatingOut.paymentFilter.CategoryId = this.payment.eatingOut.categoryDetails[0].CategoryId
+                        this.payment.eatingOut.categoryDetails = data[0];
+                        this.payment.eatingOut.paymentFilter.CategoryId = this.payment.eatingOut.categoryDetails.CategoryId
                         apiService.GetList("payment/sum", this.payment.eatingOut.paymentFilter)
                             .then(data2 => {
                                 this.payment.eatingOut.thisWeekSum = data2.Sum;
@@ -220,8 +237,8 @@
             getElectricity: function () {
                 apiService.GetList("category/lookup", this.payment.electricity.categoryFilter)
                     .then(data => {
-                        this.payment.electricity.categoryDetails = data;
-                        this.payment.electricity.paymentFilter.CategoryId = this.payment.electricity.categoryDetails[0].CategoryId
+                        this.payment.electricity.categoryDetails = data[0];
+                        this.payment.electricity.paymentFilter.CategoryId = this.payment.electricity.categoryDetails.CategoryId
                         apiService.GetList("payment/sum", this.payment.electricity.paymentFilter)
                             .then(data2 => {
                                 this.payment.electricity.thisMonthSum = data2.Sum;
@@ -284,7 +301,7 @@
                 this.overviewChart = new Chart(ctx, config);
             },
             loadElectricityPie: function () {
-                let actualData = [this.payment.electricity.thisMonthSum, this.payment.electricity.categoryDetails[0].MonthlyLimit - this.payment.electricity.thisMonthSum]
+                let actualData = [this.payment.electricity.thisMonthSum, this.payment.electricity.categoryDetails.MonthlyLimit - this.payment.electricity.thisMonthSum]
                 let data = {
                     labels: ["Spent", "Could be spent"],
                     datasets: [
@@ -320,7 +337,7 @@
                 this.electricityPie = new Chart(ctx, config);
             },
             loadEatingOutPie: function () {
-                let actualData = [this.payment.eatingOut.thisWeekSum, this.payment.eatingOut.categoryDetails[0].WeeklyLimit - this.payment.eatingOut.thisWeekSum]
+                let actualData = [this.payment.eatingOut.thisWeekSum, this.payment.eatingOut.categoryDetails.WeeklyLimit - this.payment.eatingOut.thisWeekSum]
                 let data = {
                     labels: ["Spent", "Could be spent"],
                     datasets: [
@@ -356,7 +373,7 @@
                 this.eatingOutPie = new Chart(ctx, config);
             },
             loadGroceriesPie: function () {
-                let actualData = [this.payment.groceries.thisWeekSum, this.payment.groceries.categoryDetails[0].WeeklyLimit - this.payment.groceries.thisWeekSum]
+                let actualData = [this.payment.groceries.thisWeekSum, this.payment.groceries.categoryDetails.WeeklyLimit - this.payment.groceries.thisWeekSum]
                 let data = {
                     labels: ["Spent", "Could be spent"],
                     datasets: [
@@ -405,6 +422,9 @@
                     5: { Name: "1 Year", FromDate: now().startOf('day').add(-1, 'year').toISOString(), ToDate: now().endOf('day').toISOString() },
                 }
             },
+            MonthlyExpectedExpenditures: function () {
+                return Intl.NumberFormat('en-US').format(this.category.categoriesWithMonthlyLimit.filter(x=>x.CategoryName != "Saving").map(x => x.MonthlyLimit).reduce((x, y) => x + y, 0));
+            }
         },
         created: function () {
         },
@@ -414,6 +434,7 @@
             this.getMonthlyExpenditures();
             this.getMonthlyIncomes();
             this.getSavings();
+            this.getCategoriesWithMonthlyLimit();
             this.getGroceries();
             this.getEatingOuts();
             this.getElectricity();
