@@ -14,7 +14,7 @@
                     CreatedAt: 0,
                     CreatedByFullName: 0,
                     CurrentPage: 1,
-                    ItemsPerPage: 50,
+                    ItemsPerPage: 100,
                     OrderBy: 1,
                     OrderByDesc: true
                 },

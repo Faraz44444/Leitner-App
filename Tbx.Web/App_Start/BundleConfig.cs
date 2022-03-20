@@ -126,6 +126,12 @@ namespace TbxPortal.Web.App_Start
             //BUSINESS
             bundles.Add(new ScriptBundle("~/jsBusinessList").Include(
                 "~/App/Client/Business/BusinessList/List/BusinessList.js"));
+            
+            //REPORTS
+            bundles.Add(new ScriptBundle("~/jsYearlyOverview").Include(
+                "~/App/Client/Report/YearlyOverview/YearlyOverview.js"));
+
+
 
 
             //USERS

@@ -229,6 +229,10 @@
     <Content Include="App\Client\Payment\PaymentList\List\PaymentList.js" />
     <Content Include="App\Client\Dashboard\Dashboard.aspx" />
     <Content Include="App\Client\Dashboard\dashboard.js" />
+    <Content Include="App\Client\Report\MonthlyOverview\MonthlyOverview.aspx" />
+    <Content Include="App\Client\Report\MonthlyOverview\MonthlyOverview.js" />
+    <Content Include="App\Client\Report\YearlyOverview\YearlyOverview.aspx" />
+    <Content Include="App\Client\Report\YearlyOverview\YearlyOverview.js" />
     <Content Include="App\_common\apiservice.js" />
     <Content Include="App\_common\clipboard.js" />
     <Content Include="App\_common\colors.js" />
@@ -632,6 +636,20 @@
     </Compile>
     <Compile Include="App\Client\Dashboard\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Client\Report\MonthlyOverview\MonthlyOverview.aspx.cs">
+      <DependentUpon>MonthlyOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Client\Report\MonthlyOverview\MonthlyOverview.aspx.designer.cs">
+      <DependentUpon>MonthlyOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Client\Report\YearlyOverview\YearlyOverview.aspx.cs">
+      <DependentUpon>YearlyOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Client\Report\YearlyOverview\YearlyOverview.aspx.designer.cs">
+      <DependentUpon>YearlyOverview.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\TbxPortalBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -12,15 +12,26 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
     [RoutePrefix("api/paymenttotal")]
     public class PaymentTotalController : BaseController
     {
-        private PaymentTotalService PaymentService => Services.PaymentTotalService;
+        private PaymentTotalService PaymentTotalService => Services.PaymentTotalService;
 
+        [Route("unpaged")]
+        [HttpGet]
+        public IHttpActionResult GetList([FromUri] PaymentTotalRequest request)
+        {
+            if (request == null) request = new PaymentTotalRequest();
+
+            var items = PaymentTotalService.GetList(request);
+            var dto = DataManagementMapper.MapList<PaymentTotalDto>(items);
+
+            return Ok(dto);
+        }
         [Route("")]
         [HttpGet]
         public IHttpActionResult GetPagedList([FromUri] PaymentTotalRequest request)
         {
             if (request == null) return BadRequest();
 
-            var pagedItems = PaymentService.GetPagedList(request);
+            var pagedItems = PaymentTotalService.GetPagedList(request);
             var dto = DataManagementMapper.MapPagedList<PaymentTotalDto>(pagedItems);
 
             return Ok(dto);
@@ -31,7 +42,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
         {
             if (request == null) return BadRequest();
 
-            var sum = PaymentService.GetSum(request);
+            var sum = PaymentTotalService.GetSum(request);
 
             return Ok(sum);
         }
@@ -42,7 +53,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
             if (id < 1) return BadRequest();
 
             var request = new PaymentTotalRequest { PaymentTotalId = id };
-            var model = PaymentService.GetById(request);
+            var model = PaymentTotalService.GetById(request);
             var dto = DataManagementMapper.Map<PaymentTotalDto>(model);
 
             return Ok(dto);
@@ -60,7 +71,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
                 Date = dto.Date,
                 IsDeposit = dto.IsDeposit,
             };
-            PaymentService.Update(model);
+            PaymentTotalService.Update(model);
 
             return Ok(dto);
         }
@@ -82,7 +93,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment.PaymentTotal
                 CreatedAt = dto.CreatedAt
 
             };
-            PaymentService.Insert(model);
+            PaymentTotalService.Insert(model);
 
             return Ok(dto);
         }

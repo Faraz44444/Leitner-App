@@ -10,6 +10,13 @@ namespace TbxPortal.Web.Dto.Payment.PaymentTotal
         public string BusinessName { get; set; }
         public double Price { get; set; }
         public DateTime Date { get; set; }
+        public string FormattedDate
+        {
+            get
+            {
+                return Date.ToString("MMMM") + " , "  + Date.Year;
+            }
+        }
         public bool IsDeposit { get; set; }
         public long CreatedByUserId { get; set; }
         public string CreatedByFirstName { get; set; }

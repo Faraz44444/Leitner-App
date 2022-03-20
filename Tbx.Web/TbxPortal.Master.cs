@@ -90,7 +90,7 @@ namespace TbxPortal.Web
                         NavPayment.Attributes.Add("class", "active");
                         return;
                     }
-                   
+
                     return;
                 }
                 if (url.Contains("/ptotal/"))
@@ -101,7 +101,7 @@ namespace TbxPortal.Web
                         NavPaymentTotal.Attributes.Add("class", "active");
                         return;
                     }
-                   
+
                     return;
                 }
                 if (url.Contains("/priority/"))
@@ -112,7 +112,7 @@ namespace TbxPortal.Web
                         NavPaymentPriority.Attributes.Add("class", "active");
                         return;
                     }
-                   
+
                     return;
                 }
                 if (url.Contains("/category/"))
@@ -123,7 +123,7 @@ namespace TbxPortal.Web
                         NavCategory.Attributes.Add("class", "active");
                         return;
                     }
-                   
+
                     return;
                 }
                 if (url.Contains("/business/"))
@@ -134,7 +134,17 @@ namespace TbxPortal.Web
                         NavBusiness.Attributes.Add("class", "active");
                         return;
                     }
-                   
+
+                    return;
+                }
+                if (url.Contains("/report/"))
+                {
+                    NavDataManagement.Attributes.Add("class", "opened subMenuActive");
+                    if (url.Contains("yearlyoverview"))
+                    {
+                        NavYearlyOverview.Attributes.Add("class", "active");
+                        return;
+                    }
                     return;
                 }
 
@@ -168,38 +178,44 @@ namespace TbxPortal.Web
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))
             //{
-                NavDataManagement.Visible = true;
-                NavPayment.Visible = true;
+            NavDataManagement.Visible = true;
+            NavPayment.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))
             //{
-                NavDataManagement.Visible = true;
-                NavPaymentTotal.Visible = true;
+            NavReport.Visible = true;
+            NavYearlyOverview.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))
             //{
-                NavDataManagement.Visible = true;
-                NavPaymentPriority.Visible = true;
+            NavDataManagement.Visible = true;
+            NavPaymentTotal.Visible = true;
+            //}
+
+            //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))
+            //{
+            NavDataManagement.Visible = true;
+            NavPaymentPriority.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Category_List))
             //{
-                NavDataManagement.Visible = true;
-                NavCategory.Visible = true;
+            NavDataManagement.Visible = true;
+            NavCategory.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Category_List))
             //{
-                NavDataManagement.Visible = true;
-                NavBusiness.Visible = true;
+            NavDataManagement.Visible = true;
+            NavBusiness.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Admin_Users))
             //{
-                NavAdmin.Visible = true;
-                NavAdmin_Users.Visible = true;
+            NavAdmin.Visible = true;
+            NavAdmin_Users.Visible = true;
             //}
 
         }
@@ -211,8 +227,8 @@ namespace TbxPortal.Web
 
         public void SetSupplierNotifications()
         {
-            
-            
+
+
         }
 
         private string GetBadgeHtml(int notificationCount, string elementId = "")
@@ -231,22 +247,22 @@ namespace TbxPortal.Web
             if (CurrentUser.UserType == EnumUserType.ClientUser)
             {
                 switchToSupplier.Visible = true;
-               
-               
 
-              
-            }
-     
-             
 
-                SetSupplierNotifications();
 
-                {
-                }
 
-               
             }
 
-         
+
+
+            SetSupplierNotifications();
+
+            {
+            }
+
+
         }
+
+
     }
+}
