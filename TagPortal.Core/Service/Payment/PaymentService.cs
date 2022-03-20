@@ -38,7 +38,7 @@ namespace TagPortal.Core.Service.Payment
             }
         }
 
-        public float GetSum(PaymentRequest request)
+        public PaymentSumModel GetSum(PaymentRequest request)
         {
             using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
             {
@@ -48,39 +48,55 @@ namespace TagPortal.Core.Service.Payment
                 return sum;
             }
         }
-        public List<float> GetSums(PaymentRequest request)
+        public PaymentSumListModel GetSums(PaymentRequest request)
         {
             using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
             {
-                var result = new List<float>();
+                var result = new PaymentSumListModel();
+                result.Sums = new List<PaymentSumModel>();
                 var repo = RepoFactory.PaymentRepo(uow);
                 var requestedPeriodStart = new DateTime(request.DateFrom.Year, request.DateFrom.Month, 1, 0, 0, 0);
                 var requestedPeriodEnd = new DateTime(request.DateTo.Year, request.DateTo.Month, 1, 0, 0, 0);
-                while(requestedPeriodStart <= requestedPeriodEnd)
+                while (requestedPeriodStart <= requestedPeriodEnd)
                 {
                     request.DateFrom = requestedPeriodStart;
                     requestedPeriodStart = requestedPeriodStart.AddMonths(1);
                     request.DateTo = requestedPeriodStart;
-                    result.Add(GetSum(request));
+                    var sum = GetSum(request);
+                    result.Sums.Add(sum);
                 }
                 return result;
             }
         }
-
-
-
-        public float GetSum(IUnitOfWork uow, PaymentRequest request)
+        public PaymentSumModel GetSum(IUnitOfWork uow, PaymentRequest request)
         {
             var repo = RepoFactory.PaymentRepo(uow);
             return repo.GetSum(request);
         }
-        public float GetSaving(PaymentRequest request)
+        public PaymentSumListModel GetSavings(PaymentRequest request)
         {
-                request.IsDeposit = true;
-                var income = GetSum( request);
-                request.IsDeposit = false;
-                var expenditures = GetSum(request);
-                return income - expenditures;
+            var result = new PaymentSumListModel();
+            result.Sums = new List<PaymentSumModel>();
+            var requestedPeriodStart = new DateTime(request.DateFrom.Year, request.DateFrom.Month, 1, 0, 0, 0);
+            var requestedPeriodEnd = new DateTime(request.DateTo.Year, request.DateTo.Month, 1, 0, 0, 0);
+            while (requestedPeriodStart <= requestedPeriodEnd)
+            {
+                request.DateFrom = requestedPeriodStart;
+                requestedPeriodStart = requestedPeriodStart.AddMonths(1);
+                request.DateTo = requestedPeriodStart;
+                result.Sums.Add(GetSaving(request));
+            }
+            return result;
+        }
+        public PaymentSumModel GetSaving(PaymentRequest request)
+        {
+            var result = new PaymentSumModel();
+            request.IsDeposit = true;
+            var income = GetSum(request);
+            request.IsDeposit = false;
+            var expenditures = GetSum(request);
+            result.Sum = income.Sum - expenditures.Sum;
+            return result;
         }
 
         public PaymentModel GetById(PaymentRequest request)

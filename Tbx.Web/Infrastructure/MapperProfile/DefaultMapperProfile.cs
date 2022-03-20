@@ -32,6 +32,9 @@ namespace TbxPortal.Web.Infrastructure.MapperProfile
                 .ForMember(x => x.Name, y => y.MapFrom(m => m.FirstName + " " + m.LastName));
             CreateMap<UserModel, UserDto>().ReverseMap();
             CreateMap<PaymentModel, PaymentDto>().ReverseMap();
+            CreateMap<PaymentSumModel, PaymentSumDto>().ReverseMap();
+            CreateMap<PaymentSumListModel, PaymentSumListDto>().ReverseMap();
+
             CreateMap<PaymentTotalModel, PaymentTotalDto>().ReverseMap();
             CreateMap<PaymentPriorityModel, PaymentPriorityDto>().ReverseMap();
             CreateMap<CategoryModel, CategoryDto>().ReverseMap();

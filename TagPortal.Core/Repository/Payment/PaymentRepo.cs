@@ -146,7 +146,7 @@ namespace TagPortal.Core.Repository.Payment
             string sql = $@"
 
                   SELECT
-                         CASE WHEN SUM(p.Price) Is Null Then 0 Else SUM(p.Price) End
+                         CASE WHEN SUM(p.Price) Is Null Then 0 Else SUM(p.Price) End AS 'Sum'
                   FROM dbo.PAYMENT_TAB p
                   ";
 
@@ -171,9 +171,9 @@ namespace TagPortal.Core.Repository.Payment
             if (searchParams.Count > 0) sql += $" WHERE {string.Join(" AND ", searchParams)}";
             return sql;
         }
-        internal float GetSum(PaymentRequest request)
+        internal PaymentSumModel GetSum(PaymentRequest request)
         {
-            return DbGetFirstOrDefault<float>(GetSumSql(request), request);
+            return DbGetFirstOrDefault<PaymentSumModel>(GetSumSql(request), request);
         }
         private DynamicParameters GetParameters(PaymentModel model)
         {

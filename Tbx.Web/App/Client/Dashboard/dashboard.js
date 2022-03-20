@@ -44,13 +44,9 @@
                     }
                 },
                 savings: {
-                    thisMonthFilter: {
-                        DateFrom: ThisMonthPeriod.DateFrom,
-                        DateTo: ThisMonthPeriod.DateTo
-                    },
-                    lastMonthFilter: {
-                        DateFrom: LastMonthPeriod.DateFrom,
-                        DateTo: LastMonthPeriod.DateTo
+                    thisYearFilter: {
+                        DateFrom: ThisYearPeriod.DateFrom,
+                        DateTo: ThisYearPeriod.DateTo
                     }
                 },
                 groceries: {
@@ -92,40 +88,33 @@
                 details: {},
                 loadingItems: false,
 
-                thisMonthExpenditures: 0,
-                thisYearExpenditures: [],
-                lastMonthExoenditures: 0,
+                thisYearExpenditures: [
+                    { FormattedSum: 0 },
+                    { FormattedSum: 0 }
+                ],
+                thisMonthExpenditures: "",
+                lastMonthExpenditures: "",
 
-                thisMonthSavings: 0,
-                lastMonthSavings: 0,
-                thisYearSavings: 0,
+                thisYearSavings: [],
+                thisMonthSavings: "",
+                lastMonthSavings: "",
 
-                thisMonthIncome: 0,
-                lastMonthIncome: 0,
-                thisYearIncomes: 0,
+                thisMonthIncome: "",
+                lastMonthIncome: "",
+                thisYearIncomes: [
+                    { FormattedSum: 0 },
+                    { FormattedSum: 0 }
+                ],
 
-                overviewChart: null,
                 groceriesPie: null,
                 eatingOutPie: null,
                 electricityPie: null
             },
+            overviewChart: null,
             thisMonth: today.getMonth(),
             lastMonth: today.getMonth() - 1,
         },
-        computed: {
-            DatePeriods: function () {
-                var now = () => moment(moment().utcOffset(0, false))
 
-                return {
-                    0: { Name: "All", FromDate: undefined, ToDate: undefined },
-                    1: { Name: "Today", FromDate: now().startOf('day').toISOString(), ToDate: now().endOf('day').toISOString() },
-                    2: { Name: "1 Week", FromDate: now().startOf('day').add(-1, 'week').toISOString(), ToDate: now().endOf('day').toISOString() },
-                    3: { Name: "1 Month", FromDate: now().startOf('day').add(-1, 'month').toISOString(), ToDate: now().endOf('day').toISOString() },
-                    4: { Name: "3 Months", FromDate: now().startOf('day').add(-3, "month").toISOString(), ToDate: now().endOf('day').toISOString() },
-                    5: { Name: "1 Year", FromDate: now().startOf('day').add(-1, 'year').toISOString(), ToDate: now().endOf('day').toISOString() },
-                }
-            }
-        },
         watch: {
             'payment.loadingItems': function () {
                 if (this.loadingRequisitionItems) {
@@ -145,7 +134,10 @@
                 this.payment.isLoading = true;
                 apiService.GetList("payment/sums", this.payment.expenditures.total.thisYearFilter)
                     .then(data => {
-                        this.payment.thisYearExpenditures = data;
+
+                        this.payment.thisYearExpenditures = data.Sums;
+                        this.payment.thisMonthExpenditures = this.payment.thisYearExpenditures[this.thisMonth].FormattedSum;
+                        this.payment.lastMonthExpenditures = this.payment.thisYearExpenditures[this.lastMonth].FormattedSum;
 
                     }, function (error) {
                         feedback.DisplayError(error);
@@ -157,7 +149,9 @@
                 this.payment.isLoading = true;
                 apiService.GetList("payment/sums", this.payment.incomes.total.thisYearFilter)
                     .then(data => {
-                        this.payment.thisYearIncomes = data;
+                        this.payment.thisYearIncomes = data.Sums;
+                        this.payment.thisMonthIncome = this.payment.thisYearIncomes[this.thisMonth].FormattedSum;
+                        this.payment.lastMonthIncome = this.payment.thisYearIncomes[this.lastMonth].FormattedSum;
                         this.loadOverviewChart();
 
                     }, function (error) {
@@ -169,19 +163,11 @@
             getSavings: function () {
                 this.payment.isLoading = true;
 
-                apiService.GetList("payment/saving", this.payment.savings.thisMonthFilter)
+                apiService.GetList("payment/savings", this.payment.savings.thisYearFilter)
                     .then(data => {
-                        this.payment.thisMonthSavings = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    });
-
-                apiService.GetList("payment/saving", this.payment.savings.lastMonthFilter)
-                    .then(data => {
-                        this.payment.lastMonthSavings = data;
+                        this.payment.thisYearSavings = data.Sums;
+                        this.payment.thisMonthSavings =  this.payment.thisYearSavings[this.thisMonth].FormattedSum;
+                        this.payment.lastMonthSavings =  this.payment.thisYearSavings[this.lastMonth].FormattedSum;
 
                     }, function (error) {
                         feedback.DisplayError(error);
@@ -193,16 +179,10 @@
                 apiService.GetList("category/lookup", this.payment.groceries.categoryFilter)
                     .then(data => {
                         this.payment.groceries.categoryDetails = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    }).then((data2) => {
                         this.payment.groceries.paymentFilter.CategoryId = this.payment.groceries.categoryDetails[0].CategoryId
                         apiService.GetList("payment/sum", this.payment.groceries.paymentFilter)
-                            .then(data => {
-                                this.payment.groceries.thisWeekSum = data;
+                            .then(data2 => {
+                                this.payment.groceries.thisWeekSum = data2.Sum;
                                 this.loadGroceriesPie();
 
                             }, function (error) {
@@ -210,22 +190,20 @@
                             }).always(function () {
                                 app.payment.isLoading = false;
                             });
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
                     })
             },
             getEatingOuts: function () {
                 apiService.GetList("category/lookup", this.payment.eatingOut.categoryFilter)
                     .then(data => {
                         this.payment.eatingOut.categoryDetails = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    }).then((data2) => {
                         this.payment.eatingOut.paymentFilter.CategoryId = this.payment.eatingOut.categoryDetails[0].CategoryId
                         apiService.GetList("payment/sum", this.payment.eatingOut.paymentFilter)
-                            .then(data => {
-                                this.payment.eatingOut.thisWeekSum = data;
+                            .then(data2 => {
+                                this.payment.eatingOut.thisWeekSum = data2.Sum;
                                 this.loadEatingOutPie();
 
                             }, function (error) {
@@ -233,22 +211,20 @@
                             }).always(function () {
                                 app.payment.isLoading = false;
                             });
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
                     })
             },
             getElectricity: function () {
                 apiService.GetList("category/lookup", this.payment.electricity.categoryFilter)
                     .then(data => {
                         this.payment.electricity.categoryDetails = data;
-
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        app.payment.isLoading = false;
-                    }).then((data2) => {
                         this.payment.electricity.paymentFilter.CategoryId = this.payment.electricity.categoryDetails[0].CategoryId
                         apiService.GetList("payment/sum", this.payment.electricity.paymentFilter)
-                            .then(data => {
-                                this.payment.electricity.thisMonthSum = data;
+                            .then(data2 => {
+                                this.payment.electricity.thisMonthSum = data2.Sum;
                                 this.loadElectricityPie();
 
                             }, function (error) {
@@ -256,16 +232,21 @@
                             }).always(function () {
                                 app.payment.isLoading = false;
                             });
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
                     })
             },
             loadOverviewChart: function () {
-
+                let expenditures = this.payment.thisYearExpenditures.map(x => x.Sum);
+                let incomes = this.payment.thisYearIncomes.map(x => x.Sum);
                 let data = {
                     labels: Months,
                     datasets: [
                         {
                             label: 'Expenditure',
-                            data: this.payment.thisYearExpenditures,
+                            data: expenditures,
                             borderColor: 'rgba(255, 99, 132, 1)',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderWidth: 2,
@@ -273,7 +254,7 @@
                         },
                         {
                             label: 'Income',
-                            data: this.payment.thisYearIncomes,
+                            data: incomes,
                             borderColor: 'rgba(100, 200, 255, 1)',
                             backgroundColor: 'rgba(100, 200, 255, 0.2)',
                             borderWidth: 2,
@@ -409,6 +390,20 @@
                 var ctx = $("#groceriesPie");
                 if (this.groceriesPie) groceriesPie.destroy();
                 this.groceriesPie = new Chart(ctx, config);
+            },
+        },
+        computed: {
+            DatePeriods: function () {
+                var now = () => moment(moment().utcOffset(0, false))
+
+                return {
+                    0: { Name: "All", FromDate: undefined, ToDate: undefined },
+                    1: { Name: "Today", FromDate: now().startOf('day').toISOString(), ToDate: now().endOf('day').toISOString() },
+                    2: { Name: "1 Week", FromDate: now().startOf('day').add(-1, 'week').toISOString(), ToDate: now().endOf('day').toISOString() },
+                    3: { Name: "1 Month", FromDate: now().startOf('day').add(-1, 'month').toISOString(), ToDate: now().endOf('day').toISOString() },
+                    4: { Name: "3 Months", FromDate: now().startOf('day').add(-3, "month").toISOString(), ToDate: now().endOf('day').toISOString() },
+                    5: { Name: "1 Year", FromDate: now().startOf('day').add(-1, 'year').toISOString(), ToDate: now().endOf('day').toISOString() },
+                }
             },
         },
         created: function () {

@@ -666,6 +666,8 @@
     <Compile Include="Dto\PagedDto.cs" />
     <Compile Include="Dto\Payment\PaymentDto.cs" />
     <Compile Include="Dto\Payment\PaymentPriority\PaymentPriorityDto.cs" />
+    <Compile Include="Dto\Payment\PaymentSumDto.cs" />
+    <Compile Include="Dto\Payment\PaymentSumListDto.cs" />
     <Compile Include="Dto\Payment\PaymentTotal\PaymentTotalDto.cs" />
     <Compile Include="Dto\Role\RoleDto.cs" />
     <Compile Include="Dto\Role\RolePermissionDto.cs" />

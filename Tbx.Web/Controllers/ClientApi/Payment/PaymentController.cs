@@ -32,7 +32,7 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment
 
             var sum = PaymentService.GetSum(request);
 
-            return Ok(sum);
+            return Ok(DataManagementMapper.Map<PaymentSumDto>(sum));
         }
         [Route("sums")]
         [HttpGet]
@@ -42,18 +42,18 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment
 
             var sums = PaymentService.GetSums(request);
 
-            return Ok(sums);
+            return Ok(DataManagementMapper.Map<PaymentSumListDto>(sums));
         }
 
-        [Route("saving")]
+        [Route("savings")]
         [HttpGet]
         public IHttpActionResult GetSaving([FromUri] PaymentRequest request)
         {
             if (request == null) return BadRequest();
 
-            var sum = PaymentService.GetSaving(request);
+            var sum = PaymentService.GetSavings(request);
 
-            return Ok(sum);
+            return Ok(DataManagementMapper.Map<PaymentSumListDto>(sum));
         }
         [Route("{paymentId}")]
         [HttpGet]

@@ -17,12 +17,12 @@
                         <div class="row mt-n3">
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="This Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearExpenditures[thisMonth]" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.thisMonthExpenditures" disabled />
                                 </div>
                             </div>
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="Last Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearExpenditures[lastMonth]" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.lastMonthExpenditures" disabled />
                                 </div>
                             </div>
                         </div>
@@ -31,12 +31,12 @@
                         <div class="row mt-n3">
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="This Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearIncomes[thisMonth]" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.thisMonthIncome" disabled />
                                 </div>
                             </div>
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="Last Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisYearIncomes[lastMonth]" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.lastMonthIncome" disabled />
                                 </div>
                             </div>
                         </div>
@@ -47,12 +47,12 @@
                         <div class="row mt-n3">
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="This Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.thisMonthSavings" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.thisMonthSavings" disabled />
                                 </div>
                             </div>
                             <div class="col-6 mt-2">
                                 <div is="custom-input-group" input-label="Last Month">
-                                    <input class="form-control form-control-sm text-left" type="number" v-model="payment.lastMonthSavings" disabled />
+                                    <input class="form-control form-control-sm text-left" type="text" v-model="payment.lastMonthSavings" disabled />
                                 </div>
                             </div>
                         </div>
