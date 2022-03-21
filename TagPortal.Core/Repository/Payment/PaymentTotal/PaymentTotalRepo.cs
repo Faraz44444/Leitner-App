@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using TagPortal.Core.Request.Payment.PaymentTotal;
 using TagPortal.Domain;
+using TagPortal.Domain.Model.Payment;
 using TagPortal.Domain.Model.Payment.PaymentTotal;
 
 namespace TagPortal.Core.Repository.Payment.PaymentTotal
@@ -155,6 +156,27 @@ namespace TagPortal.Core.Repository.Payment.PaymentTotal
         {
             return DbGetFirstOrDefault<float>(GetSumSql(request), request);
         }
+        internal RecordDateModel GetFirstRecordDate()
+        {
+            string sql = $@"
+
+                  SELECT
+                        MIN(pt.Date) AS 'DATE'
+                  FROM dbo.PAYMENT_TOTAL_TAB pt
+                  ";
+            return DbGetFirstOrDefault<RecordDateModel>(sql, null);
+        }
+        internal RecordDateModel GetLastRecordDate()
+        {
+            string sql = $@"
+
+                  SELECT
+                        MAX(pt.Date) AS 'DATE'
+                  FROM dbo.PAYMENT_TOTAL_TAB pt
+                  ";
+            return DbGetFirstOrDefault<RecordDateModel>(sql, null);
+        }
+
         private DynamicParameters GetParameters(PaymentTotalModel model)
         {
             var p = GetDynamicParameters(model);

@@ -75,6 +75,7 @@
     <Compile Include="Model\Payment\PaymentModel.cs" />
     <Compile Include="Model\Payment\PaymentSumListModel.cs" />
     <Compile Include="Model\Payment\PaymentSumModel.cs" />
+    <Compile Include="Model\Payment\RecordDateModel.cs" />
     <Compile Include="Model\Payment\PaymentTotal\PaymentTotalModel.cs" />
     <Compile Include="Model\Role\RoleModel.cs" />
     <Compile Include="Model\Role\RolePermissionModel.cs" />

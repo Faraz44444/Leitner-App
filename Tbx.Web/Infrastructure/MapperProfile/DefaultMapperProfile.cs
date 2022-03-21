@@ -36,6 +36,7 @@ namespace TbxPortal.Web.Infrastructure.MapperProfile
             CreateMap<PaymentSumListModel, PaymentSumListDto>().ReverseMap();
 
             CreateMap<PaymentTotalModel, PaymentTotalDto>().ReverseMap();
+            CreateMap<RecordDateModel, RecordDateDto>().ReverseMap();
             CreateMap<PaymentPriorityModel, PaymentPriorityDto>().ReverseMap();
             CreateMap<CategoryModel, CategoryDto>().ReverseMap();
             CreateMap<BusinessModel, BusinessDto>().ReverseMap();

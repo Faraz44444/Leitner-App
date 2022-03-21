@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using TagPortal.Core.Repository;
+using TagPortal.Core.Repository.Payment;
+using TagPortal.Core.Repository.Payment.PaymentTotal;
 using TagPortal.Core.Request.Payment.PaymentTotal;
 using TagPortal.Core.Service.Business;
 using TagPortal.Core.Service.User;
 using TagPortal.Domain;
 using TagPortal.Domain.Model.Business;
+using TagPortal.Domain.Model.Payment;
 using TagPortal.Domain.Model.Payment.PaymentTotal;
 
 namespace TagPortal.Core.Service.Payment.PaymentTotal
@@ -45,6 +48,32 @@ namespace TagPortal.Core.Service.Payment.PaymentTotal
                 var repo = RepoFactory.PaymentTotalRepo(uow);
                 return repo.GetSum(request);
             }
+        }
+
+        public RecordDateModel GetFirstRecordDate()
+        {
+            using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
+            {
+                return GetFirstRecordDate(uow);
+            }
+        }
+        public RecordDateModel GetFirstRecordDate(IUnitOfWork uow)
+        {
+            var repo = RepoFactory.PaymentTotalRepo(uow);
+            return repo.GetFirstRecordDate();
+        }
+        public RecordDateModel GetLastRecordDate()
+        {
+            using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
+            {
+                uow.Commit();
+                return GetLastRecordDate(uow);
+            }
+        }
+        public RecordDateModel GetLastRecordDate(IUnitOfWork uow)
+        {
+            var repo = RepoFactory.PaymentTotalRepo(uow);
+            return repo.GetLastRecordDate();
         }
 
         public PaymentTotalModel GetById(PaymentTotalRequest request)

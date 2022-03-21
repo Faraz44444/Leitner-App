@@ -687,6 +687,7 @@
     <Compile Include="Dto\Payment\PaymentSumDto.cs" />
     <Compile Include="Dto\Payment\PaymentSumListDto.cs" />
     <Compile Include="Dto\Payment\PaymentTotal\PaymentTotalDto.cs" />
+    <Compile Include="Dto\Payment\RecordDateDto.cs" />
     <Compile Include="Dto\Role\RoleDto.cs" />
     <Compile Include="Dto\Role\RolePermissionDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />
