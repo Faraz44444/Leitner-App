@@ -10,6 +10,13 @@ namespace TagPortal.Domain.Model.Payment.PaymentTotal
         public long BusinessId { get; set; }
         public string BusinessName { get; set; }
         public double Price { get; set; }
+        public string FormattedPrice
+        {
+            get
+            {
+                return String.Format("{0:N}", Price);
+            }
+        }
         public DateTime Date { get; set; }
         public bool IsDeposit { get; set; }
         public long CreatedByUserId { get; set; }

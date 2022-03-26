@@ -11,6 +11,7 @@ using TagPortal.Core.Service.Role;
 using TagPortal.Core.Service.Security;
 using TagPortal.Core.Service.User;
 using TagPortal.Core.Service.Payment.PaymentTotal;
+using TagPortal.Core.Service.Report;
 
 namespace TagPortal.Core
 {
@@ -55,6 +56,7 @@ namespace TagPortal.Core
             var paymentTotalService = new PaymentTotalService(uowProvider, repoFactory, userService, businessService);
             var paymentPriorityService = new PaymentPriorityService(uowProvider, repoFactory, userService);
             var categoryService = new CategoryService(uowProvider, repoFactory, userService);
+            var reportService = new ReportService(uowProvider, repoFactory, userService);
 
             return new ServiceContext(
                 //errorLogService: errorLogService,
@@ -70,7 +72,8 @@ namespace TagPortal.Core
                 rolePermissionService: rolePermissionService,
                 roleService: roleService,
                 userSiteAccessService: userSiteAccessService,
-                userSiteService: userSiteService
+                userSiteService: userSiteService,
+                reportService: reportService
                 );
         }
     }

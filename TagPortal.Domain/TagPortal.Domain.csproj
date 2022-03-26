@@ -51,11 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregated\Stats\BitsAndPiecesQuickStatsDto.cs" />
-    <Compile Include="Aggregated\Stats\StatsItemDatasetReportData.cs" />
-    <Compile Include="Aggregated\Stats\StatsItemDetailsReportData.cs" />
-    <Compile Include="Aggregated\Stats\StatsItemReportData.cs" />
-    <Compile Include="Aggregated\Stats\ClientStatsReportData.cs" />
     <Compile Include="Aggregated\User\UserSupplierAccess.cs" />
     <Compile Include="Aggregated\User\UserSiteAccess.cs" />
     <Compile Include="Enum\EnumCategoryPriority.cs" />
@@ -67,8 +62,7 @@
     <Compile Include="Enum\EnumNotificationMethod.cs" />
     <Compile Include="Enum\EnumPermissionType.cs" />
     <Compile Include="Enum\EnumUserType.cs" />
-    <Compile Include="Model\Article\ArticleWarehouseModel.cs" />
-    <Compile Include="Model\Article\BpArticlePriceModel.cs" />
+    <Compile Include="Model\Aggregated\MonthlyReportModel.cs" />
     <Compile Include="Model\Business\BusinessModel.cs" />
     <Compile Include="Model\Category\CategoryModel.cs" />
     <Compile Include="Model\Payment\PaymentPriority\PaymentPriorityModel.cs" />

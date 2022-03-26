@@ -71,6 +71,7 @@
                     <li visible="false" runat="server" id="NavReport"><a href="#"><i class="fas fa-fw fa-table"></i><span runat="server">Report</span></a>
                         <ul>
                             <li visible="false" runat="server" id="NavYearlyOverview"><a href="<%=Page.ResolveUrl("~/report/yearlyoverview") %>"><i class="fas fa-fw fa-calendar-days"></i><span>Yearly Overview</span></a></li>
+                            <li visible="false" runat="server" id="NavMonthlyOverview"><a href="<%=Page.ResolveUrl("~/report/monthlyoverview") %>"><i class="fas fa-fw fa-calendar-days"></i><span>Monthly Overview</span></a></li>
                         </ul>
                     </li>
                     <li visible="false" runat="server" id="NavAdmin"><a href="#"><i class="fas fa-fw fa-cog"></i><span>Admin</span></a>

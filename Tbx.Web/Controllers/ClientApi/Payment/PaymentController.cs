@@ -55,6 +55,25 @@ namespace TbxPortal.Web.Controllers.ClientApi.Payment
 
             return Ok(DataManagementMapper.Map<PaymentSumListDto>(sum));
         }
+        [Route("firstRecordDate")]
+        [HttpGet]
+        public IHttpActionResult GetFirstRecordDate()
+        {
+            var date = PaymentService.GetFirstRecordDate();
+            var dto = DataManagementMapper.Map<RecordDateDto>(date);
+
+            return Ok(dto);
+        }
+        [Route("lastRecordDate")]
+        [HttpGet]
+        public IHttpActionResult GetLastRecordDate()
+        {
+            var date = PaymentService.GetLastRecordDate();
+            var dto = DataManagementMapper.Map<RecordDateDto>(date);
+
+            return Ok(dto);
+        }
+
         [Route("{paymentId}")]
         [HttpGet]
         public IHttpActionResult GetById([FromUri] long id)

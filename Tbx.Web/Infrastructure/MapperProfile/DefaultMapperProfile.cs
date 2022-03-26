@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TagPortal.Domain.Aggregated.User;
-using TagPortal.Domain.Model.Article;
+using TagPortal.Domain.Model.Aggregated;
 using TagPortal.Domain.Model.Business;
 using TagPortal.Domain.Model.Category;
 using TagPortal.Domain.Model.Payment;
@@ -15,6 +15,7 @@ using TbxPortal.Web.Dto.Category;
 using TbxPortal.Web.Dto.Payment;
 using TbxPortal.Web.Dto.Payment.PaymentPriority;
 using TbxPortal.Web.Dto.Payment.PaymentTotal;
+using TbxPortal.Web.Dto.Report;
 using TbxPortal.Web.Dto.Role;
 using TbxPortal.Web.Dto.User;
 
@@ -40,6 +41,7 @@ namespace TbxPortal.Web.Infrastructure.MapperProfile
             CreateMap<PaymentPriorityModel, PaymentPriorityDto>().ReverseMap();
             CreateMap<CategoryModel, CategoryDto>().ReverseMap();
             CreateMap<BusinessModel, BusinessDto>().ReverseMap();
+            CreateMap <MonthlyReportModel, MonthlyOverviewDto>().ReverseMap();
 
             CreateMap<UserSiteModel, UserSiteDto>().ReverseMap();
             CreateMap<UserSiteAccess, UserSiteAccessDto>().ReverseMap();

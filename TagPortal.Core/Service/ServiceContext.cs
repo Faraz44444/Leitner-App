@@ -5,6 +5,7 @@ using TagPortal.Core.Service.Category;
 using TagPortal.Core.Service.Payment;
 using TagPortal.Core.Service.Payment.PaymentPriority;
 using TagPortal.Core.Service.Payment.PaymentTotal;
+using TagPortal.Core.Service.Report;
 using TagPortal.Core.Service.Role;
 using TagPortal.Core.Service.Security;
 using TagPortal.Core.Service.User;
@@ -27,6 +28,7 @@ namespace TagPortal.Core.Service
         public BusinessService BusinessService { get; private set; }
         public UserSiteAccessService UserSiteAccessService { get; private set; }
         public UserSiteService UserSiteService { get; private set; }
+        public ReportService ReportService { get; private set; }
         public ServiceContext(
                 //ErrorLogService errorLogService,
                 //EventLogService eventLogService,
@@ -41,7 +43,8 @@ namespace TagPortal.Core.Service
                 RolePermissionService rolePermissionService,
                 RoleService roleService,
                 UserSiteAccessService userSiteAccessService,
-                UserSiteService userSiteService)
+                UserSiteService userSiteService,
+                ReportService reportService)
         {
             //ErrorLogService = errorLogService;
             //EventLogService = eventLogService;
@@ -57,6 +60,7 @@ namespace TagPortal.Core.Service
             RoleService = roleService;
             UserSiteAccessService = userSiteAccessService;
             UserSiteService = userSiteService;
+            ReportService = reportService;
         }
     }
 }

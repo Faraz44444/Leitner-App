@@ -48,6 +48,7 @@ namespace TbxPortal.Web.App_Start
             
             //REPORT
             routes.MapPageRoute("report_yearlyoverview", "report/yearlyoverview", "~/App/Client/Report/YearlyOverview/YearlyOverview.aspx", true);
+            routes.MapPageRoute("report_monthlyoverview", "report/monthlyoverview", "~/App/Client/Report/MonthlyOverview/MonthlyOverview.aspx", true);
 
             //ADMIN
             routes.MapPageRoute("admin_user", "admin/users", "~/App/Client/Admin/User/List/UserList.aspx", true);

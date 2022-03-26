@@ -145,6 +145,11 @@ namespace TbxPortal.Web
                         NavYearlyOverview.Attributes.Add("class", "active");
                         return;
                     }
+                    if (url.Contains("monthlyoverview"))
+                    {
+                        NavMonthlyOverview.Attributes.Add("class", "active");
+                        return;
+                    }
                     return;
                 }
 
@@ -186,6 +191,12 @@ namespace TbxPortal.Web
             //{
             NavReport.Visible = true;
             NavYearlyOverview.Visible = true;
+            //}
+
+            //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))
+            //{
+            NavReport.Visible = true;
+            NavMonthlyOverview.Visible = true;
             //}
 
             //if (CurrentUser.HasPermission(EnumPermissionType.Tbx_Article_List))

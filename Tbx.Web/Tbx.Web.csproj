@@ -667,6 +667,7 @@
     <Compile Include="Controllers\ClientApi\Payment\PaymentController.cs" />
     <Compile Include="Controllers\ClientApi\Payment\PaymentPriority\PaymentPriorityController.cs" />
     <Compile Include="Controllers\ClientApi\Payment\PaymentTotal\PaymentTotalController.cs" />
+    <Compile Include="Controllers\ClientApi\Report\ReportController.cs" />
     <Compile Include="Controllers\ClientApi\User\RoleController.cs" />
     <Compile Include="Dto\Account\UpdateCurrentClientRequestDto.cs" />
     <Compile Include="Controllers\ClientApi\User\UserController.cs" />
@@ -688,6 +689,7 @@
     <Compile Include="Dto\Payment\PaymentSumListDto.cs" />
     <Compile Include="Dto\Payment\PaymentTotal\PaymentTotalDto.cs" />
     <Compile Include="Dto\Payment\RecordDateDto.cs" />
+    <Compile Include="Dto\Report\MonthlyOverviewDto.cs" />
     <Compile Include="Dto\Role\RoleDto.cs" />
     <Compile Include="Dto\Role\RolePermissionDto.cs" />
     <Compile Include="Dto\User\UserDto.cs" />

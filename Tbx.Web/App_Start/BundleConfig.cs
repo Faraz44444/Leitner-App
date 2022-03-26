@@ -130,6 +130,8 @@ namespace TbxPortal.Web.App_Start
             //REPORTS
             bundles.Add(new ScriptBundle("~/jsYearlyOverview").Include(
                 "~/App/Client/Report/YearlyOverview/YearlyOverview.js"));
+            bundles.Add(new ScriptBundle("~/jsMonthlyOverview").Include(
+                "~/App/Client/Report/MonthlyOverview/MonthlyOverview.js"));
 
 
 

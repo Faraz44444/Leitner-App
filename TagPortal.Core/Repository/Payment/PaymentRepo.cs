@@ -175,6 +175,27 @@ namespace TagPortal.Core.Repository.Payment
         {
             return DbGetFirstOrDefault<PaymentSumModel>(GetSumSql(request), request);
         }
+        internal RecordDateModel GetFirstRecordDate()
+        {
+            string sql = $@"
+
+                  SELECT
+                        MIN(p.Date) AS 'DATE'
+                  FROM dbo.PAYMENT_TAB p
+                  ";
+            return DbGetFirstOrDefault<RecordDateModel>(sql, null);
+        }
+        internal RecordDateModel GetLastRecordDate()
+        {
+            string sql = $@"
+
+                  SELECT
+                        MAX(p.Date) AS 'DATE'
+                  FROM dbo.PAYMENT_TAB p
+                  ";
+            return DbGetFirstOrDefault<RecordDateModel>(sql, null);
+        }
+
         private DynamicParameters GetParameters(PaymentModel model)
         {
             var p = GetDynamicParameters(model);

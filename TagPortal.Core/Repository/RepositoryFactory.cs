@@ -4,6 +4,7 @@ using TagPortal.Core.Repository.Category;
 using TagPortal.Core.Repository.Payment;
 using TagPortal.Core.Repository.Payment.PaymentPriority;
 using TagPortal.Core.Repository.Payment.PaymentTotal;
+using TagPortal.Core.Repository.Report;
 using TagPortal.Core.Repository.Role;
 using TagPortal.Core.Repository.Security;
 using TagPortal.Core.Repository.User;
@@ -26,6 +27,7 @@ namespace TagPortal.Core.Repository
         internal PaymentPriorityRepo PaymentPriorityRepo(IUnitOfWork uow) => new PaymentPriorityRepo(uow.IDbConnection, uow.IDbTransaction);
         internal CategoryRepo CategoryRepo(IUnitOfWork uow) => new CategoryRepo(uow.IDbConnection, uow.IDbTransaction);
         internal BusinessRepo BusinessRepo(IUnitOfWork uow) => new BusinessRepo(uow.IDbConnection, uow.IDbTransaction);
+        internal ReportRepo ReportRepo(IUnitOfWork uow) => new ReportRepo(uow.IDbConnection, uow.IDbTransaction);
 
     }
 }

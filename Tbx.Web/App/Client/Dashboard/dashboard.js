@@ -367,8 +367,8 @@
                         }
                     },
                 };
-
-                var ctx = $("#eatingOutPie");
+                let temp = "#eatingOutPie";
+                var ctx = $(temp);
                 if (this.eatingOutPie) eatingOutPie.destroy();
                 this.eatingOutPie = new Chart(ctx, config);
             },

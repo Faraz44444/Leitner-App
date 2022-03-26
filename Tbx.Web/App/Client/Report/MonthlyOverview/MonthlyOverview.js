@@ -1,4 +1,8 @@
-﻿window.addEventListener("load", function (event) {
+﻿
+window.addEventListener("load", function (event) {
+    var Today = new Date();
+    var Month = Today.getMonth() + 1;
+    var Year = Today.getFullYear();
     var filterTimeout = null;
     var localStorageKey = "filterArticleList";
     var app = new Vue({
@@ -6,119 +10,159 @@
         data: {
             payment: {
                 isLoading: false,
+                Overviewfilter: {
+                },
                 filter: {
-                    Title: "",
-                    PaymentPriorityName: "",
-                    BusinessName: "",
-                    IsDeposit: null,
-                    IsPaidToPerson: null,
-                    Type: null,
-                    Month: null,
-                    Price: 0,
-                    Date: null,
-                    CreatedByUserId: null,
-                    CreatedAt: null,
                     CurrentPage: 1,
                     ItemsPerPage: 50,
                     OrderBy: 6,
                     OrderByDirection: 2
                 },
-                categoriesFilter: {
-
-                },
                 items: [],
-                categories: [],
-                isLoading: false,
-                // MODAL
-                modal: undefined,
-                details: {
-                    PaymentId: 0,
-                    PaymentPriorityId: 3,
-                },
-                showCreatdByAndCreatedAt: false
-
-            },
-            paymentPriority: {
-                filter: {},
-                items: []
-            },
-            business: {
-                filter: {
-                    BusinessName: ""
-                },
-                items: [],
-                searchResultBusinesses: [],
-                loadingAvailableBusinesses: false
+                selectedItems: [],
+                firstRecordDate: null,
+                lastRecordDate: null,
+                dateLimits: {},
+                detailItems: [],
+                detailsExpendituresSum: "",
+                detailsIncomesSum: ""
             },
             category: {
+                filter: {},
+                items: [],
+                isLoading: false,
                 details: {
-                    CategoryName: "",
-                    CategoryPriority: null,
-                }
+
+                },
+
             },
+            overviewChart: {},
+            selectedYear: null,
+            selectedMonth: null,
+            test: null,
+            MonthNames: ["", "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"]
         },
         methods: {
-            fetchPayments: function () {
+            fetchOverview: function () {
                 this.payment.isLoading = true;
 
-                return apiService.GetList("payment", this.payment.filter)
+                return apiService.GetList("report/monthlyoverview", this.payment.Overviewfilter)
                     .then(data => {
-                        this.payment.items = data.Items;
-                        this.payment.TotalNumberOfItems = data.TotalNumberOfItems;
-                        this.payment.CurrentPage = data.CurrentPage;
-
-                        pagination.InfiniteScroll("datalist", data, app.fetchPage, app.payment.isLoading);
+                        //data.map(x => {
+                        //    let key = "#overviewChart" + x.CategoryId + x.Year + x.Month;
+                        //    this.overviewChart[key] = null
+                        //});
+                        this.payment.items = data;
+                        this.filterItemsForSelectedDate();
                     }, function (error) {
                         feedback.DisplayError(error);
                     }).always(function () {
                         app.payment.isLoading = false;
                     });
             },
+            fetchPayments: function () {
+                this.payment.isLoading = true;
 
-            savePayment: function () {
-                if (this.payment.details.PaymentId < 1 ) {
-                    this.payment.isLoading = true;
+                let lastDayOfSelectedMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
+                this.payment.filter.DateFrom = this.selectedYear + "-" + this.selectedMonth + "-" + 1
+                this.payment.filter.DateTo = this.selectedYear + "-" + this.selectedMonth + "-" + lastDayOfSelectedMonth
 
-                    return apiService.PostRequest("payment", this.payment.details)
-                        .then((response) => {
-                            if (response) {
-                                window.location.reload();
-                            }
-                        }, function (error) {
-                            feedback.DisplayError(error);
-                        }).always(function () {
-                            app.payment.isLoading = false;
-                        });
-                } else {
-                    return apiService.PostRequest("payment/" + this.payment.details.PaymentId, this.payment.details)
-                        .then((response) => {
-                            if (response) {
-                                window.location.reload();
-                            }
-                        }, function (error) {
-                            feedback.DisplayError(error);
-                        }).always(function () {
-                            app.payment.isLoading = false;
-                        });
+                return apiService.GetList("payment", this.payment.filter).then(response => {
+                    this.payment.detailsExpendituresSum = Intl.NumberFormat('en-US').format(response.Items.filter(x=> x.IsDeposit == false).map(x => x.Price).reduce((x, y) => x + y , 0));
+                    this.payment.detailsIncomesSum = Intl.NumberFormat('en-US').format(response.Items.filter(x=> x.IsDeposit == true).map(x => x.Price).reduce((x, y) => x + y , 0));
+                    this.payment.detailItems = response.Items;
+                    pagination.InfiniteScroll("datalist", response, app.fetchPage);
+                }, function (error) {
+                    feedback.DisplayError(error);
+                }
+                ).always(function () {
+                    app.payment.isLoading = false;
+                })
+            },
+            fetchDateLimits: function () {
+                this.payment.isLoading = true;
+                apiService.GetList("payment/firstrecorddate", null).then(data => {
+                    this.payment.firstRecordDate = data.Date;
+                    apiService.GetList("payment/lastrecorddate", null).then(data2 => {
+                        this.payment.lastRecordDate = data2.Date;
+                        this.computeDatelimits();
+                    }, function (error) {
+                        feedback.DisplayError(error);
+                    }).always(function () {
+                        app.payment.isLoading = false;
+                    })
+                }, function (error) {
+                    feedback.DisplayError(error);
+                }).always(function () {
+                    app.payment.isLoading = false;
+                })
+            },
+            computeDatelimits: function () {
+                let dateLimits = {};
+                let firstRecordDate = new Date(Object.assign(this.payment.firstRecordDate));
+                let lastRecordDate = new Date(Object.assign(this.payment.lastRecordDate));
+                while (firstRecordDate.getFullYear() <= lastRecordDate.getFullYear()) {
+                    dateLimits.hasOwnProperty(firstRecordDate.getFullYear().toString()) ?
+                        dateLimits[firstRecordDate.getFullYear().toString()].push(firstRecordDate.getMonth() + 1) :
+                        dateLimits[firstRecordDate.getFullYear().toString()] = [firstRecordDate.getMonth() + 1]
+                    if (firstRecordDate.getFullYear() == lastRecordDate.getFullYear() &&
+                        firstRecordDate.getMonth() == lastRecordDate.getMonth()) {
+                        break;
+                    }
+                    firstRecordDate.setMonth(firstRecordDate.getMonth() + 1);
                 }
 
+                this.payment.dateLimits = dateLimits
             },
+            loadOverviewPies: function () {
+                this.payment.items.forEach(x => {
+                    let actualData = [x.Price, 0]
+                    let data = {
+                        labels: ["Spent"],
+                        datasets: [
+                            {
+                                label: 'spent',
+                                data: actualData,
+                                borderColor: colorsTransparent,
+                                backgroundColor: colorsTransparentHigh,
+                                borderWidth: 2,
+                                borderSkipped: false,
+                            }],
+                    };
 
-            createNewPayment: function () {
-                this.payment.details = {};
-                this.payment.modal.show();
-            },
-            showPaymentDetails: function (payment) {
-            },
+                    let config = {
+                        type: 'pie',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false
+                                }
+                            }
+                        },
+                    };
+                    var ctx = el.getContext(temp);
+                    var ctx = $(temp);
+                    if (this.overviewChart[temp])
+                        this.overviewChart[temp].destroy();
+                    this.overviewChart[temp] = new Chart(ctx, config);
 
-            getNextPage: function () {
-                this.payment.filter.CurrentPage++;
-                this.fetchPayments();
+                })
+
+            },
+            filterItemsForSelectedDate: function () {
+                if (this.payment.items.length > 0)
+                    this.payment.selectedItems = this.payment.items.filter(x => x.Month == this.selectedMonth && x.Year == parseInt(this.selectedYear));
             },
             filterChanged: function () {
                 this.payment.items = [];
                 this.payment.filter.CurrentPage = 1;
-                this.fetchPayments();
+                this.fetchOverview();
             },
             fetchPage: function () {
                 this.filter.CurrentPage++;
@@ -133,63 +177,26 @@
             orderBy: function (value) {
                 this.payment.filter = orderByHandler.Handle(this.payment.filter, value);
                 this.filterChanged();
-            },
-            openModal: function (item) {
-                if (item) {
-                    this.payment.details = Object.assign(this.payment.details, item);
-                    this.$forceUpdate();
-                } else {
-                    this.payment.details = {
-                        PaymentId: 0
-                    };
-                    this.payment.details.Date = Date.now();
-                }
-                $("#modalNewPayment").modal("show");
-            },
-            scanBusiness: function () {
-                if (this.payment.details.BusinessName.length < 1) return;
-
-                this.business.loadingAvailableBusinesses = true
-                loadHandler.AddGlobalLoader();
-
-                this.business.filter.BusinessName = this.payment.details.BusinessName;
-                return apiService.GetList("business/lookup", this.business.filter).then(response => {
-                    this.business.searchResultBusinesses = response;
-                    $("#searchBusinesses").focus();
-                }, (error) => {
-                    feedback.DisplayError(error);
-                }).always(() => {
-                    loadHandler.RemoveGlobalLoader();
-                    this.business.loadingAvailableBusinesses = false
-                });
-            },
-            selectBusinesss: function (item) {
-                this.payment.details.BusinessId = item.BusinessId;
-                this.payment.details.BusinessName = item.BusinessName;
-            },
-            saveCategory: function () {
-                this.category.isLoading = true;
-
-                apiService.PostRequest("category", this.category.details)
-                    .then(function (response) {
-                    }, function (error) {
-                        feedback.DisplayError(error);
-                    }).always(function () {
-                        loadHandler.RemoveGlobalLoader();
-                        app.loadingItems = false;
-                    });
-                apiService.GetList("business/lookup", this.business.filter).then(data => {
-                    this.business.items = data;
-                }, function (error) {
-                    feedback.DisplayError(error);
-                }).always(function () {
-                    app.business.isLoading = false;
-                });
-
             }
         },
         computed: {
+            DatesYears: function () {
+                return Object.keys(this.payment.dateLimits)
+            },
+            SelectedDateExpendituresSum: function () {
+                let price = this.payment.selectedItems.filter(x => x.IsDeposit == false).map(x => x.Price).reduce((x, y) => x + y, 0);
+                return Intl.NumberFormat('en-US').format(price);
+            },
+            SelectedDateIncomeSum: function () {
+                let price = this.payment.selectedItems.filter(x => x.IsDeposit == true).map(x => x.Price).reduce((x, y) => x + y, 0);
+                return Intl.NumberFormat('en-US').format(price);
+            },
+            SelectedDateSaving: function () {
+                let price = this.payment.selectedItems.filter(x => x.IsDeposit == true).map(x => x.Price).reduce((x, y) => x + y, 0) -
+                    this.payment.selectedItems.filter(x => x.IsDeposit == false).map(x => x.Price).reduce((x, y) => x + y, 0);
+                return Intl.NumberFormat('en-US').format(price);
 
+            }
         },
         filters: {
             price: function (price) {
@@ -201,6 +208,11 @@
 
         },
         watch: {
+            'selectedMonth': function () {
+                this.filterItemsForSelectedDate();
+                this.fetchPayments();
+
+            },
             'payment.filter.Title': function () {
                 this.payment.filter.CurrentPage = 1;
                 this.fetchPayments();
@@ -235,12 +247,6 @@
                 this.payment.filter.CurrentPage = 1;
                 this.fetchPayments();
             },
-            'payment.filter.CreatedAt': function () {
-                this.payment.filter.CurrentPage = 1;
-                this.fetchPayments();
-            },
-
-
             'payment.isLoading': function (value) {
                 if (this.loadingItems) {
                     loadHandler.AddTableLoader("#datalist");
@@ -250,29 +256,11 @@
             }
         },
         mounted: function () {
+            this.selectedYear = Year;
+            this.selectedMonth = Month;
+            this.fetchDateLimits();
+            this.fetchOverview();
             this.fetchPayments();
-
-            apiService.GetList("category/lookup", this.payment.categoriesFilter).then(data => {
-                this.payment.categories = data;
-            }, function (error) {
-                feedback.DisplayError(error);
-            }).always(function () {
-                app.business.isLoading = false;
-            });
-            apiService.GetList("business/lookup", this.business.filter).then(data => {
-                this.business.items = data;
-            }, function (error) {
-                feedback.DisplayError(error);
-            }).always(function () {
-                app.business.isLoading = false;
-            });
-            apiService.GetList("paymentpriority/lookup", this.paymentPriority.filter).then(data => {
-                this.paymentPriority.items = data;
-            }, function (error) {
-                feedback.DisplayError(error);
-            }).always(function () {
-                app.business.isLoading = false;
-            });
         },
     });
 

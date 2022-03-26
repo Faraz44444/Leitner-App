@@ -213,6 +213,15 @@ namespace TbxPortal.Web
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NavYearlyOverview;
 
         /// <summary>
+        /// NavMonthlyOverview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NavMonthlyOverview;
+
+        /// <summary>
         /// NavAdmin control.
         /// </summary>
         /// <remarks>

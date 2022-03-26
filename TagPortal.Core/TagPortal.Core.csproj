@@ -120,6 +120,7 @@
     <Compile Include="Repository\Payment\PaymentPriority\PaymentPriorityRepo.cs" />
     <Compile Include="Repository\Payment\PaymentRepo.cs" />
     <Compile Include="Repository\Payment\PaymentTotal\PaymentTotalRepo.cs" />
+    <Compile Include="Repository\Report\ReportRepo.cs" />
     <Compile Include="Repository\RepositoryFactory.cs" />
     <Compile Include="Repository\Role\RolePermissionRepo.cs" />
     <Compile Include="Repository\Role\RoleRepo.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Request\Payment\PaymentPriority\PaymentPriorityRequest.cs" />
     <Compile Include="Request\Payment\PaymentRequest.cs" />
     <Compile Include="Request\Payment\PaymentTotal\PaymentTotalRequest.cs" />
+    <Compile Include="Request\Report\MonthlyReportRequest.cs" />
     <Compile Include="Request\User\UserSupplierAccessRequest.cs" />
     <Compile Include="Request\User\UserSupplierRequest.cs" />
     <Compile Include="Service\Business\BusinessService.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Service\Payment\PaymentPriority\PaymentPriorityService.cs" />
     <Compile Include="Service\Payment\PaymentService.cs" />
     <Compile Include="Service\Payment\PaymentTotal\PaymentTotalService.cs" />
+    <Compile Include="Service\Report\ReportService.cs" />
     <Compile Include="Service\Role\RolePermissionService.cs" />
     <Compile Include="Service\Role\RoleService.cs" />
     <Compile Include="Service\Security\SecurityService.cs" />

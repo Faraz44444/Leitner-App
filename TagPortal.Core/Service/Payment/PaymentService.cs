@@ -99,6 +99,32 @@ namespace TagPortal.Core.Service.Payment
             return result;
         }
 
+        public RecordDateModel GetFirstRecordDate()
+        {
+            using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
+            {
+                return GetFirstRecordDate(uow);
+            }
+        }
+        public RecordDateModel GetFirstRecordDate(IUnitOfWork uow)
+        {
+            var repo = RepoFactory.PaymentRepo(uow);
+            return repo.GetFirstRecordDate();
+        }
+        public RecordDateModel GetLastRecordDate()
+        {
+            using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
+            {
+                uow.Commit();
+                return GetLastRecordDate(uow);
+            }
+        }
+        public RecordDateModel GetLastRecordDate(IUnitOfWork uow)
+        {
+            var repo = RepoFactory.PaymentRepo(uow);
+            return repo.GetLastRecordDate();
+        }
+
         public PaymentModel GetById(PaymentRequest request)
         {
             using (IUnitOfWork uow = UowProvider.GetUnitOfWork())
