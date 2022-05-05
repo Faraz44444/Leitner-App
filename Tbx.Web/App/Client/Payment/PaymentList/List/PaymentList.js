@@ -185,6 +185,13 @@
                 }).always(function () {
                     app.business.isLoading = false;
                 });
+                apiService.GetList("category/lookup", this.payment.categoriesFilter).then(data => {
+                    this.payment.categories = data;
+                }, function (error) {
+                    feedback.DisplayError(error);
+                }).always(function () {
+                    app.business.isLoading = false;
+                });
 
             }
         },

@@ -1,0 +1,7 @@
+PaymentPriorityId,PaymentPriorityName,CreatedAt,CreatedByUserId
+1,Crucial,2022-02-20 22:01:48.080000000,6
+2,High Priority,2022-02-20 22:04:39.487000000,6
+3,Normal,2022-02-20 22:04:51.437000000,6
+4,Not Important,2022-02-20 22:05:01.220000000,6
+5,Extra,2022-02-20 22:05:07.290000000,6
+6,Unknown,2022-02-20 22:05:15.607000000,6
