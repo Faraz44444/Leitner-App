@@ -1,0 +1,31 @@
+﻿@page "/admin/account/user/userdetails/{id:long}"
+@model Web0.Pages.Admin.Account.User.UserDetailsModel
+@{
+}
+@section Scripts{
+    <environment>
+        <script src="/js/userdetails.min.js"></script>
+    </environment>
+}
+<div class="row justify-content-center" id="app" data-entity-id="@Model.EntityId">
+    <c-section :title="details.UserId > 0 ? 'User Details' : 'New User'">
+        <template v-slot:content>
+            <c-input input-label="FirstName: ">
+                <template v-slot:input>
+                    <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="details.FirstName" />
+                </template>
+            </c-input>
+            <c-input class="mt-2" input-label="LastName: ">
+                <template v-slot:input>
+                    <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="details.LastName" />
+                </template>
+            </c-input>
+            <c-input class="mt-2" input-label="Email: ">
+                <template v-slot:input>
+                    <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="details.Email" />
+                </template>
+            </c-input>
+            <c-button extra-classes="mt-4 justify-end" title="Save" v-on:click="save"></c-button>
+        </template>
+    </c-section>
+</div>

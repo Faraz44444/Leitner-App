@@ -1,0 +1,17 @@
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.csproj.AssemblyReference.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.AssemblyInfoInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.AssemblyInfo.cs
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.csproj.CoreCompileInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Core.deps.json
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Core.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Core.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Domain.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Extensions.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Domain.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\bin\Debug\net6.0\Extensions.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.csproj.CopyComplete
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\refint\Core.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\Core.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Core\obj\Debug\net6.0\ref\Core.dll

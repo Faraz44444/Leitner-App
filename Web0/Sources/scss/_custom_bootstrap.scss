@@ -1,0 +1,16 @@
+﻿@import "_variables.scss";
+@import "../../wwwroot/lib/bootstrap/scss/_functions.scss";
+
+$border-width: 1px !default;
+$input-btn-border-width: $border-width !default;
+
+$input-border-width: $input-btn-border-width !default;
+$input-height-border: $input-border-width * 2 !default;
+
+// scss-docs-start form-floating-variables
+$form-floating-height: add(3rem, $input-height-border);
+$form-floating-padding-y: 0rem;
+$form-floating-input-padding-t: 1.24rem;
+$form-floating-label-opacity: 1;
+$form-floating-line-height: 1.25 !default;
+// scss-docs-end form-floating-variables

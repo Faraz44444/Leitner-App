@@ -1,0 +1,43 @@
+﻿@page
+@model Web.Pages.Admin.Account.UserModel
+@{
+    ViewData["Title"] = "User List";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/user.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/user.min.js"></script>
+    </environment>
+}
+
+<div class="row justify-content-center" id="app">
+    <c-section title="User List">
+        <template v-slot:content>
+            <c-button title="Create New" v-on:click="goToDetails(0)"></c-button>
+            <c-table class="mt-5">
+                <template v-slot:thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Last Login At</th>
+                    </tr>
+                </template>
+                <template v-slot:tbody>
+                    <template v-for="(item, index) in items">
+                        <tr v-on:click="goToDetails(item.UserId)" :class="{'bg-customPurple-10':index%2 ==0}">
+                            <td>{{item.Username}}</td>
+                            <td>{{item.Email}}</td>
+                            <td>{{item.FirstName}}</td>
+                            <td>{{item.LastName}}</td>
+                            <td>{{item.LastLoginAt}}</td>
+                        </tr>
+                    </template>
+                </template>
+            </c-table>
+        </template>
+    </c-section>
+</div>

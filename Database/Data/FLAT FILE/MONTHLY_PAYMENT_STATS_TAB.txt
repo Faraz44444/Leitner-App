@@ -1,1 +1,0 @@
-MonthlyPaymentStatsId,Price,Date,IsDeposit,Description,CreatedByUserId,CreatedAt

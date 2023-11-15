@@ -1,0 +1,51 @@
+﻿@page
+@model Web.Pages.DataManagement.Category.CategoryListModel
+@{
+    ViewData["Title"] = "Category List";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/categorylist.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/categorylist.min.js"></script>
+    </environment>
+}
+    <div class="row justify-content-center" id="app">
+        <div class="col">
+            <button type="button" class="btn btn-primary mb-2" v-on:click="goToDetails(0)">Create New</button>
+            <div class="row justify-content-center" id="app">
+                <div class="col">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input class="form-control form-control-sm" type="text" placeholder="Name..." v-model="filter.Name" />
+                                </th>
+                                <th>
+                                    <select v-model="filter.Priority">
+                                        <option v-for="(item, index) in priorities" v-bind:value="item">{{item}}</option>
+                                    </select>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Priority</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="item in items">
+                                <tr v-on:click="goToDetails(item.CategoryId)">
+                                    <td>{{item.Name}}</td>
+                                    <td>{{item.PriorityName}}</td>
+                                    <td>{{item.CreatedAt}}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

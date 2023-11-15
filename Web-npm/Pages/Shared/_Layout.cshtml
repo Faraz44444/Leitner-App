@@ -1,0 +1,156 @@
+﻿@{
+    var navItems = Web.Infrastructure.Navigation.Items;
+    var currentRouteArray = Context.Request.Path.ToString().Split("/");
+    var isMinified = ViewContext.HttpContext.Request.Cookies["isminified"] == "true";
+    int pageIndex = 0;
+
+    var currentUser = ViewContext.HttpContext.User.Identities.First().GetCurrentUser();
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Budgeting</title>
+    <link rel="stylesheet" href="~/css/output.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/dist/master.css" />
+</head>
+<body class="bg-background-1 text-blueGray-200">
+    <header class="row-start-1 header py-6">
+        <nav>
+            <div class="flex justify-between text-border-1">
+                <a class="ml-5" asp-area="" asp-page="/Index">Budgeting <i class="fa-solid fa-sack-dollar"></i></a>
+                <button type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="mr-5">
+                    <partial name="_LoginStatusPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section id="content-section" class="grid grid-rows-1 content-center min-h-screen">
+        @if (currentUser.IsAuthenticated)
+        {
+            <div class="col-start-1 row-start-1  float-left">
+                <nav id="nav">
+                    <div class="accordion" id="sidebarAccordion">
+                        @foreach (var nav in navItems)
+                        {
+                            if (!nav.HasAccess(currentUser))
+                                continue;
+
+                            var additionalClass = nav.IsActiveRoute(currentRouteArray) ? " visible" : "";
+                            var isAnyChildActive = nav.Children != null && nav.Children.Any(x => x.IsActiveRoute(currentRouteArray));
+                            if (!isAnyChildActive)
+                                additionalClass += " visible ";
+
+                            pageIndex++;
+
+                            <div>
+                                @if (!string.IsNullOrWhiteSpace(nav.Route))
+                                {
+                                    <a class="accordion-button
+                                      border-2 border-border-1
+                                      rounded-t-2xl
+                                      relative
+                                      flex
+                                      items-center
+                                      w-full
+                                      py-4
+                                      px-5
+                                      text-base golden-text text-left
+                                      @(nav.IsActiveRoute(currentRouteArray) ? " bg-customPurple-10":" bg-background-2")
+                                      border-0
+                                      rounded-none
+                                      transition
+                                      @additionalClass"
+                           asp-page="@nav.Route">
+                                        <i class="@nav.Icon mr-3"></i>
+                                        <div>@nav.Name</div>
+                                    </a>
+                                }
+                                else if (nav.Children != null && nav.Children.Count > 0)
+                                {
+                                    <button class="
+                                      border-2 border-border-1
+                                      items-center
+                                      flex
+                                      items-center
+                                      w-full
+                                      py-4
+                                      px-5
+                                      text-base golden-text text-left
+                                      @additionalClass
+                                      @(isAnyChildActive ? " bg-customPurple-10":" bg-background-2")"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#page_@pageIndex" aria-expanded="false" aria-controls="page_@pageIndex">
+                                        <i class="@nav.Icon mr-3"></i>
+                                        <div>@nav.Name</div>
+                                    </button>
+
+                                    <ul class="collapse @(isAnyChildActive ? " bg-background-2":" bg-background-1")" id="page_@pageIndex">
+                                        @foreach (var child in nav.Children)
+                                        {
+                                            if (!child.HasAccess(currentUser))
+                                                continue;
+
+                                            var backgroundColor = child.IsActiveRoute(currentRouteArray) ? " bg-customPurple-10" : " bg-background-1";
+
+                                            <li class="@backgroundColor border-b-2 border-r-2 border-l-2 border-background-2">
+                                                <a asp-page="@child.Route">
+                                                    <div class="flex justify-start items-center ml-4 golden-text">
+                                                        <i class="@child.Icon mr-3"></i>
+                                                        <div> @child.Name </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        }
+                    </div>
+                </nav>
+            </div>
+        }
+
+        <div class="col-span-12 row-start-1 justify-self-center text-white">
+            <main role="main">
+                @RenderBody()
+
+                <c-modal ref="errorModal" v-on:close="closeModal" v-show="showErrorModal">
+                    <template v-slot:header>
+                        <h5 class="modal-title"><i class="fas fa-info-circle text-warning me-1"></i><span class="title" ref="errorModalTitle"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </template>
+                    <template v-slot:body>
+                        <p><span id="errorModalMessage"></span></p>
+                    </template>
+                </c-modal>
+            </main>
+        </div>
+    </section>
+
+    <footer class="footer text-white py-6">
+        <div class="container">
+            &copy; 2022 - Budgeting - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.global.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/lib/Chart.js/chart.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/vueComponents.js" asp-append-version="true"></script>
+    <script src="~/js/feedback.js" asp-append-version="true"></script>
+    <script src="~/js/orderByHandler.js" asp-append-version="true"></script>
+    <script src="~/js/api.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

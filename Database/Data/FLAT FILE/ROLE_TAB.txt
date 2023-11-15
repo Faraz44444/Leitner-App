@@ -1,2 +1,0 @@
-RoleId,Name,IsLocked
-1,Administrator,False

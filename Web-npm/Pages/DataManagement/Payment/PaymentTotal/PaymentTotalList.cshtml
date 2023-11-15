@@ -1,0 +1,129 @@
+﻿@page
+@model Web.Pages.DataManagement.Payment.PaymentTotal.PaymentTotalListModel
+@{
+    ViewData["Title"] = "Payment Total List";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/paymentTotallist.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/paymentTotallist.min.js"></script>
+    </environment>
+}
+<div class="row justify-content-center" id="app">
+    <c-section title="Payment Total List">
+        <template v-slot:content>
+            <div>
+                <c-button title="Create New" v-on:click="showDetailsModal = true"></c-button>
+                <div class="col">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Business</th>
+                                <th>Is Deposit</th>
+                                <th colspan="2">Price</th>
+                                <th colspan="2">Date</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <c-input>
+                                        <template v-slot:input>
+                                            <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="filter.Title" />
+                                        </template>
+                                    </c-input>
+                                </th>
+                                <th>
+                                    <c-select :options="businesses" :track-by="'BusinessId'" :value="filter.BusinessId" v-model="filter.BusinessId"></c-select>
+                                </th>
+                                <th>
+                                    <c-select :options="[{Id:null, Name:'All'},{Id:false, Name:'No'}, {Id:true, Name:'Yes'}]" :value="filter.IsDeposit" v-model="filter.IsDeposit"></c-select>
+                                </th>
+                                <th>
+                                    <c-input>
+                                        <template v-slot:input>
+                                            <input class="bg-blue-900 border-2 rounded-full"
+                                                   type="number" v-model="filter.PriceFrom" />
+                                        </template>
+                                    </c-input>
+                                </th>
+                                <th>
+                                    <c-input>
+                                        <template v-slot:input>
+                                            <input class="bg-blue-900 border-2 rounded-full"
+                                                   type="number" v-model="filter.PriceTo" />
+                                        </template>
+                                    </c-input>
+                                </th>
+                                <th>
+                                    <c-datepicker v-model="filter.DateFrom"></c-datepicker>
+                                </th>
+                                <th>
+                                    <c-datepicker v-model="filter.DateTo"></c-datepicker>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="(item, index) in items">
+                                <c-tr v-bind:index="index" v-on:click="openPaymentDetailsModal(item)">
+                                    <template v-slot:content>
+                                        <td>{{item.Title}}</td>
+                                        <td>{{item.BusinessName}}</td>
+                                        <td>{{item.IsDeposit}}</td>
+                                        <td class="text-center" colspan="2">{{item.PriceFormatted}}</td>
+                                        <td class="text-center" colspan="2">{{item.Date}}</td>
+                                    </template>
+                                </c-tr>
+                            </template>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </template>
+    </c-section>
+    <c-modal v-on:save="savePayment" v-on:keyup.esc="closeModal()" v-on:close="closeModal()" v-show="showDetailsModal">
+        <template v-slot:header>
+            <h4>{{PaymentTotalDetails.PaymentTotalId > 0 ? PaymentTotalDetails.Title : 'New Payment Total'}}</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </template>
+        <template v-slot:body>
+            <div class="flex g-2">
+                <c-input class="mt-2" input-label="Title">
+                    <template v-slot:input>
+                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="PaymentTotalDetails.Title" />
+                    </template>
+                </c-input>
+                <c-input class="mt-2" input-label="Price: ">
+                    <template v-slot:input>
+                        <input type="number" class="bg-blue-900 border-2 rounded-full" v-model="PaymentTotalDetails.Price" required />
+                    </template>
+                </c-input>
+            </div>
+            <div class="flex justify-between mt-2">
+                <c-checkbox v-model="PaymentTotalDetails.IsDeposit" label="Is Deposit"></c-checkbox>
+                <c-dropdown v-bind:dorpdown-items="searchResultBusinesses.length" v-bind:show-items="showItems">
+                    <template v-slot:body>
+                        <c-input input-label="Business">
+                            <template v-slot:input>
+                                <input class="bg-blue-900 border-2 rounded-full" id="searchBusinesses"
+                                       v-model="PaymentTotalDetails.BusinessName" v-on:keydown.enter.prevent="scanBusiness()" autofocus />
+                            </template>
+                        </c-input>
+                    </template>
+                    <template v-slot:items>
+                        <div v-show="searchResultBusinesses.length < 1 && !loadingAvailableBusinesses"><span>No results.</span></div>
+                        <div v-show="loadingAvailableBusinesses"><span>Searching...</span></div>
+                        <div :class="{'bg-customPurple-10':index%2 ==0,'bg-background-2':index%2 ==1, 'hover:text-border-1 cursor-pointer w-full': true}" v-for="(item, index) in searchResultBusinesses" v-bind:key="item.Id" v-on:click="selectBusiness(item)">
+                            <span>{{item.Name}}</span>
+                        </div>
+                    </template>
+                </c-dropdown>
+            </div>
+            <div class="flex justify-between mt-2">
+                <c-datepicker label="Date:" v-model="PaymentTotalDetails.Date" required />
+            </div>
+        </template>
+    </c-modal>
+</div>

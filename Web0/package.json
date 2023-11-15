@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "scripts": {
+    "dev": "webpack",
+    "watch": "webpack --watch"
+  },
+  "devDependencies": {
+  }
+}

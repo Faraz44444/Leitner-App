@@ -1,0 +1,12 @@
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net7.0\Extensions.deps.json
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net7.0\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net7.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.csproj.AssemblyReference.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.AssemblyInfoInputs.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.AssemblyInfo.cs
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.csproj.CoreCompileInputs.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\refint\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net7.0\ref\Extensions.dll

@@ -1,0 +1,113 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Web-npm
+build_property.RootNamespace = Web-npm
+build_property.ProjectDir = E:\Applications\new-budgeting-app\Web-npm\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\Applications\new-budgeting-app\Web-npm
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzRGVuaWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Admin/Account/Role/RoleDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudFxSb2xlXFJvbGVEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Admin/Account/Role/RoleList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudFxSb2xlXFJvbGVMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Admin/Account/User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudFxVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Business/BusinessList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQnVzaW5lc3NcQnVzaW5lc3NMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Business/Details/BusinessDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQnVzaW5lc3NcRGV0YWlsc1xCdXNpbmVzc0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Category/CategoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQ2F0ZWdvcnlcQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Category/Details/CategoryDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQ2F0ZWdvcnlcRGV0YWlsc1xDYXRlZ29yeURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Payment/PaymentList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcUGF5bWVudFxQYXltZW50TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Payment/PaymentPriority/Details/PaymentPriorityDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcUGF5bWVudFxQYXltZW50UHJpb3JpdHlcRGV0YWlsc1xQYXltZW50UHJpb3JpdHlEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Payment/PaymentPriority/PaymentPriorityList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcUGF5bWVudFxQYXltZW50UHJpb3JpdHlcUGF5bWVudFByaW9yaXR5TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/DataManagement/Payment/PaymentTotal/PaymentTotalList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcUGF5bWVudFxQYXltZW50VG90YWxcUGF5bWVudFRvdGFsTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Report/MonthlyOverview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0XE1vbnRobHlPdmVydmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Report/YearlyOverview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0XFllYXJseU92ZXJ2aWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Shared/_LoginStatusPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblN0YXR1c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/new-budgeting-app/Web-npm/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

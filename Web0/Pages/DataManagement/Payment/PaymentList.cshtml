@@ -1,0 +1,152 @@
+﻿@page
+@model Web.Pages.DataManagement.Payment.PaymentListModel
+@{
+    ViewData["Title"] = "Payment List";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/paymentlist.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/paymentlist.min.js"></script>
+    </environment>
+}
+    <div class="row justify-content-center" id="app">
+        <div class="col">
+            <button type="button" class="button-test mb-2" v-on:click="openPaymentDetailsModal()">Create New</button>
+            <div class="col">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Priority</th>
+                            <th>Business</th>
+                            <th>Is Deposit</th>
+                            <th>Is Paid To Person</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input class="form-control form-control-sm" type="text" placeholder="Name..." v-model="filter.Name" />
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-for="item in items">
+                            <tr v-on:click="openPaymentDetailsModal(item)">
+                                <td>{{item.Title}}</td>
+                                <td>{{item.PaymentPriorityName}}</td>
+                                <td>{{item.BusinessName}}</td>
+                                <td>{{item.IsDeposit}}</td>
+                                <td>{{item.IsPaidToPerson}}</td>
+                                <td>{{item.CategoryName}}</td>
+                                <td>{{item.Price}}</td>
+                                <td>{{item.Date}}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="paymentDetails" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <span v-if="paymentDetails.PaymentId > 0">{{paymentdetails.Title}}</span>
+                            <span v-else>New Payment</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-cols-1 g-2">
+                            <div class=" col-8 mt-2">
+                                <div class="form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="paymentDetails.Title" required />
+                                    <label>Title: </label>
+                                </div>
+                            </div>
+                            <div class=" col-4 mt-2">
+                                <div class="form-floating">
+                                    <select class="form-control form-control-sm" v-model="paymentDetails.CategoryId" required>
+                                        <option v-for="item in categories" v-bind:value="item.CategoryId">{{item.Name}}</option>
+                                    </select>
+                                    <label>Category Name: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-2 g-2 mt-2">
+                            <div class=" col-4 mt-2">
+                                <div class="dropdown">
+                                    <div class="form-floating">
+                                        <input class="form-control form-control-sm" required type="text" autocomplete="off" data-toggle="dropdown" id="searchBusinesses" v-model="paymentDetails.BusinessName" v-on:keydown.enter.prevent="scanBusiness()" autofocus />
+                                        <div class="dropdown-menu" ref="searchBusinesses">
+                                            <div class="dropdown-item" v-show="searchResultBusinesses.length < 1 && !loadingAvailableBusinesses"><span>No results.</span></div>
+                                            <div class="dropdown-item" v-show="loadingAvailableBusinesses"><span>Searching...</span></div>
+                                            <div class="dropdown-item cursor-pointer" v-for="item in searchResultBusinesses" v-bind:key="item.Id" v-on:click="selectBusinesss(item)"><span>{{item.BusinessName}}</span></div>
+                                        </div>
+                                        <label>Business Name: </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div class="form-floating">
+                                    <div class="custom-control custom-switch">
+                                        <c-check-box v-model="paymentDetails.IsDeposit" label="Is Deposit"></c-check-box>
+                                        @*  <input id="chkDeposit" type="checkbox" class="custom-control-input" v-model="paymentDetails.IsDeposit" />
+                                    <label class="custom-control-label" for="chkDeposit"><span v-show="paymentDetails.IsDeposit">Yes</span><span v-show="!paymentDetails.IsDeposit">No</span></label>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div class="form-floating">
+                                    <div class="custom-control custom-switch">
+                                        <c-check-box v-model="paymentDetails.IsPaidToPerson" label="Is Paid To Person"></c-check-box>
+
+                                       @* <input id="chkPaidToPerson" type="checkbox" class="custom-control-input" v-model="paymentDetails.IsPaidToPerson" />
+                                        <label class="custom-control-label" for="chkPaidToPerson"><span v-show="paymentDetails.IsPaidToPerson">Yes</span><span v-show="!paymentDetails.IsPaidToPerson">No</span></label>
+                                  *@  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-3 g-3 mt-2">
+                            <div class="col-4 mt-2">
+                                <div class="form-floating">
+                                    <input class="form-control form-control-sm" type="text" id="datepickere" v-model="paymentDetails.Date" required />
+                                    <label for="example-datepicker">Choose a date</label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div class="form-floating">
+                                    <input class="form-control form-control-sm" type="number" v-model="paymentDetails.Price" required />
+                                    <label>Price: </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <div class="form-floating">
+                                    <select class="form-control form-control-sm" v-model="paymentDetails.PaymentPriorityId" required>
+                                        <option v-for="item in paymentPriorities" v-bind:value="item.PaymentPriorityId">{{item.Name}}</option>
+                                    </select>
+                                    <label>Payment Priority: </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="savePayment()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

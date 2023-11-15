@@ -1,0 +1,175 @@
+﻿@page
+@model Web.Pages.Report.MonthlyOverview.MonthlyOverviewModel
+@{
+    ViewData["Title"] = "Monthly Report";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/monthlyoverview.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/monthlyoverview.min.js"></script>
+    </environment>
+}
+<div class="grid grid-cols-2 grid-rows-1 p-10" id="app">
+    <c-section class="mr-3" icon="fas fa-list" title="Overview">
+        <template v-slot:content>
+            <div class="flex">
+                <c-input input-label="Select A Year: ">
+                    <template v-slot:input>
+                        <c-select class="text-left" :options="years" :value="selectedYear" v-model="selectedYear"></c-select>
+                    </template>
+                </c-input>
+                <c-input input-label="Month : ">
+                    <template v-slot:input>
+                        <c-select class="text-left" :options="months" @*v-bind:value="index + 1"*@ :value="selectedMonth" v-model="selectedMonth"></c-select>
+                    </template>
+                </c-input>
+            </div>
+            <div class="row overflow-auto" style="min-height: 30rem; max-height: 40rem; height: 40rem;">
+                <div class="col-12 flex justify-center">
+                    <div style="position: relative; height: 100%; width: 80%;">
+                        <canvas id="overviewChart" width="8" height="8"></canvas>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </c-section>
+    <c-section icon="fas fa-list" title="Numbers">
+        <template v-slot:content>
+            <div class="row mb-4 w-1/2">
+                <c-input input-label="Expenditures Sum: ">
+                    <template v-slot:input>
+                        <input class="text-center" type="text" v-model="SelectedDateExpendituresSum" disabled />
+                    </template>
+                </c-input>
+                <c-input input-label="Incomes Sum: ">
+                    <template v-slot:input>
+                        <input class="text-center" type="text" v-model="SelectedDateIncomeSum" disabled />
+                    </template>
+                </c-input>
+                <c-input input-label="Saving Sum: ">
+                    <template v-slot:input>
+                        <input class="text-center" type="text" v-model="SelectedDateSaving" disabled />
+                    </template>
+                </c-input>
+            </div>
+            <div class="grid grid-cols-2">
+                <template v-for="item in selectedItems">
+                    <c-input class="p-1" :input-label="item.CategoryName">
+                        <template v-slot:input>
+                            <input class="text-center" type="text" v-model="item.FormattedPrice" disabled />
+                        </template>
+                    </c-input>
+                </template>
+            </div>
+        </template>
+    </c-section>
+
+
+    <c-section class="col-span-2" icon="fas fa-list" title="Details">
+        <template v-slot:content>
+            <div class="row mb-4 mt-2 w-1/3">
+                <c-input input-label="Total Expenditures: ">
+                    <template v-slot:input>
+                        <input class="text-center" type="text" v-model="detailsExpendituresSum" disabled />
+                    </template>
+                </c-input>
+                <c-input input-label="Total Income: ">
+                    <template v-slot:input>
+                        <input class="text-center" type="text" v-model="detailsIncomesSum" disabled />
+                    </template>
+                </c-input>
+            </div>
+            <div class="table-responsive mt-3">
+                <c-table id="datalist" class="table table-sm table-striped table-hover">
+                    <template v-slot:thead>
+                        <tr>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Title              </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Priority            </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Business Name      </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Price              </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Date               </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Is Deposit         </th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Is Paid to a Person</th>
+                            <th is="sortable-column" v-bind:filter="detailItemsFilter.filter">Category Name      </th>
+                            <th is="sortable-column" v-if="chkShowCreatdByAndCreatedAt" v-bind:filter="filter">Created By         </th>
+                            <th is="sortable-column" v-if="chkShowCreatdByAndCreatedAt" v-bind:filter="filter">Created At         </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <c-input>
+                                    <template v-slot:input>
+                                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="detailItemsFilter.Title" />
+                                    </template>
+                                </c-input>
+                            </th>
+                            <th>
+                                <c-input>
+                                    <template v-slot:input>
+                                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="detailItemsFilter.PaymentPriorityName" />
+                                    </template>
+                                </c-input>
+                            </th>
+                            <th>
+                                <c-input>
+                                    <template v-slot:input>
+                                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="detailItemsFilter.BusinessName" />
+                                    </template>
+                                </c-input>
+                            </th>
+                            <th>
+                                <c-input>
+                                    <template v-slot:input>
+                                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="detailItemsFilter.Price" />
+                                    </template>
+                                </c-input>
+                            </th>
+                            <th>
+                                @*<date-picker v-model="detailItemsFilter.Date"></date-picker>*@
+                            </th>
+                            <th>
+                                <c-select :options="[{Id:null, Name:'All'},{Id:false, Name:'No'}, {Id:true, Name:'Yes'}]" :value="detailItemsFilter.IsDeposit" v-model="detailItemsFilter.IsDeposit"></c-select>
+                            </th>
+                            <th>
+                                <c-select :options="[{Id:null, Name:'All'},{Id:false, Name:'No'}, {Id:true, Name:'Yes'}]" :value="detailItemsFilter.IsPaidToPerson" v-model="detailItemsFilter.IsPaidToPerson"></c-select>
+                            </th>
+                            <th>
+                                <c-input>
+                                    <template v-slot:input>
+                                        <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="detailItemsFilter.CategoryName" />
+                                    </template>
+                                </c-input>
+                            </th>
+                            <th></th>
+                            <th>
+                                <input v-if="chkShowCreatdByAndCreatedAt" type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.CreatedAt" />
+                            </th>
+                        </tr>
+                    </template>
+                    <template v-slot:tbody>
+                        <tr v-if="!detailItemsFilter.Loading && detailItems.length == 0">
+                            <td class="text-center">Could not find any payments</td>
+                        </tr>
+                        <template v-for="(item, index) in detailItems">
+                            <c-tr v-bind:index="index">
+                                <template v-slot:content>
+                                    <td>{{item.Title}}</td>
+                                    <td>{{item.PaymentPriorityName}}</td>
+                                    <td>{{item.BusinessName}}</td>
+                                    <td>{{item.Price}}</td>
+                                    <td>{{item.Date}}</td>
+                                    <td class="text-center"><span v-if="item.IsDeposit">Yes</span><span v-if="!item.IsDeposit">No</span></td>
+                                    <td class="text-center"><span v-if="item.IsPaidToPerson">Yes</span><span v-if="!item.IsPaidToPerson">No</span></td>
+                                    <td>{{item.CategoryName}}</td>
+                                    <td v-if="chkShowCreatdByAndCreatedAt">{{item.CreatedByFullName}}</td>
+                                    <td v-if="chkShowCreatdByAndCreatedAt">{{item.CreatedAt}}</td>
+                                </template>
+                            </c-tr>
+                        </template>
+                    </template>
+                </c-table>
+            </div>
+        </template>
+    </c-section>
+</div>

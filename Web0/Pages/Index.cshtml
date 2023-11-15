@@ -1,0 +1,95 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/index.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/index.min.js"></script>
+    </environment>
+}
+    <div class="row justify-content-center" id="app">
+        <c-section return-icon :title="'Real Data'">
+            <template v-slot:content>
+
+                <div class="row justify-content-center">
+                    <c-section class="col-3" return-icon :title="'Expenditures'" small>
+                        <template v-slot:content>
+                            <div class="row">
+                                <div class="col-6  form-floating">
+                                    <input class="form-control bg-blue-900 form-control-sm" type="text" v-model="sums.Expenditures.ThisMonth" disabled />
+                                    <label>This Month2: </label>
+                                </div>
+                                <div class="col-6 form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="sums.Expenditures.LastMonth" disabled />
+                                    <label>Last Month: </label>
+                                </div>
+                            </div>
+                        </template>
+                    </c-section>
+                    <c-section class="col-3" return-icon :title="'Incomes'" small>
+                        <template v-slot:content>
+                            <div class="row">
+                                <div class="col-6 form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="sums.Incomes.ThisMonth" disabled />
+                                    <label>This Month: </label>
+                                </div>
+                                <div class="col-6 form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="sums.Incomes.LastMonth" disabled />
+                                    <label>Last Month: </label>
+                                </div>
+                            </div>
+                        </template>
+                    </c-section>
+                    <c-section class="col-3" return-icon :title="'Savings'" small>
+                        <template v-slot:content>
+                            <div class="row">
+                                <div class="col-6 form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="sums.Savings.ThisMonth" disabled />
+                                    <label>This Month: </label>
+                                </div>
+                                <div class="col-6 form-floating">
+                                    <input class="form-control form-control-sm" type="text" v-model="sums.Savings.LastMonth" disabled />
+                                    <label>Last Month: </label>
+                                </div>
+                            </div>
+                        </template>
+                    </c-section>
+                </div>
+
+            </template>
+        </c-section>
+        <c-section return-icon :title="'Expected Data'">
+            <template v-slot:content>
+                <div class="row">
+                    <div class="col-4 form-floating">
+                        <input class="form-control form-control-sm text-danger" type="text" v-model="monthlyExpectedExpenditures" disabled />
+                        <label>Monthly Expected Expenditures Without Savigs: </label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <template v-for="category in categories">
+                        <div class="col-2 form-floating">
+                            <input class="form-control form-control-sm" type="text" v-model="category.MonthlyLimit" disabled />
+                            <label>{{category.Name}}</label>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </c-section>
+        <c-section return-icon :title="'Statistics'">
+            <template v-slot:content>
+                 <div class="row overflow-auto" style="min-height: 40em; max-height: 40em; height: 40em;">
+                <div class="col-12 d-flex justify-content-center">
+                    <div style="position: relative; height: 50%; width: 50%;">
+                        <canvas id="overviewChart" width="10" height="8"></canvas>
+                    </div>
+                </div>
+            </div>
+            </template>
+        </c-section>
+
+    </div>

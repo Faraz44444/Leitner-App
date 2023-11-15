@@ -1,0 +1,15 @@
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net7.0\Domain.deps.json
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net7.0\Domain.dll
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net7.0\Domain.pdb
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net7.0\Extensions.dll
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net7.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.csproj.CopyComplete
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.dll
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\refint\Domain.dll
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\Domain.pdb
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net7.0\ref\Domain.dll

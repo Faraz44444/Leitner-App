@@ -1,0 +1,48 @@
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.csproj.AssemblyReference.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfoInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfo.cs
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.csproj.CoreCompileInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\bin\Debug\net5.0\Extensions.deps.json
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\refint\Extensions.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Extensions\obj\Debug\net5.0\ref\Extensions.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\bin\Debug\net5.0\Extensions.deps.json
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.csproj.AssemblyReference.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfoInputs.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfo.cs
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.csproj.CoreCompileInputs.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\refint\Extensions.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Extensions\obj\Debug\net5.0\ref\Extensions.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.deps.json
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.csproj.AssemblyReference.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfoInputs.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfo.cs
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.csproj.CoreCompileInputs.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\refint\Extensions.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.pdb
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Extensions\obj\Debug\net5.0\ref\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.deps.json
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\bin\Debug\net5.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.csproj.AssemblyReference.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfoInputs.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.AssemblyInfo.cs
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.csproj.CoreCompileInputs.cache
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\refint\Extensions.dll
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Extensions\obj\Debug\net5.0\ref\Extensions.dll

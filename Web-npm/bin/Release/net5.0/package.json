@@ -1,0 +1,37 @@
+{
+  "name": "iot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack build --config webpack.config.Development.js",
+    "publish": "webpack build --config webpack.config.Production.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@popperjs/core": "^2.9.3",
+    "@vue/compiler-sfc": "^3.2.19",
+    "autoprefixer": "^10.3.3",
+    "css-loader": "^5.2.7",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.4.1",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "tailwindcss": "^2.2.9",
+    "vue-loader": "^16.5.0",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.3",
+    "bootstrap-icons": "^1.5.0",
+    "precss": "^3.1.0",
+    "style-loader": "^3.2.1"
+  }
+}

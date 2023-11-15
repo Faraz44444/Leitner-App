@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Configurations>Debug;Release;DebugLive</Configurations>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="wwwroot\banner.png" />
+	  <Content Remove="wwwroot\js\testWEBC.js" />
+	  <Content Remove="wwwroot\js\userdetails.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="wwwroot\js\userdetails.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Pages\Admin\Account\User\UserList.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\banner.png" />
+	  <None Include="wwwroot\js\testWEBC.js" />
+	  <None Include="wwwroot\js\userdetails.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.15" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.10" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="1.23.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Core\Core.csproj" />
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\Extensions\Extensions.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
+		<UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
+		<UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+	</ItemGroup>
+
+
+	<!--<Target Name="Tailwind" BeforeTargets="Build">
+		<Exec Command="npm run build"/>
+	</Target>-->
+	
+</Project>

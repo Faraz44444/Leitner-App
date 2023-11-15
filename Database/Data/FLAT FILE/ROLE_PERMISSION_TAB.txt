@@ -1,7 +1,0 @@
-RolePermissionId,PermissionType,RoleId,IsLocked,Name
-3,1001,1,False,Tbx_Article_Prefix
-4,1002,1,False,Tbx_Article_Maintenance
-5,1003,1,False,Tbx_Article_Serie_List
-6,1004,1,False,Tbx_Article_List
-7,1005,1,False,Tbx_Article_Groups
-8,1006,1,False,Tbx_Admin_Users

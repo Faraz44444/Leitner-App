@@ -1,0 +1,60 @@
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\bin\Debug\net5.0\Domain.deps.json
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\bin\Debug\net5.0\Domain.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\bin\Debug\net5.0\Domain.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.CopyComplete
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\refint\Domain.dll
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\Domain.pdb
+D:\Programs\Infrastructure\web-app-infrastructure\Infrastructure\Domain\obj\Debug\net5.0\ref\Domain.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\bin\Debug\net5.0\Domain.deps.json
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\bin\Debug\net5.0\Domain.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\bin\Debug\net5.0\Domain.pdb
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.csproj.CopyComplete
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\refint\Domain.dll
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\Domain.pdb
+D:\Programs\Infrastructure\New infrastructure\new-infrastructure\Domain\obj\Debug\net5.0\ref\Domain.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.deps.json
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.pdb
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\bin\Debug\net5.0\Extensions.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\bin\Debug\net5.0\Extensions.pdb
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.CopyComplete
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\refint\Domain.dll
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.pdb
+D:\Programs\Budgeting App\New Budgeting App\new-budgeting-app\Domain\obj\Debug\net5.0\ref\Domain.dll
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.deps.json
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.dll
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net5.0\Domain.pdb
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net5.0\Extensions.dll
+E:\Applications\new-budgeting-app\Domain\bin\Debug\net5.0\Extensions.pdb
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.csproj.CopyComplete
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.dll
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\refint\Domain.dll
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\Domain.pdb
+E:\Applications\new-budgeting-app\Domain\obj\Debug\net5.0\ref\Domain.dll

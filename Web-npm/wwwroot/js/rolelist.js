@@ -1,0 +1,70 @@
+var timeout = null;
+var app = vueContext({
+    el: "#app",
+    components: {
+        'c-check-box': compCheckbox
+    },
+
+    data: function () {
+        return {
+            filter: {
+                Name: "",
+                OrderByDirection: "Asc",
+                OrderBy: "Name",
+                ItemsPerPage: 50,
+                CurrentPage: 1,
+                TotalPages: 150,
+                Loading: false
+            },
+            items: []
+        }
+    },
+    watch: {
+        'filter.Name': function () {
+            this.filterChagnedDelayed();
+        }
+    },
+    computed: {
+
+    },
+    methods: {
+        getList: function () {
+            if (this.filter.Loading) return;
+            this.filter.Loading = true;
+            return apiHandler.Get("role", this.filter).then(response => {
+                this.items = response.Items;
+                this.filter.TotalPages = response.TotalPages;
+                this.filter.Loading = false;
+            });
+        },
+        goToDetails: function (id) {
+            window.location = "/admin/account/role/roledetails/" + id;
+        },
+        filterChanged: function () {
+            this.filter.CurrentPage = 1;
+            this.getList();
+        },
+        filterChagnedDelayed: function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                this.filterChanged();
+            }, 200);
+        },
+        fetchPage: function (event) {
+            this.filter.CurrentPage = event.page;
+            this.getList();
+        },
+        setOrderByDirection: function (event) {
+            this.filter.OrderByDirection = event;
+        },
+        setOrderBy: function (event) {
+            this.filter.OrderBy = event;
+        }
+    },
+    created: function () {
+        this.getList();
+    },
+    mounted: function () {
+    }
+})
+

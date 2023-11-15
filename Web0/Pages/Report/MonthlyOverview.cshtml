@@ -1,0 +1,169 @@
+﻿@page
+@model Web.Pages.Report.MonthlyOverview.MonthlyOverviewModel
+@{
+    ViewData["Title"] = "Monthly Report";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/monthlyoverview.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/monthlyoverview.min.js"></script>
+    </environment>
+}
+    <div class="row justify-content-left" id="app">
+        <section is="content-section" icon="fas fa-list" title="Yearly" class="col-12 col-xl-5">
+            <div class="row">
+                <div class="col-3  text-right">
+                    <div class="form-floating">
+                        <select placeholder="Year:" class="form-control form-control-sm" v-model="selectedYear">
+                            <option v-for="item in years" v-bind:value="item">{{item}}</option>
+                        </select>
+                        <label>Year: </label>
+                    </div>
+                </div>
+                <div class="col-3  text-right">
+                    <div class="form-floating">
+                        <select placeholder="Month:" class="form-control form-control-sm" v-model="selectedMonth">
+                            <option v-for="(item, index) in months" v-bind:value="index + 1">{{item}}</option>
+                        </select>
+                        <label>Month: </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row overflow-auto" style="min-height: 40em; max-height: 35em; height: 40em;">
+                <div class="col-12 d-flex justify-content-center">
+                    <div style="position: relative; height: 100%; width: 100%;">
+                        <canvas id="yearlyChart" width="10" height="10"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section is="content-section" icon="fas fa-list" title="Numbers" class="col-12 col-lg-10 ">
+            <div class="row mb-4">
+                <div class="col-3 ">
+                    <label>Expenditures Sum</label>
+                    <div is="custom-input-group" input-label="Expenditures Sum">
+                        <input class="form-control form-control-sm text-left table-success" type="text" v-model="SelectedDateExpendituresSum" disabled />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Incomes Sum</label>
+                    <div is="custom-input-group" input-label="Incomes Sum">
+                        <input class="form-control form-control-sm text-left table-success" type="text" v-model="SelectedDateIncomeSum" disabled />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label>Savings Sum</label>
+                    <div is="custom-input-group" input-label="Saving Sum">
+                        <input class="form-control form-control-sm text-left table-success" type="text" v-model="SelectedDateSaving" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <template v-for="item in selectedItems">
+                    <div class="col-3 mt-2">
+                        <div is="custom-input-group">
+                            <label>{{item.CategoryName}}</label>
+                            <input class="form-control form-control-sm text-left" type="text" v-model="item.FormattedPrice" disabled />
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+
+        <section is="content-section" icon="fas fa-list" title="Details" class="col-12 col-lg-10">
+            <div class="row mb-4 mt-4">
+                <div class="col-3">
+                    <div is="custom-input-group">
+                        <label>Total Expenditures</label>
+                        <input class="form-control form-control-sm text-left" type="text" v-model="detailsExpendituresSum" disabled />
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div is="custom-input-group">
+                        <label>Total Income</label>
+                        <input class="form-control form-control-sm text-left" type="text" v-model="detailsIncomesSum" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt-3">
+                <table id="datalist" class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th is="sortable-column" v-bind:value="1" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Title              </th>
+                            <th is="sortable-column" v-bind:value="10" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Priority          </th>
+                            <th is="sortable-column" v-bind:value="2" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Business Name      </th>
+                            <th is="sortable-column" v-bind:value="5" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Price              </th>
+                            <th is="sortable-column" v-bind:value="6" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Date               </th>
+                            <th is="sortable-column" v-bind:value="9" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Is Deposit         </th>
+                            <th is="sortable-column" v-bind:value="3" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Is Paid to a Person</th>
+                            <th is="sortable-column" v-bind:value="4" v-bind:filter="detailItemsFilter.filter" v-on:order-by-changed="orderBy" class="text-nowrap">Category Name      </th>
+                            <th is="sortable-column" v-if="chkShowCreatdByAndCreatedAt" v-bind:value="7" v-bind:filter="filter" v-on:order-by-changed="orderBy" class="text-nowrap">Created By         </th>
+                            <th is="sortable-column" v-if="chkShowCreatdByAndCreatedAt" v-bind:value="8" v-bind:filter="filter" v-on:order-by-changed="orderBy" class="text-nowrap">Created At         </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.Title" />
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.PaymentPriorityName" />
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.BusinessName" />
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.Price" />
+                            </th>
+                            <th>
+                                @*<date-picker v-model="detailItemsFilter.Date"></date-picker>*@
+                            </th>
+                            <th>
+                                <select class="form-control form-control-sm" v-model="detailItemsFilter.IsDeposit">
+                                    <option value="null">All</option>
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select class="form-control form-control-sm" v-model="detailItemsFilter.IsPaidToPerson">
+                                    <option value="null">All</option>
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </th>
+                            <th>
+                                <input type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.CategoryName" />
+                            </th>
+                            <th>
+                                <input v-if="chkShowCreatdByAndCreatedAt" type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.CreatedByFullName" />
+                            </th>
+                            <th>
+                                <input v-if="chkShowCreatdByAndCreatedAt" type="text" class="form-control form-control-sm" placeholder="filter" v-model="detailItemsFilter.CreatedAt" />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-if="!detailItemsFilter.Loading && detailItems.length == 0">
+                            <td class="text-center">Could not find any payments</td>
+                        </tr>
+                        <tr v-for="item in detailItems" class="cursor-pointer">
+                            <td>{{item.Title}}</td>
+                            <td>{{item.PaymentPriorityName}}</td>
+                            <td>{{item.BusinessName}}</td>
+                            <td>{{item.FormattedPrice}}</td>
+                            <td>{{item.Date}}</td>
+                            <td><span v-if="item.IsDeposit">Yes</span><span v-if="!item.IsDeposit">No</span></td>
+                            <td><span v-if="item.IsPaidToPerson">Yes</span><span v-if="!item.IsPaidToPerson">No</span></td>
+                            <td>{{item.CategoryName}}</td>
+                            <td v-if="chkShowCreatdByAndCreatedAt">{{item.CreatedByFullName}}</td>
+                            <td v-if="chkShowCreatdByAndCreatedAt">{{item.CreatedAt}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>

@@ -1,0 +1,44 @@
+﻿@page
+@model Web.Pages.Report.YearlyOverview.YearlyOverviewModel
+@{
+    ViewData["Title"] = "Yearly Report";
+}
+@section Scripts{
+    <environment include="Development">
+        <script src="/js/yearlyoverview.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="/js/yearlyoverview.min.js"></script>
+    </environment>
+}
+    <div class="row justify-content-left" id="app">
+        <div class="flex justify-between">
+            <c-section style="width: 43rem;" class="mr-4" icon="fas fa-list" title="Overal Incomes and Expenditures">
+                <template v-slot:content>
+                    <div class="row overflow-auto" style="min-height: 40em; max-height: 35em; height: 40em;">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div style="position: relative; height: 100%; width: 100%;">
+                                <canvas id="overalChart" width="10" height="10"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </c-section>
+            <c-section style="width: 35rem;" is="content-section" icon="fas fa-list" title="Yearly">
+                <template v-slot:content>
+                    <c-input input-label="Select A Year: ">
+                        <template v-slot:input>
+                            <c-select :options="years" :value="selectedYear" v-model="selectedYear"></c-select>
+                        </template>
+                    </c-input>
+                    <div class="row overflow-auto" style="min-height: 40em; max-height: 35em; height: 40em;">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div style="position: relative; height: 100%; width: 100%;">
+                                <canvas id="yearlyChart" width="10" height="10"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </c-section>
+        </div>
+    </div>
