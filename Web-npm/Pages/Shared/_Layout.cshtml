@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Budgeting</title>
+    <title>@ViewData["Title"] - Leitner</title>
     <link rel="stylesheet" href="~/css/output.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <link rel="stylesheet" href="~/dist/master.css" />
@@ -22,7 +22,7 @@
     <header class="row-start-1 header py-6">
         <nav>
             <div class="flex justify-between text-border-1">
-                <a class="ml-5" asp-area="" asp-page="/Index">Budgeting <i class="fa-solid fa-sack-dollar"></i></a>
+                <a class="ml-5" asp-area="" asp-page="/Index">Leitner <i class="fa-solid fa-sack-dollar"></i></a>
                 <button type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,9 +41,6 @@
                     <div class="accordion" id="sidebarAccordion">
                         @foreach (var nav in navItems)
                         {
-                            if (!nav.HasAccess(currentUser))
-                                continue;
-
                             var additionalClass = nav.IsActiveRoute(currentRouteArray) ? " visible" : "";
                             var isAnyChildActive = nav.Children != null && nav.Children.Any(x => x.IsActiveRoute(currentRouteArray));
                             if (!isAnyChildActive)
@@ -95,9 +92,6 @@
                                     <ul class="collapse @(isAnyChildActive ? " bg-background-2":" bg-background-1")" id="page_@pageIndex">
                                         @foreach (var child in nav.Children)
                                         {
-                                            if (!child.HasAccess(currentUser))
-                                                continue;
-
                                             var backgroundColor = child.IsActiveRoute(currentRouteArray) ? " bg-customPurple-10" : " bg-background-1";
 
                                             <li class="@backgroundColor border-b-2 border-r-2 border-l-2 border-background-2">
@@ -137,7 +131,7 @@
 
     <footer class="footer text-white py-6">
         <div class="container">
-            &copy; 2022 - Budgeting - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - Leitner App - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 

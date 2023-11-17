@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace Web0.Infrastructure.Filters
+namespace Web.Infrastructure.Filters
 {
     public class CommitLogFilterAsync : IAsyncActionFilter
     {

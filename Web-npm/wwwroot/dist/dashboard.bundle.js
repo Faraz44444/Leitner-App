@@ -47,8 +47,12 @@ var app = vueContext({
     },
     computed: {
         monthlyExpectedExpenditures: function () {
+            const formatter = new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'NOK',
+            });
             if (this.categories.length > 0)
-                return this.categories.filter(x => x.Name != "Saving").map(x => x.MonthlyLimit).reduce((particalSum, a) => particalSum + a, 0);
+                return formatter.format(this.categories.filter(x => x.Name != "Saving").map(x => x.MonthlyLimit).reduce((particalSum, a) => particalSum + a, 0));
             else return 0;
         }
     },
@@ -64,7 +68,7 @@ var app = vueContext({
         },
         getPaymentsSum: function () {
             var today = new Date();
-            var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() - 1, 0);
+            var lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
             var test1 = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + 1;
             var test2 = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + lastDayOfMonth.getDate();
             var req = {

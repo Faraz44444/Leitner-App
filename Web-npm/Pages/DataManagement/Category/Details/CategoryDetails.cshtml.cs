@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Web0.Infrastructure.Helpers;
+using Web.Infrastructure.Helpers;
 
 namespace Web.Pages.DataManagement.Category.Details
 {
@@ -15,7 +15,7 @@ namespace Web.Pages.DataManagement.Category.Details
             {
                 Core.AppContext.Current.Services.CategoryService.Request = new Core.Request.Category.CategoryRequest() { CategoryId = id };
                 var entity = await Core.AppContext.Current.Services.CategoryService.GetById();
-                if (entity == null || entity.CategoryId < 1 || entity.ClientId != CurrentUser.CurrentClientId)
+                if (entity == null || entity.CategoryId < 1)
                     return RedirectToPage("/index");
                 EntityId = entity.CategoryId;
             }

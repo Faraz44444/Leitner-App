@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Web0.Dto
+namespace Web.Dto
 {
     public class BaseDto
     {

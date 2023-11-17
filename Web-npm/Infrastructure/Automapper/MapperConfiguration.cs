@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using AutoMapper.Configuration.Conventions;
-using Web0.Dto;
-using Web0.Infrastructure.AutoMapper;
+using Web.Dto;
+using Web.Infrastructure.AutoMapper;
 
-namespace Web0.Infrastructure.AutoMapper
+namespace Web.Infrastructure.AutoMapper
 {
     public class MapperConfiguration
     {

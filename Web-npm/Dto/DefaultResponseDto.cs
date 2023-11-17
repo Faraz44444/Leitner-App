@@ -1,4 +1,4 @@
-﻿namespace Web0.Dto
+﻿namespace Web.Dto
 {
     public class DefaultResponseDto
     {

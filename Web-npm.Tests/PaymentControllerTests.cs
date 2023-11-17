@@ -5,7 +5,7 @@ using FluentAssertions;
 using HttpContextMoq;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Web0.Controllers.Payment;
+using Web.Controllers.Payment;
 
 namespace Web_npm.Tests
 {
@@ -23,7 +23,7 @@ namespace Web_npm.Tests
         {
             //Arrange
             var httpContextMock = new HttpContextMock();
-            var request = new PaymentRequest();
+            var request = new MaterialRequest();
             var a = A.Fake<UserIdentity>();
             var c = new UserIdentity(new ClaimsIdentity(new List<Claim>() { new Claim("clientId", "1") }));
             var b = A.Fake<PaymentController>();

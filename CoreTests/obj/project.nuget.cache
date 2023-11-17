@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fiwc/q1WU55nOPlPJ84Guq7j+GisFXjMw+9AB6ieyg1ivPmTgYwyLDBrtGKGxvUu9UjFkufs/18CKg463kbx/A==",
+  "dgSpecHash": "2eb/zsnx6fcMreZmRlX8mB7OsPKWDjz3j6Z/OzyKeXy4sIs2x22ZtJZJLxw2ZL5s2dqiCTpfQiKcqvmHEni3BQ==",
   "success": true,
-  "projectFilePath": "E:\\Applications\\new-budgeting-app\\CoreTests\\CoreTests.csproj",
+  "projectFilePath": "E:\\Applications\\Leitner-App\\CoreTests\\CoreTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\faraz\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\faraz\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",

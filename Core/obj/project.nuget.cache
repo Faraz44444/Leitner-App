@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1e+yFZBqtZrmwIaya0lAio/+QZ3fAMn2OpJejfAMkcp0gL0g2lwiUYn5CZc3oIlUp36NZqbHbxbvktVI8YkXNw==",
+  "dgSpecHash": "MVHkJVnv1f2P1R2PH7PJZ74BJ88hHpLjL8WPV49F0lAjAIkp3XDRAKZhe53dhAszLawamdznj6M15w1kyTMhWA==",
   "success": true,
-  "projectFilePath": "E:\\Applications\\new-budgeting-app\\Core\\Core.csproj",
+  "projectFilePath": "E:\\Applications\\Leitner-App\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\faraz\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\faraz\\.nuget\\packages\\documentformat.openxml\\2.11.3\\documentformat.openxml.2.11.3.nupkg.sha512",

@@ -1,96 +1,62 @@
 ﻿using Core.Request.Payment;
 using Core.Service;
-using Core.Service.Report;
-using Domain.Enum.Permission;
 using Domain.Model.Payment;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Web.Dto;
 using Web.Dto.Payment;
-using Web0.Dto;
-using Web0.Infrastructure.AutoMapper;
-using Web0.Infrastructure.Filters;
+using Web.Infrastructure.AutoMapper;
 
-namespace Web0.Controllers.Payment
+namespace Web.Controllers.Payment
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : BaseController
+    public class MaterialController : BaseController
     {
-        private Service<PaymentRequest, PaymentModel> PaymentService => Services.PaymentService;
-        private ReportService ReportService => Services.ReportService;
+        private Service<MaterialRequest, MaterialModel> MaterialService => Services.MaterialService;
 
         [Route("lookup")]
         [HttpGet]
-        [AnyPermission(EnumPermission.AdminAccount)]
-        public async Task<IActionResult> Lookup([FromQuery] PaymentRequest req)
+        public async Task<IActionResult> Lookup([FromQuery] MaterialRequest req)
         {
-            req.ClientId = CurrentUser.CurrentClientId;
             req.CreatedByUserId = CurrentUser.UserId;
             if (!req.Validate()) return BadRequest();
-            PaymentService.Request = req;
-            var data = await PaymentService.GetList();
+            MaterialService.Request = req;
+            var data = await MaterialService.GetList();
 
-            return Ok(Mapper.MapList<PaymentDto>(data));
+            return Ok(Mapper.MapList<MaterialDto>(data));
         }
 
         [Route("")]
         [HttpGet]
-        //[AnyPermission(EnumPermission.AdminAccount)]
-        public async Task<IActionResult> Get([FromQuery] PaymentRequest req)
+        public async Task<IActionResult> Get([FromQuery] MaterialRequest req)
         {
-            req.ClientId = CurrentUser.CurrentClientId;
             req.CreatedByUserId = CurrentUser.UserId;
             if (!req.Validate()) return BadRequest();
-            PaymentService.Request = req;
-            var data = await PaymentService.GetPaged();
-            return Ok(Mapper.MapPagedList<PaymentDto>(data));
+            MaterialService.Request = req;
+            var data = await MaterialService.GetPaged();
+            return Ok(Mapper.MapPagedList<MaterialDto>(data));
         }
 
-        [Route("recommendations")]
-        [HttpGet]
-        //[AnyPermission(EnumPermission.AdminAccount)]
-        public async Task<IActionResult> GetPaymentRecommendation([FromQuery] PaymentRecommendationRequest req)
-        {
-            req.ClientId = CurrentUser.CurrentClientId;
-            req.CreatedByUserId = CurrentUser.UserId;
-            if (!req.Validate()) return BadRequest();
-            var data = await ReportService.GetPaymentRecommendation(req);
-            return Ok(Mapper.MapPagedList<PaymentRecommendationDto>(data));
-        }
         [Route("")]
         [HttpPost]
-        [AnyPermission(EnumPermission.AdminAccount)]
-        public async Task<IActionResult> Post([FromBody] PaymentDto dto)
+        public async Task<IActionResult> Post([FromBody] MaterialDto dto)
         {
             if (dto == null) return BadRequest();
-            var model = new PaymentModel(
-                title: dto.Title,
-                paymentPriorityId: dto.PaymentPriorityId,
-                businessId: dto.BusinessId,
-                businessName: dto.BusinessName,
-                isDeposit: dto.IsDeposit,
-                isPaidToPerson: dto.IsPaidToPerson,
-                categoryId: dto.CategoryId,
-                price: dto.Price,
-                date: dto.Date,
-                clientId: CurrentUser.CurrentClientId,
-                createdByUserId: CurrentUser.UserId,
-                createdByFirstName: CurrentUser.FirstName,
-                createdByLastName: CurrentUser.LastName);
+            var model = new MaterialModel(dto.Question, dto.Answer, dto.Step, dto.CategoryId, CurrentUser.UserId);
             try
             {
-                PaymentService.Model = model;
-                var id = await PaymentService.Insert();
+                MaterialService.Model = model;
+                var id = await MaterialService.Insert();
 
-                var request = new PaymentRequest()
+                var request = new MaterialRequest()
                 {
-                    ClientId = CurrentUser.CurrentClientId,
-                    PaymentPriorityId = id
+                    MaterialId = id
                 };
-                PaymentService.Request = request;
-                model = await PaymentService.GetById();
-                return Ok(new DefaultResponseDto<PaymentDto>(Mapper.Map<PaymentDto>(model)));
+                MaterialService.Request = request;
+                model = await MaterialService.GetById();
+                return Ok(new DefaultResponseDto<MaterialDto>(Mapper.Map<MaterialDto>(model)));
             }
             catch (Exception ex)
             {
@@ -100,73 +66,62 @@ namespace Web0.Controllers.Payment
 
         [Route("{id}")]
         [HttpGet]
-        [AnyPermission(EnumPermission.AdminAccount)]
         public async Task<IActionResult> Get([FromRoute] long id)
         {
             if (id < 1) return BadRequest();
-            var request = new PaymentRequest()
+            var request = new MaterialRequest()
             {
-                ClientId = CurrentUser.CurrentClientId,
                 CreatedByUserId = CurrentUser.UserId,
-                PaymentPriorityId = id
+                MaterialId = id
             };
-            PaymentService.Request = request;
-            var model = await PaymentService.GetById();
-            if (model.ClientId != CurrentUser.CurrentClientId) return BadRequest();
+            MaterialService.Request = request;
+            var model = await MaterialService.GetById();
 
-            return Ok(Mapper.Map<PaymentDto>(model));
+            return Ok(Mapper.Map<MaterialDto>(model));
         }
 
         [Route("{id}")]
         [HttpPut]
-        [AnyPermission(EnumPermission.AdminAccount)]
-        public async Task<IActionResult> Put([FromRoute] long id, [FromBody] PaymentDto dto)
+        public async Task<IActionResult> Put([FromRoute] long id, [FromBody] MaterialDto dto)
         {
             if (dto == null) return BadRequest();
-            if (dto.PaymentId != id) return BadRequest();
-            var request = new PaymentRequest()
+            if (dto.MaterialId != id) return BadRequest();
+            var request = new MaterialRequest()
             {
-                ClientId = CurrentUser.CurrentClientId,
                 CreatedByUserId = CurrentUser.UserId,
-                PaymentId = id
+                MaterialId = id
             };
-            PaymentService.Request = request;
-            var model = await PaymentService.GetById();
-            if (model.ClientId != CurrentUser.CurrentClientId) return BadRequest();
+            MaterialService.Request = request;
+            var model = await MaterialService.GetById();
 
-            model.Title = dto.Title;
-            model.Price = dto.Price;
             model.CategoryId = dto.CategoryId;
-            model.Date = dto.Date;
-            model.BusinessId = dto.BusinessId;
-            model.PaymentPriorityId = dto.PaymentPriorityId;
-            model.IsDeposit = dto.IsDeposit;
-            model.IsPaidToPerson = dto.IsPaidToPerson;
+            model.Question = dto.Question;
+            model.Answer = dto.Answer;
             model.Deleted = dto.Deleted;
             model.DeletedAt = dto.Deleted ? DateTime.Now : null;
+
             try
             {
-                PaymentService.Model = model;
-                await PaymentService.Update();
+                MaterialService.Model = model;
+                await MaterialService.Update();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
-            return Ok(new DefaultResponseDto<PaymentDto>(Mapper.Map<PaymentDto>(await PaymentService.GetById())));
+            return Ok(new DefaultResponseDto<MaterialDto>(Mapper.Map<MaterialDto>(await MaterialService.GetById())));
         }
 
         [Route("{id}")]
         [HttpDelete]
-        [AnyPermission(EnumPermission.AdminAccount)]
         public async Task<IActionResult> Delete([FromRoute] long id)
         {
-            var model = await PaymentService.GetById();
-            if (model == null || model.PaymentPriorityId < 1 || model.CreatedByUserId != CurrentUser.UserId) return BadRequest();
+            var model = await MaterialService.GetById();
+            if (model == null || model.MaterialId < 1 || model.CreatedByUserId != CurrentUser.UserId) return BadRequest();
 
-            PaymentService.Request = new PaymentRequest() { PaymentId = id };
-            await PaymentService.Delete();
+            MaterialService.Request = new MaterialRequest() { MaterialId = id };
+            await MaterialService.Delete();
 
             return Ok(new DefaultResponseDto(true));
         }

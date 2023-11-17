@@ -1,5 +1,4 @@
 ﻿using Core.Infrastructure.Security;
-using Domain.Enum.Permission;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace Web.Infrastructure
         static Navigation()
         {
             Items.Add(new NavigationItem("Dashboard", "/index", "", "fa fa-tachometer-alt"));
-            
+
             var payments = new NavigationItem("Data Management", "fa-solid fa-receipt");
 
             payments.AddChild("Payment", "fa-solid fa-money-bill-transfer",
@@ -37,9 +36,9 @@ namespace Web.Infrastructure
             Items.Add(reports);
 
             var admin = new NavigationItem("Admin", "fa-solid fa-gears");
-            admin.AddChild("Users", "fa-solid fa-users", 
+            admin.AddChild("Users", "fa-solid fa-users",
                 "/admin/account/user/userlist", "/admin/account/user/userlist");
-            admin.AddChild("Roles", "fa-solid fa-users-gear", 
+            admin.AddChild("Roles", "fa-solid fa-users-gear",
                 "/admin/account/role/rolelist", "/admin/account/role/rolelist");
             Items.Add(admin);
         }
@@ -53,19 +52,15 @@ namespace Web.Infrastructure
         public string Icon { get; set; }
         public List<NavigationItem> Children { get; set; }
         private bool RequireAllPermissions { get; set; }
-        private EnumPermission[] RequiredPermissions { get; set; }
 
         public string[] RouteArray => RouteAlias != null ? RouteAlias.Replace("index", "").Split("/") : Array.Empty<string>();
 
-        public NavigationItem(string name, string route, string routeAlias, string icon,
-            bool requireAllPermissions = true, EnumPermission[] requiredPermissions  = null)
+        public NavigationItem(string name, string route, string routeAlias, string icon)
         {
             Name = name;
             Route = route;
             RouteAlias = routeAlias ?? route;
             Icon = icon;
-            RequireAllPermissions = requireAllPermissions;
-            RequiredPermissions = requiredPermissions;
         }
 
         public NavigationItem(string name, string icon)
@@ -79,10 +74,9 @@ namespace Web.Infrastructure
             string icon,
             string route,
             string aliasroute,
-            EnumPermission[] permissions = null,
             bool requireAllPermissions = true)
         {
-            var child = new NavigationItem(name, route, aliasroute, icon, requireAllPermissions, permissions);
+            var child = new NavigationItem(name, route, aliasroute, icon);
             if (Children == null)
             {
                 Children = new List<NavigationItem>();
@@ -102,25 +96,12 @@ namespace Web.Infrastructure
             }
             for (var i = 0; i < RouteArray.Length; i++)
             {
-                if (RouteArray[i] != currentRouteArray[i] || (currentRouteArray.Length != RouteArray.Length && !currentRouteArray.All(x=> x == "")))
+                if (RouteArray[i] != currentRouteArray[i] || (currentRouteArray.Length != RouteArray.Length && !currentRouteArray.All(x => x == "")))
                 {
                     return false;
                 }
             }
             return true;
-        }
-        public bool HasAccess(UserIdentity claimsIdentity)
-        {
-
-            if (RequiredPermissions != null && (Children?.Count() ?? 0) != 0)
-                throw new ArgumentException("A Group may not contain permissions");
-
-            if ((Children?.Count() ?? 0) > 0)
-                return Children.Any(x => x.HasAccess(claimsIdentity));
-
-            return RequireAllPermissions ?
-                claimsIdentity.HasAllPermissions(RequiredPermissions) :
-                claimsIdentity.HasAnyPermissions(RequiredPermissions);
         }
     }
 }

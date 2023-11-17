@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Web0.Infrastructure.Helpers;
+using Web.Infrastructure.Helpers;
 
-namespace Web0.Pages.Admin.Account.User
+namespace Web.Pages.Admin.Account.User
 {
     [Authorize]
     public class UserDetailsModel : CustomPageModel
@@ -14,7 +14,7 @@ namespace Web0.Pages.Admin.Account.User
             {
                 Core.AppContext.Current.Services.UserService.Request = new Core.Request.User.UserRequest() { UserId = id };
                 var entity = await Core.AppContext.Current.Services.UserService.GetById();
-                if (entity == null || entity.UserId < 1 || entity.CurrentClientId != CurrentUser.CurrentClientId)
+                if (entity == null || entity.UserId < 1)
                     return RedirectToPage("/index");
                 EntityId = entity.UserId;
             }

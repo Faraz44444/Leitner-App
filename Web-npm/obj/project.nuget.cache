@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kcMbJwQRZvE4Kkb9hN0uoAl2viejmK9LAhTsTw4sHZgNo1Z+WKWTMh/PiFvacJOXZjfMRn8QFjSOLkUa2nP5Og==",
+  "dgSpecHash": "qJa8yF2w8w4UcK/8CG7lYQOqEcVwDqqi00bYmPHYBe1tmBhcbzLlonF5lwFLCwGewwZF7H592+C7pAJyp7Y32w==",
   "success": true,
-  "projectFilePath": "E:\\Applications\\new-budgeting-app\\Web-npm\\Web-npm.csproj",
+  "projectFilePath": "E:\\Applications\\Leitner-App\\Web-npm\\Web-npm.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\faraz\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\faraz\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Applications\\new-budgeting-app\\Extensions\\Extensions.csproj": {}
+    "E:\\Applications\\Leitner-App\\Extensions\\Extensions.csproj": {}
   },
   "projects": {
-    "E:\\Applications\\new-budgeting-app\\Extensions\\Extensions.csproj": {
+    "E:\\Applications\\Leitner-App\\Extensions\\Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Applications\\new-budgeting-app\\Extensions\\Extensions.csproj",
+        "projectUniqueName": "E:\\Applications\\Leitner-App\\Extensions\\Extensions.csproj",
         "projectName": "Extensions",
-        "projectPath": "E:\\Applications\\new-budgeting-app\\Extensions\\Extensions.csproj",
+        "projectPath": "E:\\Applications\\Leitner-App\\Extensions\\Extensions.csproj",
         "packagesPath": "C:\\Users\\faraz\\.nuget\\packages\\",
-        "outputPath": "E:\\Applications\\new-budgeting-app\\Extensions\\obj\\",
+        "outputPath": "E:\\Applications\\Leitner-App\\Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\faraz\\AppData\\Roaming\\NuGet\\NuGet.Config",

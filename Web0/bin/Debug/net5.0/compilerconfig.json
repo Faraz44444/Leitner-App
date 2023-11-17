@@ -1,7 +1,0 @@
-//Used for the scss compiler
-[
-  {
-    "outputFile": "wwwroot/css/site.css",
-    "inputFile": "Sources/scss/site.scss"
-  }
-]

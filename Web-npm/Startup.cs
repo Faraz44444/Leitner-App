@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Web0.Infrastructure.Filters;
+using Web.Infrastructure.Filters;
 
-namespace Web0
+namespace Web
 {
     public class Startup
     {

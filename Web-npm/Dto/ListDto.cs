@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Web0.Dto
+namespace Web.Dto
 {
     public class ListDto<T>
     {

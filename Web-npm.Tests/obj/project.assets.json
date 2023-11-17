@@ -10171,11 +10171,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Applications\\new-budgeting-app\\Web-npm.Tests\\Web-npm.Tests.csproj",
+      "projectUniqueName": "E:\\Applications\\Leitner-App\\Web-npm.Tests\\Web-npm.Tests.csproj",
       "projectName": "Web-npm.Tests",
-      "projectPath": "E:\\Applications\\new-budgeting-app\\Web-npm.Tests\\Web-npm.Tests.csproj",
+      "projectPath": "E:\\Applications\\Leitner-App\\Web-npm.Tests\\Web-npm.Tests.csproj",
       "packagesPath": "C:\\Users\\faraz\\.nuget\\packages\\",
-      "outputPath": "E:\\Applications\\new-budgeting-app\\Web-npm.Tests\\obj\\",
+      "outputPath": "E:\\Applications\\Leitner-App\\Web-npm.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\faraz\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10192,11 +10192,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "E:\\Applications\\new-budgeting-app\\Core\\Core.csproj": {
-              "projectPath": "E:\\Applications\\new-budgeting-app\\Core\\Core.csproj"
+            "E:\\Applications\\Leitner-App\\Core\\Core.csproj": {
+              "projectPath": "E:\\Applications\\Leitner-App\\Core\\Core.csproj"
             },
-            "E:\\Applications\\new-budgeting-app\\Web-npm\\Web-npm.csproj": {
-              "projectPath": "E:\\Applications\\new-budgeting-app\\Web-npm\\Web-npm.csproj"
+            "E:\\Applications\\Leitner-App\\Web-npm\\Web-npm.csproj": {
+              "projectPath": "E:\\Applications\\Leitner-App\\Web-npm\\Web-npm.csproj"
             }
           }
         }

@@ -7,9 +7,9 @@ using Core.Infrastructure.Exception;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Web0.Dto;
+using Web.Dto;
 
-namespace Web0.Infrastructure.Filters
+namespace Web.Infrastructure.Filters
 {
     public class ExceptionFilterAsync : IAsyncExceptionFilter
     {

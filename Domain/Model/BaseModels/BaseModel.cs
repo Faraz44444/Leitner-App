@@ -10,7 +10,7 @@ namespace Domain.Model.BaseModels
         public string CreatedByFirstName { get; set; }
         public string CreatedByLastName { get; set; }
 
-        protected BaseModel()  { }
+        protected BaseModel() { }
 
         protected BaseModel(long createdByUserId,
                             string createdByFirstName,
@@ -39,13 +39,13 @@ namespace Domain.Model.BaseModels
         }
     }
 
-    public class IsTableColumnAttribute: Attribute
+    public class IsNotTableColumnAttribute : Attribute
     {
-        public  IsTableColumnAttribute(bool isTableColumn)
+        public IsNotTableColumnAttribute(bool isNotTableColumn)
         {
-            IsTableColumn = isTableColumn;
+            IsNotTableColumn = isNotTableColumn;
         }
-        public bool IsTableColumn { get; set; }
+        public bool IsNotTableColumn { get; set; }
     }
 
 }

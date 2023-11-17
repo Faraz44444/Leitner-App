@@ -45,9 +45,6 @@ namespace WebApp_UnderTheHood.Pages.Account
                     var user =
                         await Core.AppContext.Current.Services.SecurityService.GetByUsernameOrEmail(Credential
                             .UsernameOrEmail);
-                    if (user.IsSystemUser)
-                        return ReturnError("Incorrect Username or Password");
-
                     var claimsIdentity = await user.GenerateNewClaimsIdentityAsync("MyCookieAuth", isPersistent: true);
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);

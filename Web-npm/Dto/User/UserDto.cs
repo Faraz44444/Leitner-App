@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web0.Dto.User
+namespace Web.Dto.User
 {
     public class UserDto : BaseDto
     {

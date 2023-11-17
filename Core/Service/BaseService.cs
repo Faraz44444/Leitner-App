@@ -1,14 +1,11 @@
-﻿using System;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography.X509Certificates;
-using Core.Infrastructure;
+﻿using Core.Infrastructure;
 using Core.Infrastructure.UnitOfWork;
-using Core.Repository;
 using Domain.Enum.EntityType;
 using Domain.Enum.OperationType;
 using Domain.Interfaces;
 using Domain.Model.ActionLog;
 using Newtonsoft.Json;
+using System;
 
 namespace Core.Service
 {
@@ -81,26 +78,20 @@ namespace Core.Service
         protected private static void ErrorLog(
             Exception exception,
             long clientId = 0,
-            long createdByUserId = 0,
-            string createdByFirstName = "",
-            string createdByLastName = "")
+            long createdByUserId = 0)
         {
             AppContext.Current.Services.ErrorLogService.Model = new ErrorLogModel()
             {
                 Message = exception.Message,
                 ClientId = clientId,
                 CreatedByUserId = createdByUserId,
-                CreatedByFirstName = createdByFirstName,
-                CreatedByLastName = createdByLastName
             };
             _ = AppContext.Current.Services.ErrorLogService.Insert();
         }
         protected private static void ErrorLog(
             string message,
             long clientId = 0,
-            long createdByUserId = 0,
-            string createdByFirstName = "",
-            string createdByLastName = "")
+            long createdByUserId = 0)
         {
 
             AppContext.Current.Services.ErrorLogService.Model = new ErrorLogModel()
@@ -108,8 +99,6 @@ namespace Core.Service
                 Message = message,
                 ClientId = clientId,
                 CreatedByUserId = createdByUserId,
-                CreatedByFirstName = createdByFirstName,
-                CreatedByLastName = createdByLastName
             };
             _ = AppContext.Current.Services.ErrorLogService.Insert();
         }
@@ -118,9 +107,7 @@ namespace Core.Service
         protected private static void EventLog(
             string message,
             long clientId = 0,
-            long createdByUserId = 0,
-            string createdByFirstName = "",
-            string createdByLastName = "")
+            long createdByUserId = 0)
         {
 
             AppContext.Current.Services.EventLogService.Model = new EventLogModel()
@@ -128,8 +115,6 @@ namespace Core.Service
                 Message = message,
                 ClientId = clientId,
                 CreatedByUserId = createdByUserId,
-                CreatedByFirstName = createdByFirstName,
-                CreatedByLastName = createdByLastName
             };
             _ = AppContext.Current.Services.EventLogService.Insert();
         }

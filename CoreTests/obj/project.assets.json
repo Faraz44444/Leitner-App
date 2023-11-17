@@ -7756,11 +7756,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Applications\\new-budgeting-app\\CoreTests\\CoreTests.csproj",
+      "projectUniqueName": "E:\\Applications\\Leitner-App\\CoreTests\\CoreTests.csproj",
       "projectName": "CoreTests",
-      "projectPath": "E:\\Applications\\new-budgeting-app\\CoreTests\\CoreTests.csproj",
+      "projectPath": "E:\\Applications\\Leitner-App\\CoreTests\\CoreTests.csproj",
       "packagesPath": "C:\\Users\\faraz\\.nuget\\packages\\",
-      "outputPath": "E:\\Applications\\new-budgeting-app\\CoreTests\\obj\\",
+      "outputPath": "E:\\Applications\\Leitner-App\\CoreTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\faraz\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7777,8 +7777,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "E:\\Applications\\new-budgeting-app\\Core\\Core.csproj": {
-              "projectPath": "E:\\Applications\\new-budgeting-app\\Core\\Core.csproj"
+            "E:\\Applications\\Leitner-App\\Core\\Core.csproj": {
+              "projectPath": "E:\\Applications\\Leitner-App\\Core\\Core.csproj"
             }
           }
         }

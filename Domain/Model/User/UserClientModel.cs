@@ -5,11 +5,11 @@ namespace Domain.Model.User
 {
     public class UserClientModel : PagedBaseModel
     {
-        [IsTableColumn(true)]
+        [IsNotTableColumn(true)]
         public long UserId { get; set; }
-        [IsTableColumn(true)]
+        [IsNotTableColumn(true)]
         public long ClientId { get; set; }
-        [IsTableColumn(true)]
+        [IsNotTableColumn(true)]
         public long RoleId { get; set; }
 
         public UserClientModel() { }

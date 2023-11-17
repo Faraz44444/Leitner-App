@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Web0.Infrastructure.Filters
+namespace Web.Infrastructure.Filters
 {
     public class UserClaimUpdateFilterAsync : IAsyncResourceFilter
     {
@@ -20,15 +20,10 @@ namespace Web0.Infrastructure.Filters
                 {
                     Core.AppContext.Current.Services.UserService.Request = new Core.Request.User.UserRequest() { UserId = currentUser.UserId };
                     var user = await Core.AppContext.Current.Services.UserService.GetFirstOrDefault();
-                    if (user.IsSystemUser)
-                        await context.HttpContext.SignOutAsync();
-                    else
-                    {
-                        var claimsIdentity = await user.GenerateNewClaimsIdentityAsync(CookieAuthenticationDefaults.AuthenticationScheme, currentUser.IsLoginPersistent);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    var claimsIdentity = await user.GenerateNewClaimsIdentityAsync(CookieAuthenticationDefaults.AuthenticationScheme, currentUser.IsLoginPersistent);
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                        await context.HttpContext.SignInAsync(claimsPrincipal);
-                    }
+                    await context.HttpContext.SignInAsync(claimsPrincipal);
                 }
 
             }
