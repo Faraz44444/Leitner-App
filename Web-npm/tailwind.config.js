@@ -64,8 +64,9 @@ module.exports = {
                 2: "#1d174a",
                 3: "#221887"
             },
-            goldenText: {
-                1: "#db8e12"
+            golden: {
+                1: "#f5970f",
+                2: "#f7A837"
             },
             border: {
                 1: "#ffa07a"

@@ -14,7 +14,7 @@
                     <label asp-for="Credential.UsernameOrEmail"></label>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="text" asp-for="Credential.UsernameOrEmail" />
+                    <input class="form-control bg-golden-1" type="text" asp-for="Credential.UsernameOrEmail" />
                 </div>
                 <span  asp-validation-for="Credential.UsernameOrEmail"></span>
             </div>
@@ -23,7 +23,7 @@
                     <label asp-for="Credential.Password"></label>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="password" asp-for="Credential.Password" />
+                    <input class="form-control bg-golden-1" type="password" asp-for="Credential.Password" />
                 </div>
                 <span asp-validation-for="Credential.Password"></span>
             </div>
@@ -31,7 +31,7 @@
                 <input type="checkbox" asp-for="Credential.RememberMe" class="form-check-input" />
                 <label class="form-check-label" asp-for="Credential.RememberMe"></label>
             </div>
-            <div class="flex justify-center text-border-1 border rounded">
+            <div class="flex justify-center text-golden-1 border rounded">
                 <button type="submit" value="login">Login</button>
             </div>
         </form>
