@@ -46,7 +46,7 @@ namespace Domain.Model.User
             if (LastName.Empty()) throw new ArgumentException("LastName is not set");
             if (CreatedAt == DateTime.MinValue) throw new ArgumentException("CreatedAt is not set");
         }
-
+        [IsNotTableColumn(true)]
         public string FullName => $"{string.Join(" ", new List<string> { FirstName, LastName })}";
     }
 }

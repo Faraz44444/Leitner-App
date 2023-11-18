@@ -6,6 +6,7 @@ namespace Web.Dto.Payment
     public class MaterialDto : BaseDto
     {
         public long MaterialId { get; set; }
+        public long BatchId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
         public EnumStep Step { get; set; }

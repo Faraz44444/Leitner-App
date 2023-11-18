@@ -40,12 +40,7 @@ var app = vueContext({
             });
         },
         goToDetails: function (id) {
-            window.location = "/datamanagement/category/details/" + id;
-        },
-        getCategoryPriorities: function () {
-            return apiHandler.Get("category/priorities", this.details).then(response => {
-                this.priorities = response;
-            });
+            window.location = "/category/details/" + id;
         },
         filterChanged: function () {
             this.filter.CurrentPage = 1;
@@ -60,7 +55,6 @@ var app = vueContext({
     },
     created: function () {
         this.getList();
-        this.getCategoryPriorities();
     },
     mounted: function () {
     }

@@ -13,7 +13,6 @@ var app = vueContext({
                 CreatedByFullName: ""
             },
             items: [],
-            priorities: []
         }
     },
     watch: {
@@ -28,23 +27,18 @@ var app = vueContext({
                 this.details = response;
             });
         },
-        getCategoryPriorities: function () {
-            return apiHandler.Get("category/priorities", this.details).then(response => {
-                this.priorities = response;
-            });
-        },
         save: function () {
             if (this.details.CategoryId > 0) {
                 return apiHandler.Put("category", this.details.CategoryId, this.details).then(response => {
                     if (response && response.Ok) {
-                        return window.location = "/datamanagement/category/categorylist"
+                        return window.location = "/category/categorylist"
                     }
                 });
             }
             else {
                 return apiHandler.Post("category", this.details).then(response => {
                     if (response && response.Ok) {
-                        return window.location = "/datamanagement/category/categorylist"
+                        return window.location = "/category/categorylist"
                     }
                 });
             }
@@ -52,14 +46,9 @@ var app = vueContext({
     },
     created: function () {
         this.details.CategoryId = parseInt(document.getElementById("app").dataset.entityId);
-        if (this.details.CategoryId < 1)
-            return;
+        if (this.details.CategoryId < 1) return;
         this.getDetails();
-        this.getCategoryPriorities();
     },
-    mounted: function () {
-        this.getCategoryPriorities();
-
-    }
+    mounted: function () {}
 })
 

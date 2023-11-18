@@ -28,16 +28,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudFxVc2VyXFVzZXJMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Applications/Leitner-App/Web-npm/Pages/DataManagement/Category/CategoryList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQ2F0ZWdvcnlcQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
+[E:/Applications/Leitner-App/Web-npm/Pages/Category/CategoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Applications/Leitner-App/Web-npm/Pages/DataManagement/Category/Details/CategoryDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcQ2F0ZWdvcnlcRGV0YWlsc1xDYXRlZ29yeURldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/Applications/Leitner-App/Web-npm/Pages/DataManagement/Payment/PaymentList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YU1hbmFnZW1lbnRcUGF5bWVudFxQYXltZW50TGlzdC5jc2h0bWw=
+[E:/Applications/Leitner-App/Web-npm/Pages/Category/Details/CategoryDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcRGV0YWlsc1xDYXRlZ29yeURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Applications/Leitner-App/Web-npm/Pages/Error.cshtml]
@@ -54,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Applications/Leitner-App/Web-npm/Pages/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Applications/Leitner-App/Web-npm/Pages/Material/MaterialList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0ZXJpYWxcTWF0ZXJpYWxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Applications/Leitner-App/Web-npm/Pages/Privacy.cshtml]

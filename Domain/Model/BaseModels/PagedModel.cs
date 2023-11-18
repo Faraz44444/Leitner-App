@@ -5,6 +5,7 @@ namespace Domain.Model.BaseModels
 {
     public abstract class PagedModel
     {
+        [IsNotTableColumn(true)]
         public int TotalNumberOfItems { get; set; }
     }
     public class PagedModel<T>

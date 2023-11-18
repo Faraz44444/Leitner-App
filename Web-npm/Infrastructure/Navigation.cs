@@ -12,35 +12,8 @@ namespace Web.Infrastructure
         static Navigation()
         {
             Items.Add(new NavigationItem("Dashboard", "/index", "", "fa fa-tachometer-alt"));
-
-            var payments = new NavigationItem("Data Management", "fa-solid fa-receipt");
-
-            payments.AddChild("Payment", "fa-solid fa-money-bill-transfer",
-                "/datamanagement/payment/paymentlist", "/datamanagement/payment/paymentlist");
-            payments.AddChild("Payment Total", "fa-solid fa-money-bill-transfer",
-                "/datamanagement/payment/paymenttotal/paymenttotallist", "/datamanagement/payment/paymenttotal/paymenttotallist");
-            payments.AddChild("Business", "fa-solid fa-suitcase",
-                "/datamanagement/business/businesslist", "/datamanagement/business/businesslist");
-            payments.AddChild("Category", "fa-solid fa-tags",
-                "/datamanagement/category/categorylist", "/datamanagement/category/categorylist");
-            payments.AddChild("Payment Priority", "fa-solid fa-land-mine-on",
-                "/datamanagement/payment/paymentpriority/paymentprioritylist", "/datamanagement/payment/paymentpriority/paymentprioritylist");
-            Items.Add(payments);
-
-            var reports = new NavigationItem("Reports", "fa-solid fa-bullhorn");
-
-            reports.AddChild("Yearly Overview", "fa-solid fa-magnifying-glass",
-                "/report/yearlyoverview", "/report/yearlyoverview");
-            reports.AddChild("Monthly Overview", "fa-solid fa-magnifying-glass",
-                "/report/monthlyoverview", "/report/monthlyoverview");
-            Items.Add(reports);
-
-            var admin = new NavigationItem("Admin", "fa-solid fa-gears");
-            admin.AddChild("Users", "fa-solid fa-users",
-                "/admin/account/user/userlist", "/admin/account/user/userlist");
-            admin.AddChild("Roles", "fa-solid fa-users-gear",
-                "/admin/account/role/rolelist", "/admin/account/role/rolelist");
-            Items.Add(admin);
+            Items.Add(new NavigationItem("Materials", "/material/materialList", "", "fa fa-clipboard"));
+            Items.Add(new NavigationItem("Categories", "/category/categoryList", "", "fa-solid fa-tags"));
         }
     }
 

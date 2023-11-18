@@ -33,15 +33,7 @@ namespace Core.Service.Security
 
             user.LastUpdateAt = DateTime.Now;
             UserService.Model = user;
-            try
-            {
-                await UserService.Update();
-
-            }
-            catch (Exception ex)
-            {
-
-            }
+            await UserService.Update();
             return true;
         }
         public async Task<UserModel> GetByUsernameOrEmail(string usernameOrEmail)

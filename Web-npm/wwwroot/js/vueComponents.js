@@ -4,7 +4,7 @@ const compButton = {
                 <button 
                     type="button" 
                     class="p-3 rounded-2xl" 
-                    :class="{'transition bg-background-3 hover:bg-background-2 duration-500': type == 'normal'}"
+                    :class="{'transition bg-purple-2 hover:bg-purple-1 duration-500': type == 'normal'}"
                     v-on:click="$emit('click')">
                 <i class="mr-1" v-bind:class="icon"></i>
                 {{title}}
@@ -252,7 +252,7 @@ const compInput = {
     template: `<div v-bind:class="extraClasses + ' c-input-input flex justify-between'">
                     <span v-if="isSelect" class="caret"></span>
                     <button v-if="showCopy" class='btn btn-link text-gray-5 copy-btn' type='button' title='Click to copy' v-on:click='copyToClipboard($event)'><i class='fas fa-copy'></i></button>
-                    <label class="ml-2 mr-4">
+                    <label v-if="inputLabel" class="ml-2 mr-4">
                         {{inputLabel}}
                         <span v-show="required" class="ml-1 small text-danger">Required</span>
                     </label>
@@ -275,42 +275,16 @@ const compInput = {
             required: false
         },
         extraClasses: {
-            type:String
+            type: String
         }
     },
     computed: {
         required: function () {
-            //let slot = this.$slots.default[0];
-            //if (slot.tag == "select" || slot.tag == "input") {
-            //    if (!slot.data)
-            //        return false;
-            //    if (!slot.data.attrs)
-            //        return false;
-            //    if (!slot.data.attrs.hasOwnProperty('required'))
-            //        return false;
-            //    if (slot.data.attrs.required === undefined)
-            //        return false;
-            //    if (slot.data.attrs.required === true)
-            //        return true;
-            //    if (slot.data.attrs.required === false)
-            //        return false;
-            //    if (slot.data.attrs.required.trim().toLowerCase() == "false")
-            //        return false;
-            //    return true;
-            //}
             return false;
         }
     },
     methods: {
         copyToClipboard: function (el) {
-            //var parent = $(el.target).closest(".custom-input-group");
-            //var text = parent.find("input").val();
-            //if (this.isTextarea)
-            //    text = parent.find("text-area").val();
-            //if (this.isSelect)
-            //    text = parent.find("select").find(":selected").text();
-            //if (text)
-            //    clipboard.CopyToClipboard(text);
         }
     }
 }
@@ -462,7 +436,7 @@ const compSection = {
     },
     template: `
     <div :class="{'justify-center p-3':true, ' border-2 border-coolGray-700 rounded-xl': bordered}" v-bind:class="additionalClass()">
-        <div v-if="!hideHeader" class="grid grid-flow-col bg-background-2 text-white rounded-full">
+        <div v-if="!hideHeader" class="grid grid-flow-col bg-background-2 text-purple-1 rounded-full">
             <span v-if="icon?.length">
                 <i v-bind:class="icon"></i>
             </span>
@@ -566,21 +540,21 @@ const compTable = {
                         <slot name="tfoot"></slot>
                     </tfoot>
                 </table>
-                    <nav class="" v-if="showPager">
+                    <nav class="mt-5" v-if="showPager">
                         <ul class="flex justify-center">
-                            <li  v-on:click="goToPage(1)" class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
+                            <li  v-on:click="goToPage(1)" class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">First</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true" v-on:click="goToPage(filter.CurrentPage - 1)">Previous</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'active border-2': startPage + (n - 1) == filter.CurrentPage}" v-for="n in numberOfPagesToShow" v-on:click="goToPage(startPage + (n - 1))">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'active border-2': startPage + (n - 1) == filter.CurrentPage}" v-for="n in numberOfPagesToShow" v-on:click="goToPage(startPage + (n - 1))">
                                 <a class="page-link" v-bind:class="{'': startPage + (n - 1) != filter.CurrentPage}" href="#" >{{startPage + (n - 1)}}</a>
                             </li>                    
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
                                 <a class="page-link" href="#" v-on:click="goToPage(filter.CurrentPage + 1)">Next</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
                                 <a class="page-link" href="#" v-on:click="goToPage(filter.TotalPages)">Last</a>
                             </li>
                         </ul>

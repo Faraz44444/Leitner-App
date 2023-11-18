@@ -22,7 +22,7 @@
     <header class="row-start-1 header py-6">
         <nav>
             <div class="flex justify-between text-golden-2">
-                <a class="ml-5" asp-area="" asp-page="/Index">Leitner <i class="fa-solid fa-sack-dollar"></i></a>
+                <a class="ml-5" asp-area="" asp-page="/Index"><i class="fa-solid fa-head-side-virus"></i> Leitner</a>
                 <button type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
             </div>
         </nav>
     </header>
-    <section id="content-section" class="grid grid-rows-1 content-center min-h-screen">
+    <section id="content-section" class="grid grid-rows-1 content-center h-screen">
         @if (currentUser.IsAuthenticated)
         {
             <div class="col-start-1 row-start-1  float-left">
@@ -52,15 +52,16 @@
                                 @if (!string.IsNullOrWhiteSpace(nav.Route))
                                 {
                                     <a class="accordion-button
-                                      border-2 border-border-1
-                                      rounded-t-2xl
+                                      border-2 border-coolGray-300
+                                      @(nav == navItems.First() ? "rounded-t-2xl" : "")
+                                      @(nav == navItems.Last() ? "rounded-b-2xl" : "")
                                       relative
                                       flex
                                       items-center
                                       w-full
                                       py-4
                                       px-5
-                                      text-base golden-text text-left
+                                      text-base text-blueGray-400 text-left
                                       @(nav.IsActiveRoute(currentRouteArray) ? " bg-customPurple-10":" bg-background-2")
                                       border-0
                                       rounded-none

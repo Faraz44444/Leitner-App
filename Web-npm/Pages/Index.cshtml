@@ -11,89 +11,72 @@
         <script src="/js/index.min.js"></script>
     </environment>
 }
-    <div class="grid" id="app">
-        <c-section return-icon :title="'Real Data'">
-            <template v-slot:content>
-                <div class="grid grid-flow-col gap-4">
-                    <c-section class="ml-2" return-icon :title="'Expenditures'" small>
+<div class="grid" id="app">
+    <c-section return-icon title="Status">
+        <template v-slot:content>
+            <div class="grid  grid-flow-col gap-4">
+                <div>
+                    <c-section class="ml-2" return-icon title="Box 1" small>
                         <template v-slot:content>
                             <div class="text-gray-300 grid grid-rows-2">
-                                <c-input :input-label="'This Month: '">
+                                <c-input input-label="Undone: ">
                                     <template v-slot:input>
                                         <input class="text-center" type="text" v-model="sums.Expenditures.ThisMonthFormatted" disabled />
                                     </template>
                                 </c-input>
-                                <c-input :input-label="'Last Month: '">
-                                    <template v-slot:input>
-                                        <input  type="text" v-model="sums.Expenditures.LastMonthFormatted" disabled />
-                                    </template>
-                                </c-input>
                             </div>
                         </template>
                     </c-section>
-                    <c-section return-icon :title="'Incomes'" small>
+                    <c-section return-icon title="Box 2" small>
                         <template v-slot:content>
                             <div class="grid grid-rows-2 text-gray-300">
-                                <c-input :input-label="'This Month: '">
+                                <c-input input-label="Undone: ">
                                     <template v-slot:input>
                                         <input type="text" v-model="sums.Incomes.ThisMonthFormatted" disabled />
                                     </template>
                                 </c-input>
-                                <c-input :input-label="'Last Month: '">
-                                    <template v-slot:input>
-                                        <input type="text" v-model="sums.Incomes.LastMonthFormatted" disabled />
-                                    </template>
-                                </c-input>
                             </div>
                         </template>
                     </c-section>
-                    <c-section extra-classes="mr-2" return-icon :title="'Savings'" small>
+                    <c-section extra-classes="mr-2" return-icon title="Box 3" small>
                         <template v-slot:content>
                             <div class="grid grid-rows-2 text-gray-300">
-                                <c-input :input-label="'This Month: '">
+                                <c-input input-label="Undone: ">
                                     <template v-slot:input>
                                         <input type="text" v-model="sums.Savings.ThisMonthFormatted" disabled />
                                     </template>
                                 </c-input>
-                                <c-input :input-label="'Last Month: '">
+                            </div>
+                        </template>
+                    </c-section>
+
+                </div>
+                <div>
+                    <c-section extra-classes="mr-2" return-icon title="Box 4" small>
+                        <template v-slot:content>
+                            <div class="grid grid-rows-2 text-gray-300">
+                                <c-input input-label="Undone: ">
                                     <template v-slot:input>
-                                        <input type="text" v-model="sums.Savings.LastMonthFormatted" disabled />
+                                        <input type="text" v-model="sums.Savings.ThisMonthFormatted" disabled />
+                                    </template>
+                                </c-input>
+                            </div>
+                        </template>
+                    </c-section>
+                    <c-section extra-classes="mr-2" return-icon title="Box 5" small>
+                        <template v-slot:content>
+                            <div class="grid grid-rows-2 text-gray-300">
+                                <c-input input-label="Undone: ">
+                                    <template v-slot:input>
+                                        <input type="text" v-model="sums.Savings.ThisMonthFormatted" disabled />
                                     </template>
                                 </c-input>
                             </div>
                         </template>
                     </c-section>
                 </div>
+            </div>
 
-            </template>
-        </c-section>
-        <c-section return-icon :title="'Expected Data'">
-            <template v-slot:content>
-                <c-input class="mt-2 mb-2  text-gray-300" :input-label="'Monthly Expected Expenditures Without Savigs: '">
-                    <template v-slot:input>
-                        <input type="text" v-model="monthlyExpectedExpenditures" disabled />
-                    </template>
-                </c-input>
-                <div class="grid grid-cols-3 grid-row text-gray-300">
-                    <template v-for="category in categories">
-                        <c-input :input-labeL="category.Name +': '">
-                            <template v-slot:input>
-                                <input type="text" v-model="category.MonthlyLimitFormatted" disabled />
-                            </template>
-                        </c-input>
-                    </template>
-                </div>
-            </template>
-        </c-section>
-        <c-section return-icon :title="'Statistics'">
-            <template v-slot:content>
-                <div style="min-height: 40em; max-height: 40em; height: 40em;" >
-                    <div class="flex justify-center" >
-                        <div style="position: relative; height: 50%; width: 50%;">
-                            <canvas id="overviewChart" width="10" height="8"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </c-section>
-    </div>
+        </template>
+    </c-section>
+</div>

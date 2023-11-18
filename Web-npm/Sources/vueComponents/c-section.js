@@ -90,7 +90,7 @@
     },
     template: `
     <div :class="{'justify-center p-3':true, ' border-2 border-coolGray-700 rounded-xl': bordered}" v-bind:class="additionalClass()">
-        <div v-if="!hideHeader" class="grid grid-flow-col bg-background-2 text-white rounded-full">
+        <div v-if="!hideHeader" class="grid grid-flow-col bg-background-2 text-purple-1 rounded-full">
             <span v-if="icon?.length">
                 <i v-bind:class="icon"></i>
             </span>

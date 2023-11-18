@@ -3,8 +3,10 @@
 @if (User.Identity.IsAuthenticated)
 {
     <form method="post" class="form-check-inline" asp-page="/Logout">
-        Welcome @User.Identities.FirstOrDefault().Claims.ToList().First(x=> x.Type == "name").Value
-        <button type="submit" class="ml-2 btn btn-link">Logout</button>
+        <span class="text-blueGray-400">
+            @User.Identities.FirstOrDefault().Claims.ToList().First(x=> x.Type == "name").Value
+        </span>
+        <button type="submit" class="ml-2 btn btn-link border rounded p-1 hover:bg-coolGray-700">Logout</button>
     </form>
 }
 else

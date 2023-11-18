@@ -24,12 +24,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/rolelist.js",
-    "inputFiles": [
-      "Pages/Admin/Account/Role/roleList.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/js/user.js",
     "inputFiles": [
       "Pages/Admin/Account/User/userList.js"
@@ -42,69 +36,21 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/roledetails.js",
-    "inputFiles": [
-      "Pages/Admin/Account/Role/Details/roleDetails.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/businesslist.js",
-    "inputFiles": [
-      "Pages/DataManagement/Business/businessList.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/businessDetails.js",
-    "inputFiles": [
-      "Pages/DataManagement/Business/Details/businessDetails.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/js/categorylist.js",
     "inputFiles": [
-      "Pages/DataManagement/Category/categoryList.js"
+      "Pages/Category/categoryList.js"
     ]
   },
   {
     "outputFileName": "wwwroot/js/categoryDetails.js",
     "inputFiles": [
-      "Pages/DataManagement/Category/Details/categoryDetails.js"
+      "Pages/Category/Details/categoryDetails.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/paymentPrioritylist.js",
+    "outputFileName": "wwwroot/js/materialList.js",
     "inputFiles": [
-      "Pages/DataManagement/Payment/PaymentPriority/paymentPriorityList.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/paymentPriorityDetails.js",
-    "inputFiles": [
-      "Pages/DataManagement/Payment/PaymentPriority/Details/paymentPriorityDetails.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/paymentlist.js",
-    "inputFiles": [
-      "Pages/DataManagement/Payment/paymentList.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/paymentTotallist.js",
-    "inputFiles": [
-      "Pages/DataManagement/Payment/PaymentTotal/paymentTotalList.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/yearlyOverview.js",
-    "inputFiles": [
-      "Pages/Report/yearlyOverview.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/monthlyOverview.js",
-    "inputFiles": [
-      "Pages/Report/monthlyOverview.js"
+      "Pages/Material/materialList.js"
     ]
   }
 ]

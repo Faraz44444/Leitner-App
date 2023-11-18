@@ -19,6 +19,8 @@ module.exports = {
         },
         minHeight: {
             '1/2': '50%',
+            '1': '80vh'
+
         },
         //        height: {
         //            fit: 'fit-content',
@@ -55,13 +57,13 @@ module.exports = {
                 800: "#1E293B",
                 900: "#0F172A",
             },
-            customPurple: {
-                10: "#312e5a",
-                50: "#312e81"
+            purple: {
+                1: "#1e0f3d",
+                2: "#3b2356"
             },
             background: {
                 1: "#29292f",
-                2: "#1d174a",
+                2: "#67647f",
                 3: "#221887"
             },
             golden: {

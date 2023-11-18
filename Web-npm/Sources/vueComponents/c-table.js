@@ -19,21 +19,21 @@
                         <slot name="tfoot"></slot>
                     </tfoot>
                 </table>
-                    <nav class="" v-if="showPager">
+                    <nav class="mt-5" v-if="showPager">
                         <ul class="flex justify-center">
-                            <li  v-on:click="goToPage(1)" class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
+                            <li  v-on:click="goToPage(1)" class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">First</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage <= 1}">
                                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true" v-on:click="goToPage(filter.CurrentPage - 1)">Previous</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'active border-2': startPage + (n - 1) == filter.CurrentPage}" v-for="n in numberOfPagesToShow" v-on:click="goToPage(startPage + (n - 1))">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'active border-2': startPage + (n - 1) == filter.CurrentPage}" v-for="n in numberOfPagesToShow" v-on:click="goToPage(startPage + (n - 1))">
                                 <a class="page-link" v-bind:class="{'': startPage + (n - 1) != filter.CurrentPage}" href="#" >{{startPage + (n - 1)}}</a>
                             </li>                    
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
                                 <a class="page-link" href="#" v-on:click="goToPage(filter.CurrentPage + 1)">Next</a>
                             </li>
-                            <li class="p-3 rounded-full transition bg-background-3 hover:bg-background-2 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
+                            <li class="p-3 rounded-full transition bg-purple-2 hover:bg-purple-1 duration-500 mr-3" v-bind:class="{'disabled': filter.CurrentPage >= filter.TotalPages}">
                                 <a class="page-link" href="#" v-on:click="goToPage(filter.TotalPages)">Last</a>
                             </li>
                         </ul>

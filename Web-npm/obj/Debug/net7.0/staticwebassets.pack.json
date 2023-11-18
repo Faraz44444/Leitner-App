@@ -169,6 +169,14 @@
       "PackagePath": "staticwebassets\\js\\mainsite.min.js"
     },
     {
+      "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\materialList.js",
+      "PackagePath": "staticwebassets\\js\\materialList.js"
+    },
+    {
+      "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\materialList.min.js",
+      "PackagePath": "staticwebassets\\js\\materialList.min.js"
+    },
+    {
       "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\monthlyOverview.js",
       "PackagePath": "staticwebassets\\js\\monthlyOverview.js"
     },

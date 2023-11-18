@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3QTX7ixvQgTdEgBTkgFusYvDErbSODLROkFtBUscJAQ=",
+  "Hash": "k7/yPVzCzY4k+30eVTZxJrmCfM+PvGIsd1lR0T7XAcY=",
   "Source": "Web-npm",
   "BasePath": "_content/Web-npm",
   "Mode": "Default",
@@ -729,6 +729,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\mainsite.min.js"
+    },
+    {
+      "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\materialList.js",
+      "SourceId": "Web-npm",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\",
+      "BasePath": "_content/Web-npm",
+      "RelativePath": "js/materialList.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\materialList.js"
+    },
+    {
+      "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\materialList.min.js",
+      "SourceId": "Web-npm",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\",
+      "BasePath": "_content/Web-npm",
+      "RelativePath": "js/materialList.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\materialList.min.js"
     },
     {
       "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\monthlyOverview.js",

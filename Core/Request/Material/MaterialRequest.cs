@@ -6,6 +6,7 @@ namespace Core.Request.Payment
     public class MaterialRequest : BaseRequestPaged
     {
         public long MaterialId { get; set; }
+        public long BatchId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
         public long CategoryId { get; set; }
@@ -22,6 +23,7 @@ namespace Core.Request.Payment
             if (!Question.Empty()) searchParams.Add($"{TableAlias}.Question like '%' + @Question + '%'");
             if (!Answer.Empty()) searchParams.Add($"{TableAlias}.Answer like '%' + @Answer + '%'");
             if (CategoryId > 0) searchParams.Add($"{TableAlias}.CategoryId = @CategoryId");
+            if (BatchId > 0) searchParams.Add($"{TableAlias}.BatchId = @BatchId");
             if (!CategoryName.Empty()) searchParams.Add("ca.Name like '%' + @CategoryName+ '%'");
 
             return $" WHERE {BaseWhereSql(TableAlias)} {(BaseWhereSql(TableAlias).Length > 1 && searchParams.Count > 0 ? " AND " : "")} {string.Join(" AND ", searchParams)}";
