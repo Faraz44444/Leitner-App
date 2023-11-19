@@ -1,6 +1,6 @@
 ﻿using Core.Infrastructure.Mail;
 using Core.Infrastructure.UnitOfWork;
-using Core.Request.Category;
+using Core.Request.Batch;
 using Core.Request.Error;
 using Core.Request.Event;
 using Core.Request.Log;
@@ -10,7 +10,7 @@ using Core.Service.Mail;
 using Core.Service.Security;
 using Core.Table;
 using Domain.Model.ActionLog;
-using Domain.Model.Category;
+using Domain.Model.Batch;
 using Domain.Model.Payment;
 using Domain.Model.User;
 
@@ -25,6 +25,7 @@ namespace Core.Service
         public Service<ErrorLogRequest, ErrorLogModel> ErrorLogService { get; set; }
         public Service<EventLogRequest, EventLogModel> EventLogService { get; set; }
         public Service<CategoryRequest, CategoryModel> CategoryService { get; set; }
+        public Service<BatchRequest, BatchModel> BatchService { get; set; }
         public Service<MaterialRequest, MaterialModel> MaterialService { get; set; }
         public SecurityService SecurityService { get; set; }
         public MailService MailService { get; set; }
@@ -56,6 +57,10 @@ namespace Core.Service
                                                                           Tables.MaterialTable,
                                                                           new MaterialModel(),
                                                                           new MaterialRequest());
+            BatchService = new Service<BatchRequest, BatchModel>(uowProvider,
+                                                                 Tables.BatchTable,
+                                                                 new BatchModel(),
+                                                                 new BatchRequest());
 
             MailService = new MailService(mailConfiguration);
             SecurityService = new SecurityService(UserService, MailService);

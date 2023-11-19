@@ -1,7 +1,7 @@
 ﻿using Core.Infrastructure.Database;
 using Domain.Model.ActionLog;
 using Domain.Model.BaseModels;
-using Domain.Model.Category;
+using Domain.Model.Batch;
 using Domain.Model.Payment;
 using Domain.Model.User;
 using System;
@@ -13,17 +13,12 @@ namespace Core.Table
 {
     internal class TableContext
     {
-        internal TableInfo ClientTable;
         internal TableInfo UserTable;
-        internal TableInfo UserClientTable;
-        internal TableInfo RoleTable;
-        internal TableInfo RolePermissionTable;
         internal TableInfo ActionLogTable;
         internal TableInfo ErrorLogTable;
         internal TableInfo EventLogTable;
-        internal TableInfo BusinessTable;
         internal TableInfo CategoryTable;
-        internal TableInfo PaymentPriorityTable;
+        internal TableInfo BatchTable;
         internal TableInfo MaterialTable;
         internal TableInfo PaymentTotalTable;
 
@@ -34,6 +29,7 @@ namespace Core.Table
             ErrorLogSetter();
             EventLogSetter();
             CategoryTableSetter();
+            BatchTableSetter();
             MaterialTableSetter();
         }
 
@@ -104,6 +100,19 @@ namespace Core.Table
                                           primaryKey: "CategoryId",
                                           columns: columns);
         }
+        internal void BatchTableSetter()
+        {
+            var columns = new List<TableColumn>();
+            typeof(BatchModel).GetProperties().Where(x => !Attribute.IsDefined(x, typeof(IsNotTableColumnAttribute)) ||
+               !x.GetCustomAttribute<IsNotTableColumnAttribute>().IsNotTableColumn).ToList().ForEach(x =>
+               {
+                   columns.Add(new TableColumn(name: x.Name, tableAlias: "b", alias: x.Name));
+               });
+            BatchTable = new TableInfo(name: "dbo.BATCH_TAB",
+                                          alias: "b",
+                                          primaryKey: "BatchId",
+                                          columns: columns);
+        }
         internal void MaterialTableSetter()
         {
             var columns = new List<TableColumn>();
@@ -122,9 +131,9 @@ namespace Core.Table
                                                                                                  alias: "CategoryName",
                                                                                                  tableAlias: CategoryTable.Alias) });
 
-            MaterialTable = new TableInfo(name: "dbo.PAYMENT_TAB",
+            MaterialTable = new TableInfo(name: "dbo.MATERIAL_TAB",
                                          alias: "p",
-                                         primaryKey: "PaymentId",
+                                         primaryKey: "MaterialId",
                                          columns: columns,
                                          joins: new List<TableJoin>() {  categoryJoin });
         }

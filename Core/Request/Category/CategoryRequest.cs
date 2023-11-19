@@ -1,7 +1,7 @@
 ﻿using Core.Request.BaseRequests;
 using System.Collections.Generic;
 
-namespace Core.Request.Category
+namespace Core.Request.Batch
 {
     public class CategoryRequest : BaseRequestPaged
     {

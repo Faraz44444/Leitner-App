@@ -1,7 +1,7 @@
 ﻿using Domain.Model.BaseModels;
 using System;
 
-namespace Domain.Model.Category
+namespace Domain.Model.Batch
 {
     public class CategoryModel : PagedBaseModel
     {

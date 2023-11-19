@@ -4,7 +4,7 @@ const compButton = {
                 <button 
                     type="button" 
                     class="p-3 rounded-2xl" 
-                    :class="{'transition bg-purple-2 hover:bg-purple-1 duration-500': type == 'normal'}"
+                    :class="{'transition bg-purple-2 hover:bg-purple-1 border-2 border-blueGray-600 duration-500': type == 'normal'}"
                     v-on:click="$emit('click')">
                 <i class="mr-1" v-bind:class="icon"></i>
                 {{title}}
@@ -249,13 +249,15 @@ const compDropdown = {
 }
 
 const compInput = {
-    template: `<div v-bind:class="extraClasses + ' c-input-input flex justify-between'">
+    template: `<div v-bind:class="extraClasses + ' c-input-input'">
                     <span v-if="isSelect" class="caret"></span>
                     <button v-if="showCopy" class='btn btn-link text-gray-5 copy-btn' type='button' title='Click to copy' v-on:click='copyToClipboard($event)'><i class='fas fa-copy'></i></button>
-                    <label v-if="inputLabel" class="ml-2 mr-4">
-                        {{inputLabel}}
-                        <span v-show="required" class="ml-1 small text-danger">Required</span>
-                    </label>
+                    <div>                    
+                        <label v-if="inputLabel" class="ml-2 mr-4">
+                            {{inputLabel}}
+                            <span v-show="required" class="ml-1 small text-danger">Required</span>
+                        </label>
+                    </div>
                     <slot class="c-input-input" name="input">
                     </slot>
                 </div>`,
@@ -297,6 +299,7 @@ const compModal = {
                                 <div class="mt-3 flex justify-between">
                                     <div>
                                         <slot name="header">
+                                            <span id="modalHeader"> </span>
                                         </slot>
                                     </div>
                                     <button type="button" class="mr-2" v-on:click="$emit('close')"><i class="fa-solid fa-xmark"></i></button>
@@ -479,10 +482,10 @@ const compSection = {
 }
 const compSelect = {
     template: `
-                <select class="bg-background-2 border-2 rounded-full text-white"  v-model="Value" :placeholder=placeholder  :required=required>
+                <select class="bg-background-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
                     <option :track-by=trackBy
                             v-for="item in options"
-                            v-bind:value="item[trackBy]">{{item.Name}}</option>
+                            v-bind:value="item[trackBy]">{{item[displayingProperty]}}</option>
                 </select>`,
     data: function () {
         return {
@@ -508,6 +511,10 @@ const compSelect = {
             type: String,
             default: "Id"
         },
+        displayingProperty: {
+            type: String,
+            default: "Name"
+        },
         value: {}
     },
     computed: {
@@ -525,8 +532,8 @@ const compTable = {
                 <table class="table" v-bind:class="tClass">
                     <thead v-bind:class="theadClass">     
                         <slot name="thead"></slot>
-                    </thead>        
-                    <tbody v-bind:class="tbodyClass">
+                    </thead>     
+                    <tbody class="mt-5" v-bind:class="tbodyClass">
                         <slot name="tbody" v-if="useInfiniteScroll"></slot>
                         <tr v-show="filter.Loading || itemCount < 1">
                             <td colspan="50" class="text-center text-muted">

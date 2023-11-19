@@ -44,7 +44,7 @@
   {
     "outputFileName": "wwwroot/js/categoryDetails.js",
     "inputFiles": [
-      "Pages/DataManagement/Category/Details/categoryDetails.js"
+      "Pages/Category/Details/categoryDetails.js"
     ]
   },
   {

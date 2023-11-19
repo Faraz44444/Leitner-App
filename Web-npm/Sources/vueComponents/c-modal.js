@@ -7,6 +7,7 @@
                                 <div class="mt-3 flex justify-between">
                                     <div>
                                         <slot name="header">
+                                            <span id="modalHeader"> </span>
                                         </slot>
                                     </div>
                                     <button type="button" class="mr-2" v-on:click="$emit('close')"><i class="fa-solid fa-xmark"></i></button>

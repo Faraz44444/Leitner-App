@@ -15,8 +15,9 @@ namespace Domain.Model.Payment
 
         public MaterialModel() { }
 
-        public MaterialModel(string question, string answer, EnumStep step, long categoryId, long createdByUserId) : base(createdByUserId)
+        public MaterialModel(long batchId, string question, string answer, EnumStep step, long categoryId, long createdByUserId) : base(createdByUserId)
         {
+            BatchId = batchId;
             Question = question;
             Answer = answer;
             Step = step;

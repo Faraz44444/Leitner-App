@@ -30,7 +30,7 @@ namespace Core.Request.BaseRequests
 
         public bool Validate()
         {
-            return ClientId > 0;
+            return CreatedByUserId > 0;
         }
         public virtual string BaseWhereSql(string tableAlias, bool ignoreClientId = false)
         {

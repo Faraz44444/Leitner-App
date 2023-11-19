@@ -207,12 +207,12 @@ var feedbackHandler = (() => {
         if (!message || message.trim() == '')
             message = 'Noe gikk galt!'
 
+        let modal= document.getElementById('errorModal');
         let modalTitle = document.getElementById('errorModalTitle');
         let modalMessage = document.getElementById('errorModalMessage');
         modalTitle.innerHTML = title;
         modalMessage.innerHTML = message;
-
-        errorModal.toggle();
+        modal.style.display = '';
     }
 
     function showMessage(title = '', message = '') {

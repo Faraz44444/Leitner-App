@@ -1,5 +1,7 @@
 ﻿using Domain.Enum.OperationType;
+using System;
 using Web.Dto;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Web.Dto.Payment
 {
@@ -17,6 +19,10 @@ namespace Web.Dto.Payment
             {
                 return Step.Text();
             }
+        }
+        public string CreatedAtFormatted
+        {
+            get { return CreatedAt.Value.ToString("dd/MM/yyyy"); }
         }
     }
 }

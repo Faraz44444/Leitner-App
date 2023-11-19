@@ -13,7 +13,7 @@ namespace Web.Pages.DataManagement.Category.Details
         {
             if (id > 0)
             {
-                Core.AppContext.Current.Services.CategoryService.Request = new Core.Request.Category.CategoryRequest() { CategoryId = id };
+                Core.AppContext.Current.Services.CategoryService.Request = new Core.Request.Batch.CategoryRequest() { CategoryId = id };
                 var entity = await Core.AppContext.Current.Services.CategoryService.GetById();
                 if (entity == null || entity.CategoryId < 1)
                     return RedirectToPage("/index");

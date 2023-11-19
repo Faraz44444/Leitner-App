@@ -1,9 +1,9 @@
 ﻿const compSelect = {
     template: `
-                <select class="bg-background-2 border-2 rounded-full text-white"  v-model="Value" :placeholder=placeholder  :required=required>
+                <select class="bg-background-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
                     <option :track-by=trackBy
                             v-for="item in options"
-                            v-bind:value="item[trackBy]">{{item.Name}}</option>
+                            v-bind:value="item[trackBy]">{{item[displayingProperty]}}</option>
                 </select>`,
     data: function () {
         return {
@@ -28,6 +28,10 @@
         trackBy: {
             type: String,
             default: "Id"
+        },
+        displayingProperty: {
+            type: String,
+            default: "Name"
         },
         value: {}
     },

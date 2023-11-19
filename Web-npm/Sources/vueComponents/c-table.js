@@ -4,8 +4,8 @@
                 <table class="table" v-bind:class="tClass">
                     <thead v-bind:class="theadClass">     
                         <slot name="thead"></slot>
-                    </thead>        
-                    <tbody v-bind:class="tbodyClass">
+                    </thead>     
+                    <tbody class="mt-5" v-bind:class="tbodyClass">
                         <slot name="tbody" v-if="useInfiniteScroll"></slot>
                         <tr v-show="filter.Loading || itemCount < 1">
                             <td colspan="50" class="text-center text-muted">

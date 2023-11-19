@@ -15,10 +15,10 @@
     <c-section title="Category List">
         <template v-slot:content>
             <div class="mt">
-                <c-button v-bind:title="'Create New'" v-on:click="goToDetails(0)"></c-button>
+                <c-button icon="fa-plus" v-bind:title="'Create New'" v-on:click="goToDetails(0)"></c-button>
                 <div class="mt-4">
-                    <table class="table table-dark table-hover min-h-1">
-                        <thead>
+                    <c-table class="table table-dark table-hover">
+                        <template v-slot:thead>
                             <tr>
                                 <th>Category Name</th>
                                 <th>Priority</th>
@@ -37,19 +37,19 @@
                                 </th>
                                 <th></th>
                             </tr>
-                        </thead>
-                        <tbody>
+                        </template>
+                        <template v-slot:tbody>
                             <template v-for="(item, index) in items">
                                 <c-tr v-bind:index="index" v-on:click="goToDetails(item.CategoryId)">
                                     <template v-slot:content>
                                         <td>{{item.Name}}</td>
                                         <td>{{item.PriorityName}}</td>
-                                        <td>{{item.CreatedAt}}</td>
+                                        <td>{{item.CreatedAtFormatted}}</td>
                                     </template>
                                 </c-tr>
                             </template>
-                        </tbody>
-                    </table>
+                        </template>
+                    </c-table>
                 </div>
             </div>
         </template>

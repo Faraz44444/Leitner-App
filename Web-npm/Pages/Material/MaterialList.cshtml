@@ -15,12 +15,12 @@
     <c-section title="Material List">
         <template v-slot:content>
             <div>
-                @*<my--username name="test" asd="asdf">
-                <div slot="name">Faraz ...</div>
-                </my--username>*@
-                <c-button title="Create New" icon="fa-plus" v-on:click="openPaymentDetailsModal"></c-button>
+                <div class="flex">
+                    <c-button class="mr-2" title="New Batch" icon="fa-plus" v-on:click="openBatchDetailsModal"></c-button>
+                    <c-button title="New Material" icon="fa-plus" v-on:click="openMaterialDetailsModal"></c-button>
+                </div>
                 <div>
-                    <c-table :use-infinite-scroll="false" v-bind:filter="filter" v-on:fetch-page="fetchPage">
+                    <c-table class="mt-5" :use-infinite-scroll="false" v-bind:filter="filter" v-on:fetch-page="fetchPage">
                         <template v-slot:thead>
                             <tr>
                                 <c-th title="Question" value="Question"
@@ -43,8 +43,8 @@
                                       v-on:update-order-by-direction="setOrderByDirection($event)"
                                       v-on:update-order-by="setOrderBy($event)">
                                 </c-th>
-                                <c-th title="BatchId"
-                                      value="BatchId"
+                                <c-th title="Batch No"
+                                      value="Batch No"
                                       v-bind:order-by="filter.OrderBy"
                                       v-bind:order-by-direction="filter.OrderByDirection"
                                       v-on:update-order-by-direction="setOrderByDirection($event)"
@@ -91,7 +91,7 @@
                                 <th>
                                     <c-input>
                                         <template v-slot:input>
-                                            <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="filter.BatchId" />
+                                            <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="filter.BatchNo" />
                                         </template>
                                     </c-input>
                                 </th>
@@ -108,15 +108,15 @@
                             </tr>
                         </template>
                         <template v-slot:tbody>
-                            <template v-for="(item, index) in materials">
-                                <c-tr v-bind:index="index" v-on:click="openPaymentDetailsModal(item)">
+                            <template v-for="(item, index) in items">
+                                <c-tr v-bind:index="index" v-on:click="openMaterialDetailsModal(item)">
                                     <template v-slot:content>
-                                        <td>{{item.Question}}</td>
-                                        <td>{{item.Answer}}</td>
-                                        <td>{{item.Step}}</td>
-                                        <td>{{item.BatchId}}</td>
-                                        <td>{{item.CategoryName}}</td>
-                                        <td>{{item.CreatedAtFormatted}}</td>
+                                        <td class="pl-3">{{item.Question}}</td>
+                                        <td class="pl-3">{{item.Answer}}</td>
+                                        <td class="pl-3">{{item.StepString}}</td>
+                                        <td class="pl-3">{{item.BatchNo}}</td>
+                                        <td class="pl-3">{{item.CategoryName}}</td>
+                                        <td class="pl-3">{{item.CreatedAtFormatted}}</td>
                                     </template>
                                 </c-tr>
                             </template>
@@ -127,66 +127,62 @@
             </div>
         </template>
     </c-section>
-    <c-modal v-on:save="savePayment" v-on:keyup.esc="closeModal()" v-on:close="closeModal()" v-show="showDetailsModal">
+    <c-modal v-on:save="saveMaterial" v-on:keyup.esc="closeModal()" v-on:close="closeModal()" v-show="showDetailsModal">
         <template v-slot:header>
-            <h4>{{materialDetails.MaterialId > 0 ? paymentDetails.Question : 'New Material'}}</h4>
+            <h4>{{details.MaterialId > 0 ? details.Question : 'New Material'}}</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </template>
         <template v-slot:body>
             <div class="flex justif-between">
                 <div class="mr-4">
-                    <div class="flex g-2">
-                        <div class="mt-2">
-                            <c-input input-label="Question">
-                                <template v-slot:input>
-                                    <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="paymentDetails.Title" />
-                                </template>
-                            </c-input>
-                        </div>
-                        <div class="mt-2">
-                            <c-input input-label="Category: ">
-                                <template v-slot:input>
-                                    <c-select :options="categories" track-by="CategoryId" :value="paymentDetails.CategoryId" v-model="paymentDetails.CategoryId"></c-select>
-                                </template>
-                            </c-input>
-                        </div>
-                    </div>
-                    <div class="flex justify-between mt-2">
-                        <c-input input-label="Price: ">
+                    <div>
+                        <c-input input-label="Batch Number: ">
                             <template v-slot:input>
-                                <input type="number" class="bg-blue-900 border-2 rounded-full" v-model="paymentDetails.Price" required />
+                                <c-select :options="batches" displaying-property="BatchNo" track-by="BatchId" :value="details.BatchId" v-model="details.BatchId"></c-select>
                             </template>
                         </c-input>
-                        @*<c-dropdown ref="businessLookup" input-label="Business" v-bind:dorpdown-items="searchResultBusinesses.length" v-bind:items-visiblility="showItems">
-                        <template v-slot:body>
+                    </div>
+                    <div class="flex gap-2 mt-2">
                         <div>
-                        <input autocomplete="off" class="bg-background-2 border-2 rounded-full" id="searchBusinesses"
-                        v-model="paymentDetails.BusinessName" v-on:keydown.enter.prevent="scanBusiness()" autofocus />
+                            <c-input input-label="Question">
+                                <template v-slot:input>
+                                    <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="details.Question" />
+                                </template>
+                            </c-input>
                         </div>
-                        </template>
-                        <template v-slot:items>
-                        <div class="bg-customPurple-10" v-show="searchResultBusinesses.length < 1 && !loadingAvailableBusinesses"><span>No results.</span></div>
-                        <div class="bg-customPurple-10" v-show="loadingAvailableBusinesses"><span>Searching...</span></div>
-                        <div v-for="(item, index) in searchResultBusinesses"
-                        v-bind:key="item.Id"
-                        v-on:click="selectBusiness(item)">
-                        <div class="p-1"
-                        :class="{'bg-customPurple-10':index%2 ==0,'bg-background-2':index%2 ==1, 'hover:text-border-1 cursor-pointer w-full': true}">
-                        <span>{{item.Name}}</span>
+                        <div>
+                            <c-input input-label="Answer">
+                                <template v-slot:input>
+                                    <input class="bg-blue-900 border-2 rounded-full" v-model="details.Answer" required />
+                                </template>
+                            </c-input>
                         </div>
-                        </div>
-                        </template>
-                        </c-dropdown>*@
                     </div>
                     <div class="flex justify-between mt-2">
-                        <c-checkbox v-model="paymentDetails.IsDeposit" label="Deposit"></c-checkbox>
-                        <c-checkbox variant="green" v-model="paymentDetails.IsPaidToPerson" label="Paid To Person"></c-checkbox>
-                        <c-datepicker label="Date:" :value="paymentDetails.Date" v-model="paymentDetails.Date" required />
+                        <div class="mt-2">
+                            <c-input input-label="Category">
+                                <template v-slot:input>
+                                    <c-select :options="categories" track-by="CategoryId" :value="details.CategoryId" v-model="details.CategoryId"></c-select>
+                                </template>
+                            </c-input>
+                        </div>
                     </div>
-                    <div class="mt-2">
-                        <c-input input-label="Payment Priority: ">
+                </div>
+            </div>
+        </template>
+    </c-modal>
+    <c-modal v-on:save="saveBatch" v-on:keyup.esc="closeModal()" v-on:close="closeModal()" v-show="showBatchDetailsModal">
+        <template v-slot:header>
+            <h4>{{batchDetails.BatchId > 0 ? batchDetails.BatchNo: 'New Batch'}}</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </template>
+        <template v-slot:body>
+            <div class="mr-4">
+                <div class="flex gap-2 mt-2">
+                    <div>
+                        <c-input input-label="Batch Number">
                             <template v-slot:input>
-                                <c-select :options="paymentPriorities" track-by="PaymentPriorityId" :value="paymentDetails.PaymentPriorityId" v-model="paymentDetails.PaymentPriorityId"></c-select>
+                                <input class="bg-blue-900 border-2 rounded-full" type="text" v-model="batchDetails.BatchNo" />
                             </template>
                         </c-input>
                     </div>

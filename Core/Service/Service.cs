@@ -27,6 +27,7 @@ namespace Core.Service
             UowProvider = uowProvider;
             Table = table;
             Model = model;
+
             Request = request;
         }
 

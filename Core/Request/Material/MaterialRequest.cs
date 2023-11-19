@@ -16,7 +16,7 @@ namespace Core.Request.Payment
         {
             if (MaterialId > 0)
             {
-                return " WHERE p.PaymentId = @PaymentId";
+                return " WHERE p.MaterialId = @MaterialId";
             }
 
             var searchParams = new List<string>();

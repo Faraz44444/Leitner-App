@@ -1,6 +1,6 @@
-﻿using Core.Request.Category;
+﻿using Core.Request.Batch;
 using Core.Service;
-using Domain.Model.Category;
+using Domain.Model.Batch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

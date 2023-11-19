@@ -8,23 +8,26 @@ var app = vueContext({
                 OrderByDirection: "Asc",
                 DateFrom: null,
                 DateTo: null,
-                OrderBy: "Date",
+                OrderBy: "CreatedAt",
                 OrderByDirection: 2,
                 ItemsPerPage: 50,
+                MaterialId: 0,
                 CategoryId: 0,
-                BusinessId: 0,
                 CurrentPage: 1,
-                IsDeposit: null,
-                IsPaidToPerson: null,
                 TotalPages: 150,
                 Loading: false,
-                PaymentPriorityId: 0
             },
             showDetailsModal: false,
-            paymentDetails: {
+            showBatchDetailsModal: false,
+            details: {
+                MaterialId: 0,
                 Title: null,
                 IsPaidToPerson: false,
                 IsDeposit: false,
+            },
+            batchDetails: {
+                BatchId: 0,
+                BatchNo: null
             },
             businessFilter: {},
             paymenrRecommendationFilter: {
@@ -34,14 +37,8 @@ var app = vueContext({
             },
             value: null,
             categories: [],
-            businesses: [],
-            priorities: [],
-            recommendations: [],
-            paymentPriorities: [],
+            batches: [],
             items: [],
-            searchResultBusinesses: [],
-            loadingAvailableBusinesses: false,
-            showItems: false,
         }
 
     },
@@ -49,60 +46,16 @@ var app = vueContext({
         'filter.Title': function () {
             this.filterChagnedDelayed();
         },
-        'paymentDetails.Date': function () {
-            console.log(this.paymentDetails.Date);
-        },
-        'filter.CategoryId': function () {
-            this.filterChanged();
-        },
-        'filter.BusinessId': function () {
-            this.filterChanged();
-        },
-        'filter.PaymentPriorityId': function () {
-            this.filterChanged();
-        },
-        'filter.PriceFrom': function () {
-            this.filterChanged();
-        },
-        'filter.PriceTo': function () {
-            this.filterChanged();
-        },
-        'filter.IsDeposit': function () {
-            this.filterChanged();
-        },
-        'filter.IsPaidToPerson': function () {
-            this.filterChanged();
-        },
-        'filter.DateFrom': function () {
-            this.filterChanged();
-        },
-        'filter.DateTo': function () {
-            this.filterChanged();
-        },
-        'filter.OrderBy': function () {
-            this.filterChanged();
-        },
-        'filter.OrderByDirection': function () {
-            this.filterChanged();
-        },
-        'paymentDetails.BusinessName': function () {
-            this.searchResultBusinesses = []
-            this.scanBusiness();
-        },
-        'showItems': function () {
-            console.log("show items changed !!")
-        }
     },
     computed: {
 
     },
     methods: {
-        getMaterials: function () {
-            var request = { Deleted: false };
-            return apiHandler.Get("material", request).then(response => {
-                this.materials = response;
-                this.categories.unshift({ CategoryId: 0, Name: "All" })
-
+        getList: function () {
+            return apiHandler.Get("material", this.filter).then(response => {
+                this.items = response.Items;
+                this.filter.TotalPages = response.TotalPages;
+                this.filter.Loading = false;
             })
         },
         getCategories: function () {
@@ -113,13 +66,15 @@ var app = vueContext({
 
             })
         },
-        openPaymentDetailsModal: function (item) {
+        getBatches: function () {
+            var request = { Deleted: false };
+            return apiHandler.Get("batch/lookup", request).then(response => {
+                this.batches = response;
+            })
+        },
+        openMaterialDetailsModal: function (item) {
             if (item) {
-                this.paymentDetails = Object.assign({}, item);
-                this.paymentDetails.Date = new Date(item.Date).toISOString().split('T')[0]
-                console.log(new Date(item.Date).toISOString().split('T')[0]);
-                let date = new Date(item.Date)
-                this.paymentDetails.Date = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + date.getDate();
+                this.details = Object.assign({}, item);
             }
             else {
                 this.paymentDetails = {
@@ -129,21 +84,45 @@ var app = vueContext({
             }
             this.showDetailsModal = true;
         },
+        openBatchDetailsModal: function (item) {
+            if (item) {
+                this.batchDetails = Object.assign({}, item);
+            }
+            else {
+                this.batchDetails = {
+                    BatchId: 0,
+                    BatchNo: null
+                };
+            }
+            this.showBatchDetailsModal = true;
+        },
         closeModal: function () {
             this.showDetailsModal = false;
+            this.showBatchDetailsModal = false;
         },
-        savePayment: function () {
-            if (!formvalidation.Validate("paymentDetails")) return;
-
-            if (this.paymentDetails.PaymentId > 0) {
-                return apiHandler.Put("payment", this.paymentDetails.PaymentId, this.paymentDetails).then(responce => {
+        saveMaterial: function () {
+            if (this.details.MaterialId > 0) {
+                return apiHandler.Put("material", this.details.MaterialId, this.details).then(() => {
                     this.showDetailsModal = false;
                     this.getList();
                 });
             }
             else {
-                return apiHandler.Post("payment", this.paymentDetails).then(responce => {
+                return apiHandler.Post("material", this.details).then(responce => {
                     this.getList();
+                });
+            }
+        },
+        saveBatch: function () {
+            if (this.batchDetails.BatchId > 0) {
+                return apiHandler.Put("batch", this.batchDetails.BatchId, this.batchDetails).then(responce => {
+                    this.showBatchDetailsModal = false;
+                    this.getBatches();
+                });
+            }
+            else {
+                return apiHandler.Post("batch", this.batchDetails).then(() => {
+                    this.getBatches();
                 });
             }
         },
@@ -172,8 +151,9 @@ var app = vueContext({
         }
     },
     created: function () {
-        this.getMaterials();
+        this.getList();
         this.getCategories();
+        this.getBatches();
     },
     mounted: function () {
     }
