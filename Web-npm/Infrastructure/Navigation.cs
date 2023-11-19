@@ -12,8 +12,8 @@ namespace Web.Infrastructure
         static Navigation()
         {
             Items.Add(new NavigationItem("Dashboard", "/index", "", "fa fa-tachometer-alt"));
-            Items.Add(new NavigationItem("Materials", "/material/materialList", "", "fa fa-clipboard"));
-            Items.Add(new NavigationItem("Categories", "/category/categoryList", "", "fa-solid fa-tags"));
+            Items.Add(new NavigationItem("Materials", "/material/materiallist", "/material/materiallist", "fa fa-clipboard"));
+            Items.Add(new NavigationItem("Categories", "/category/categorylist", "/category/categorylist", "fa-solid fa-tags"));
         }
     }
 
