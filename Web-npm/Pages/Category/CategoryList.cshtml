@@ -21,7 +21,6 @@
                         <template v-slot:thead>
                             <tr>
                                 <th>Category Name</th>
-                                <th>Priority</th>
                                 <th>Created At</th>
                             </tr>
                             <tr>
@@ -43,7 +42,6 @@
                                 <c-tr v-bind:index="index" v-on:click="goToDetails(item.CategoryId)">
                                     <template v-slot:content>
                                         <td>{{item.Name}}</td>
-                                        <td>{{item.PriorityName}}</td>
                                         <td>{{item.CreatedAtFormatted}}</td>
                                     </template>
                                 </c-tr>
