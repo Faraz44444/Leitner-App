@@ -1,6 +1,6 @@
 ﻿const compSelect = {
     template: `
-                <select class="bg-background-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
+                <select class="bg-background-2 p-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
                     <option :track-by=trackBy
                             v-for="item in options"
                             v-bind:value="item[trackBy]">{{item[displayingProperty]}}</option>
