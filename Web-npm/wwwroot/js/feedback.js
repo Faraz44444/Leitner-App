@@ -4,7 +4,7 @@
 
     function showError(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Warning'
+            title = ' <i class="fa-solid fa-triangle-exclamation mr-2"></i> Warning'
         if (!message || message.trim() == '')
             message = 'En error has occured.'
 
@@ -18,7 +18,7 @@
 
     function showMessage(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Warning'
+            title = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> Warning'
         if (!message || message.trim() == '')
             return;
 
@@ -31,7 +31,7 @@
     }
 
     const toastTemplate = `<div class="d-flex">
-                                <div class="toast-body">
+                                <div class="mt-2">
                                     <h5>{content}</h5>
                                 </div>
                                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
