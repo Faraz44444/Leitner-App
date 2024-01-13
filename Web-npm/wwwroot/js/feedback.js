@@ -4,11 +4,11 @@
 
     function showError(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Oops!'
+            title = 'Warning'
         if (!message || message.trim() == '')
-            message = 'Noe gikk galt!'
+            message = 'En error has occured.'
 
-        let modal= document.getElementById('errorModal');
+        let modal = document.getElementById('errorModal');
         let modalTitle = document.getElementById('errorModalTitle');
         let modalMessage = document.getElementById('errorModalMessage');
         modalTitle.innerHTML = title;
@@ -18,7 +18,7 @@
 
     function showMessage(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Obs!'
+            title = 'Warning'
         if (!message || message.trim() == '')
             return;
 

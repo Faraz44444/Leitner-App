@@ -131,11 +131,20 @@ namespace Core.Table
                                                                                                  alias: "CategoryName",
                                                                                                  tableAlias: CategoryTable.Alias) });
 
+            var batchJoin = new TableJoin(type: new JoinType(EnumJoinType.LeftJoin),
+                                      destination: BatchTable,
+                                      source: null,
+                                      destinationConnectionColumn: BatchTable.PrimaryKey,
+                                      sourceConnectionColumn: "p.BatchId",
+                                      selectColumns: new List<JoinedColumn>() { new JoinedColumn(name: "Name",
+                                                                                                 alias: "BatchName",
+                                                                                                 tableAlias: BatchTable.Alias) });
+
             MaterialTable = new TableInfo(name: "dbo.MATERIAL_TAB",
                                          alias: "p",
                                          primaryKey: "MaterialId",
                                          columns: columns,
-                                         joins: new List<TableJoin>() {  categoryJoin });
+                                         joins: new List<TableJoin>() { categoryJoin, batchJoin });
         }
     }
 }
