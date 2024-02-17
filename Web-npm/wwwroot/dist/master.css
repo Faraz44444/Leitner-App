@@ -7300,24 +7300,12 @@ video {
   width: max-content;
 }
 
-.min-w-0 {
-  min-width: 0px;
+.min-w-1\/2 {
+  min-width: 50vw;
 }
 
-.min-w-full {
-  min-width: 100%;
-}
-
-.min-w-min {
-  min-width: -webkit-min-content;
-  min-width: -moz-min-content;
-  min-width: min-content;
-}
-
-.min-w-max {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
+.min-w-1\/10 {
+  min-width: 5vw;
 }
 
 .max-w-0 {
@@ -29217,24 +29205,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
     width: max-content;
   }
 
-  .sm\:min-w-0 {
-    min-width: 0px;
+  .sm\:min-w-1\/2 {
+    min-width: 50vw;
   }
 
-  .sm\:min-w-full {
-    min-width: 100%;
-  }
-
-  .sm\:min-w-min {
-    min-width: -webkit-min-content;
-    min-width: -moz-min-content;
-    min-width: min-content;
-  }
-
-  .sm\:min-w-max {
-    min-width: -webkit-max-content;
-    min-width: -moz-max-content;
-    min-width: max-content;
+  .sm\:min-w-1\/10 {
+    min-width: 5vw;
   }
 
   .sm\:max-w-0 {
@@ -51029,24 +51005,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
     width: max-content;
   }
 
-  .md\:min-w-0 {
-    min-width: 0px;
+  .md\:min-w-1\/2 {
+    min-width: 50vw;
   }
 
-  .md\:min-w-full {
-    min-width: 100%;
-  }
-
-  .md\:min-w-min {
-    min-width: -webkit-min-content;
-    min-width: -moz-min-content;
-    min-width: min-content;
-  }
-
-  .md\:min-w-max {
-    min-width: -webkit-max-content;
-    min-width: -moz-max-content;
-    min-width: max-content;
+  .md\:min-w-1\/10 {
+    min-width: 5vw;
   }
 
   .md\:max-w-0 {
@@ -72841,24 +72805,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
     width: max-content;
   }
 
-  .lg\:min-w-0 {
-    min-width: 0px;
+  .lg\:min-w-1\/2 {
+    min-width: 50vw;
   }
 
-  .lg\:min-w-full {
-    min-width: 100%;
-  }
-
-  .lg\:min-w-min {
-    min-width: -webkit-min-content;
-    min-width: -moz-min-content;
-    min-width: min-content;
-  }
-
-  .lg\:min-w-max {
-    min-width: -webkit-max-content;
-    min-width: -moz-max-content;
-    min-width: max-content;
+  .lg\:min-w-1\/10 {
+    min-width: 5vw;
   }
 
   .lg\:max-w-0 {
@@ -94653,24 +94605,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
     width: max-content;
   }
 
-  .xl\:min-w-0 {
-    min-width: 0px;
+  .xl\:min-w-1\/2 {
+    min-width: 50vw;
   }
 
-  .xl\:min-w-full {
-    min-width: 100%;
-  }
-
-  .xl\:min-w-min {
-    min-width: -webkit-min-content;
-    min-width: -moz-min-content;
-    min-width: min-content;
-  }
-
-  .xl\:min-w-max {
-    min-width: -webkit-max-content;
-    min-width: -moz-max-content;
-    min-width: max-content;
+  .xl\:min-w-1\/10 {
+    min-width: 5vw;
   }
 
   .xl\:max-w-0 {

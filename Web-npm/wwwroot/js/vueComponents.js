@@ -1,13 +1,13 @@
 const compButton = {
     template: `
-            <div class="flex" :class="extraClasses">
+            <div class="" :class="extraClasses">
                 <button 
                     type="button" 
-                    class="p-3 rounded-2xl" 
+                    class="p-3 rounded-2xl min-w-1/10 flex justify-center" 
                     :class="{'transition bg-purple-2 hover:bg-purple-1 border-2 border-blueGray-600 duration-500': type == 'normal'}"
                     v-on:click="$emit('click')">
-                <i class="mr-1" v-bind:class="icon"></i>
-                {{title}}
+                    <i v-bind:class="icon"></i>
+                    <div v-if="title" v-bind:class="{'ml-2': title}">{{title}}</div>
                 </button>
             </div>
 `,
@@ -482,7 +482,7 @@ const compSection = {
 }
 const compSelect = {
     template: `
-                <select class="bg-background-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
+                <select class="bg-background-2 p-2 border-2 rounded-full text-white min-w-full"  v-model="Value" :placeholder=placeholder  :required=required>
                     <option :track-by=trackBy
                             v-for="item in options"
                             v-bind:value="item[trackBy]">{{item[displayingProperty]}}</option>

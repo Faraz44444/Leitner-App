@@ -221,6 +221,14 @@
       "PackagePath": "staticwebassets\\js\\paymentlist.min.js"
     },
     {
+      "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\reviewList.js",
+      "PackagePath": "staticwebassets\\js\\reviewList.js"
+    },
+    {
+      "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\reviewList.min.js",
+      "PackagePath": "staticwebassets\\js\\reviewList.min.js"
+    },
+    {
       "Id": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\roledetails.js",
       "PackagePath": "staticwebassets\\js\\roledetails.js"
     },

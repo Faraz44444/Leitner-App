@@ -8,6 +8,9 @@ namespace Domain.Model.Payment
     {
         public long MaterialId { get; set; }
         public long BatchId { get; set; }
+
+        [IsNotTableColumn(true)]
+        public long BatchNo { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
         public EnumStep Step { get; set; }

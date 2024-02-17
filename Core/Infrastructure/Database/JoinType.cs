@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Infrastructure.Database
 {
+    // This should become a struct!
     public class JoinType
     {
         public EnumJoinType Type { get; set; }

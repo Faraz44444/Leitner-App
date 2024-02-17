@@ -1,13 +1,13 @@
 ﻿const compButton = {
     template: `
-            <div class="flex" :class="extraClasses">
+            <div class="" :class="extraClasses">
                 <button 
                     type="button" 
-                    class="p-3 rounded-2xl" 
+                    class="p-3 rounded-2xl min-w-1/10 flex justify-center" 
                     :class="{'transition bg-purple-2 hover:bg-purple-1 border-2 border-blueGray-600 duration-500': type == 'normal'}"
                     v-on:click="$emit('click')">
-                <i class="mr-1" v-bind:class="icon"></i>
-                {{title}}
+                    <i v-bind:class="icon"></i>
+                    <div v-if="title" v-bind:class="{'ml-2': title}">{{title}}</div>
                 </button>
             </div>
 `,

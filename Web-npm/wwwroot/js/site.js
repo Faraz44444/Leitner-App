@@ -91,7 +91,7 @@ var apiHandler = (function () {
                 exception = await response.clone().json()
             }
             catch (error) {
-                throw new ApiError("En feil har oppstått.");
+                throw new ApiError("An error has occured.");
             }
 
             throw new ApiError(exception.ExceptionMessage, exception.ExceptionStackTrace);
@@ -203,11 +203,11 @@ var feedbackHandler = (() => {
 
     function showError(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Oops!'
+            title = ' <i class="fa-solid fa-triangle-exclamation mr-2"></i> Warning'
         if (!message || message.trim() == '')
-            message = 'Noe gikk galt!'
+            message = 'En error has occured.'
 
-        let modal= document.getElementById('errorModal');
+        let modal = document.getElementById('errorModal');
         let modalTitle = document.getElementById('errorModalTitle');
         let modalMessage = document.getElementById('errorModalMessage');
         modalTitle.innerHTML = title;
@@ -217,7 +217,7 @@ var feedbackHandler = (() => {
 
     function showMessage(title = '', message = '') {
         if (!title || title.trim() == '')
-            title = 'Obs!'
+            title = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> Warning'
         if (!message || message.trim() == '')
             return;
 
@@ -230,7 +230,7 @@ var feedbackHandler = (() => {
     }
 
     const toastTemplate = `<div class="d-flex">
-                                <div class="toast-body">
+                                <div class="mt-2">
                                     <h5>{content}</h5>
                                 </div>
                                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>

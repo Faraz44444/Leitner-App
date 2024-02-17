@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k7/yPVzCzY4k+30eVTZxJrmCfM+PvGIsd1lR0T7XAcY=",
+  "Hash": "VcBIxqt9QJKt5OlKrUNnUUoJN2OEUEwq8IXYccM10Jc=",
   "Source": "Web-npm",
   "BasePath": "_content/Web-npm",
   "Mode": "Default",
@@ -950,6 +950,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\paymentTotallist.min.js"
+    },
+    {
+      "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\reviewList.js",
+      "SourceId": "Web-npm",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\",
+      "BasePath": "_content/Web-npm",
+      "RelativePath": "js/reviewList.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\reviewList.js"
+    },
+    {
+      "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\reviewList.min.js",
+      "SourceId": "Web-npm",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\",
+      "BasePath": "_content/Web-npm",
+      "RelativePath": "js/reviewList.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\reviewList.min.js"
     },
     {
       "Identity": "E:\\Applications\\Leitner-App\\Web-npm\\wwwroot\\js\\roledetails.js",

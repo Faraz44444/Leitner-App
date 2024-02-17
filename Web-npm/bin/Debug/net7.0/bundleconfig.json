@@ -52,5 +52,11 @@
     "inputFiles": [
       "Pages/Material/materialList.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/reviewList.js",
+    "inputFiles": [
+      "Pages/Review/reviewList.js"
+    ]
   }
 ]

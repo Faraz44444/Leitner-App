@@ -91,7 +91,7 @@ var apiHandler = (function () {
                 exception = await response.clone().json()
             }
             catch (error) {
-                throw new ApiError("En feil har oppstått.");
+                throw new ApiError("An error has occured.");
             }
 
             throw new ApiError(exception.ExceptionMessage, exception.ExceptionStackTrace);

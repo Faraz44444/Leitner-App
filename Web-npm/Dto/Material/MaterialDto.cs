@@ -1,4 +1,5 @@
 ﻿using Domain.Enum.OperationType;
+using Domain.Model.BaseModels;
 using System;
 using Web.Dto;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -9,7 +10,7 @@ namespace Web.Dto.Payment
     {
         public long MaterialId { get; set; }
         public long BatchId { get; set; }
-        public string BatchName { get; set; }
+        public string BatchNo { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
         public EnumStep Step { get; set; }

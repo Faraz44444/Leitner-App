@@ -94,13 +94,72 @@ namespace Web.Controllers.Payment
             };
             MaterialService.Request = request;
             var model = await MaterialService.GetById();
-            if(model == null) return BadRequest("Item not found.");
+            if (model == null) return BadRequest("Item not found.");
             model.BatchId = dto.BatchId;
             model.CategoryId = dto.CategoryId;
             model.Question = dto.Question;
             model.Answer = dto.Answer;
             model.Deleted = dto.Deleted;
             model.DeletedAt = dto.Deleted ? DateTime.Now : null;
+
+            try
+            {
+                MaterialService.Model = model;
+                await MaterialService.Update();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(new DefaultResponseDto<MaterialDto>(Mapper.Map<MaterialDto>(await MaterialService.GetById())));
+        }
+
+        [Route("increaseStep/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> IncreaseStep([FromRoute] long id, [FromBody] MaterialDto dto)
+        {
+            if (dto == null) return BadRequest();
+            if (dto.MaterialId != id) return BadRequest();
+            var request = new MaterialRequest()
+            {
+                CreatedByUserId = CurrentUser.UserId,
+                MaterialId = id
+            };
+            MaterialService.Request = request;
+            var model = await MaterialService.GetById();
+            if (model == null) return BadRequest("Item not found.");
+            model.Step += 1;
+            MaterialService.Model = model;
+            try
+            {
+                MaterialService.Model = model;
+                await MaterialService.Update();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(new DefaultResponseDto<MaterialDto>(Mapper.Map<MaterialDto>(await MaterialService.GetById())));
+        }
+
+        [Route("decreaseStep/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> DecreaseStep([FromRoute] long id, [FromBody] MaterialDto dto)
+        {
+            if (dto == null) return BadRequest();
+            if (dto.MaterialId != id) return BadRequest();
+            var request = new MaterialRequest()
+            {
+                CreatedByUserId = CurrentUser.UserId,
+                MaterialId = id
+            };
+            MaterialService.Request = request;
+            var model = await MaterialService.GetById();
+            if (model == null) return BadRequest("Item not found.");
+            model.Step = Domain.Enum.OperationType.EnumStep.Box1_EveryDay;
+            MaterialService.Model = model;
 
             try
             {

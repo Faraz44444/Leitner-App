@@ -2,6 +2,7 @@
 using Core.Service;
 using Domain.Model.Batch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Threading.Tasks;
 using Web.Dto;
@@ -51,7 +52,7 @@ namespace Web.Controllers.Category
                 var existingCategories = await BatchService.GetList();
                 if (!existingCategories.Empty())
                 {
-                    return BadRequest("There is already a Business with the given name");
+                    throw new Exception("There is already a Business with the given name");
                 }
 
                 BatchService.Model = model;
@@ -67,7 +68,7 @@ namespace Web.Controllers.Category
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 

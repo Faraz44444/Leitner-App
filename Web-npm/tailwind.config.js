@@ -16,11 +16,19 @@ module.exports = {
             width: {
                 '300': '300px'
             },
+            transform: {
+                'rotate-y-180': 'rotateY(180deg)'
+            },
+            transformStyle: ['responsive']
         },
         minHeight: {
             '1/2': '50%',
             '1': '80vh'
 
+        },
+        minWidth: {
+            '1/2': '50vw',
+            '1/10': '5vw'
         },
         //        height: {
         //            fit: 'fit-content',
@@ -82,6 +90,17 @@ module.exports = {
             textColor: ['group-focus'],
         },
     },
+    plugins: [
+        function ({ addUtilities }) {
+            const newUtilities = {
+                '.transform-style-3d': {
+                    'transform-style': 'preserve-3d',
+                },
+            };
+
+            addUtilities(newUtilities);
+        },
+    ],
     plugins: [
         require("@tailwindcss/forms")({
             strategy: 'class',

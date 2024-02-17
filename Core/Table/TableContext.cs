@@ -136,8 +136,8 @@ namespace Core.Table
                                       source: null,
                                       destinationConnectionColumn: BatchTable.PrimaryKey,
                                       sourceConnectionColumn: "p.BatchId",
-                                      selectColumns: new List<JoinedColumn>() { new JoinedColumn(name: "Name",
-                                                                                                 alias: "BatchName",
+                                      selectColumns: new List<JoinedColumn>() { new JoinedColumn(name: "BatchNo",
+                                                                                                 alias: "BatchNo",
                                                                                                  tableAlias: BatchTable.Alias) });
 
             MaterialTable = new TableInfo(name: "dbo.MATERIAL_TAB",
